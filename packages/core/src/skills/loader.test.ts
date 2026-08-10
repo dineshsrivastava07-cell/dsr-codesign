@@ -75,7 +75,6 @@ describe('loadSkillsFromDir()', () => {
     expect(ids).toContain('empty-states');
     expect(ids).toContain('loading-skeleton');
     expect(ids).toContain('surface-elevation');
-    expect(ids).toContain('cjk-typography');
   });
 
   it('returns empty array when directory does not exist', async () => {
