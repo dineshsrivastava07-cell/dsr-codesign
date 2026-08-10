@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from 'node:crypto';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 
 export const CLIENT_ID = 'app_EMoamEEZ73f0CkXaXp7hrann';
 export const AUTH_BASE = 'https://auth.openai.com';
@@ -32,7 +32,7 @@ export function buildAuthorizeUrl(opts: AuthorizeUrlOpts): string {
     code_challenge_method: 'S256',
     state: opts.state,
     codex_cli_simplified_flow: 'true',
-    originator: opts.originator ?? 'open-codesign',
+    originator: opts.originator ?? 'dsr-codesign',
     id_token_add_organizations: 'true',
   });
   return `${AUTH_BASE}/oauth/authorize?${params.toString()}`;

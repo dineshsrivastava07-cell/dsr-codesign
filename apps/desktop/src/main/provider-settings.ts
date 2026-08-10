@@ -10,7 +10,7 @@ import {
   type ReasoningLevel,
   resolveProviderCapabilities,
   type WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { maskSecret } from './keychain';
 
 export interface ProviderRow {

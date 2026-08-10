@@ -1,4 +1,4 @@
-import type { Design } from '@open-codesign/shared';
+import type { Design } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { buildRecentDesigns } from './RecentTab';
 

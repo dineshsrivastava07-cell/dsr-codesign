@@ -9,7 +9,7 @@ import {
 } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { makeScaffoldTool } from '@open-codesign/core';
+import { makeScaffoldTool } from '@dsr-codesign/core';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { AgentStreamEvent } from '../preload/index';
 import { normalizeWorkspacePath } from './design-workspace';
@@ -45,8 +45,8 @@ vi.mock('./electron-runtime', () => ({
   BrowserWindow: BrowserWindowMock,
   app: {
     getPath: vi.fn((name: string) => {
-      if (name === 'userData') return '/tmp/open-codesign-tests';
-      if (name === 'logs') return '/tmp/open-codesign-tests/logs';
+      if (name === 'userData') return '/tmp/dsr-codesign-tests';
+      if (name === 'logs') return '/tmp/dsr-codesign-tests/logs';
       if (name === 'temp') return '/tmp';
       return '/tmp';
     }),

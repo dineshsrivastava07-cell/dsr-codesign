@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import {
   type EditmodeBlock,
   type EditmodeTokens,
@@ -8,7 +8,7 @@ import {
   replaceEditmodeBlock,
   type TokenSchemaEntry,
   type TweakSchema,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { RotateCcw, SlidersHorizontal, X } from 'lucide-react';
 import { type RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { stablePreviewSourceKey } from '../preview/helpers';

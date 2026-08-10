@@ -20,15 +20,15 @@ importers:
       '@changesets/cli':
         specifier: ^2.27.11
         version: 2.31.0(@types/node@22.19.19)
+      '@dsr-codesign/core':
+        specifier: workspace:*
+        version: link:packages/core
+      '@dsr-codesign/shared':
+        specifier: workspace:*
+        version: link:packages/shared
       '@iarna/toml':
         specifier: ^2.2.5
         version: 2.2.5
-      '@open-codesign/core':
-        specifier: workspace:*
-        version: link:packages/core
-      '@open-codesign/shared':
-        specifier: workspace:*
-        version: link:packages/shared
       '@types/node':
         specifier: ^22.19.19
         version: 22.19.19
@@ -63,6 +63,33 @@ importers:
         specifier: ^7.25.0
         version: 7.25.0
     devDependencies:
+      '@dsr-codesign/artifacts':
+        specifier: workspace:*
+        version: link:../../packages/artifacts
+      '@dsr-codesign/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@dsr-codesign/exporters':
+        specifier: workspace:*
+        version: link:../../packages/exporters
+      '@dsr-codesign/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
+      '@dsr-codesign/providers':
+        specifier: workspace:*
+        version: link:../../packages/providers
+      '@dsr-codesign/runtime':
+        specifier: workspace:*
+        version: link:../../packages/runtime
+      '@dsr-codesign/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@dsr-codesign/templates':
+        specifier: workspace:*
+        version: link:../../packages/templates
+      '@dsr-codesign/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@mariozechner/pi-agent-core':
         specifier: ^0.72.1
         version: 0.72.1(ws@8.20.0)(zod@4.4.2)
@@ -72,33 +99,6 @@ importers:
       '@mariozechner/pi-coding-agent':
         specifier: ^0.72.1
         version: 0.72.1(ws@8.20.0)(zod@4.4.2)
-      '@open-codesign/artifacts':
-        specifier: workspace:*
-        version: link:../../packages/artifacts
-      '@open-codesign/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@open-codesign/exporters':
-        specifier: workspace:*
-        version: link:../../packages/exporters
-      '@open-codesign/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
-      '@open-codesign/providers':
-        specifier: workspace:*
-        version: link:../../packages/providers
-      '@open-codesign/runtime':
-        specifier: workspace:*
-        version: link:../../packages/runtime
-      '@open-codesign/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@open-codesign/templates':
-        specifier: workspace:*
-        version: link:../../packages/templates
-      '@open-codesign/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@tailwindcss/postcss':
         specifier: ^4.3.0
         version: 4.3.0
@@ -177,7 +177,7 @@ importers:
 
   packages/artifacts:
     dependencies:
-      '@open-codesign/shared':
+      '@dsr-codesign/shared':
         specifier: workspace:*
         version: link:../shared
       zod:
@@ -193,6 +193,12 @@ importers:
 
   packages/core:
     dependencies:
+      '@dsr-codesign/providers':
+        specifier: workspace:*
+        version: link:../providers
+      '@dsr-codesign/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@mariozechner/pi-agent-core':
         specifier: ^0.72.1
         version: 0.72.1(ws@8.20.0)(zod@4.4.2)
@@ -202,12 +208,6 @@ importers:
       '@mariozechner/pi-coding-agent':
         specifier: ^0.72.1
         version: 0.72.1(ws@8.20.0)(zod@4.4.2)
-      '@open-codesign/providers':
-        specifier: workspace:*
-        version: link:../providers
-      '@open-codesign/shared':
-        specifier: workspace:*
-        version: link:../shared
       '@sinclair/typebox':
         specifier: ^0.34.49
         version: 0.34.49
@@ -221,10 +221,10 @@ importers:
 
   packages/exporters:
     dependencies:
-      '@open-codesign/runtime':
+      '@dsr-codesign/runtime':
         specifier: workspace:*
         version: link:../runtime
-      '@open-codesign/shared':
+      '@dsr-codesign/shared':
         specifier: workspace:*
         version: link:../shared
       pptxgenjs:
@@ -256,7 +256,7 @@ importers:
         specifier: ^17.0.6
         version: 17.0.6(i18next@26.0.8(typescript@6.0.3))(react@19.2.6)(typescript@6.0.3)
     devDependencies:
-      '@open-codesign/shared':
+      '@dsr-codesign/shared':
         specifier: workspace:*
         version: link:../shared
       '@types/react':
@@ -274,12 +274,12 @@ importers:
 
   packages/providers:
     dependencies:
+      '@dsr-codesign/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@mariozechner/pi-ai':
         specifier: ^0.72.1
         version: 0.72.1(ws@8.20.0)(zod@4.4.2)
-      '@open-codesign/shared':
-        specifier: workspace:*
-        version: link:../shared
     devDependencies:
       typescript:
         specifier: ^6.0.3
@@ -290,7 +290,7 @@ importers:
 
   packages/runtime:
     dependencies:
-      '@open-codesign/shared':
+      '@dsr-codesign/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
@@ -319,10 +319,10 @@ importers:
 
   packages/templates:
     dependencies:
-      '@open-codesign/i18n':
+      '@dsr-codesign/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@open-codesign/shared':
+      '@dsr-codesign/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:

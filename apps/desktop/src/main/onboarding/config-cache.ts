@@ -6,7 +6,7 @@ import {
   type OnboardingState,
   StoredDesignSystem,
   type StoredDesignSystem as StoredDesignSystemValue,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { readConfig, writeConfig } from '../config';
 import { decryptSecret, migrateSecrets } from '../keychain';
 import { getLogger } from '../logger';

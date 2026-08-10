@@ -1,5 +1,5 @@
+import { DEFAULT_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import type { AgentTool, AgentToolResult } from '@mariozechner/pi-agent-core';
-import { DEFAULT_SOURCE_ENTRY } from '@open-codesign/shared';
 import { Type } from '@sinclair/typebox';
 import { type CoreLogger, NOOP_LOGGER } from '../logger.js';
 import type { TextEditorFsCallbacks } from './text-editor';

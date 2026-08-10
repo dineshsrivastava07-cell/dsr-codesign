@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { Check, Send, X } from 'lucide-react';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';

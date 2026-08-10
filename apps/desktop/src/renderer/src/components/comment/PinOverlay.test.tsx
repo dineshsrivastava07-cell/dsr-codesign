@@ -1,4 +1,4 @@
-import type { CommentRow } from '@open-codesign/shared';
+import type { CommentRow } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { pinStyleFromRect, variantFor } from './PinOverlay';
 

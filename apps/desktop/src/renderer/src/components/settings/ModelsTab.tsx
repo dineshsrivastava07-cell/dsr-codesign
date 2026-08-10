@@ -1,10 +1,10 @@
-import { useT } from '@open-codesign/i18n';
-import type { WireApi } from '@open-codesign/shared';
+import { useT } from '@dsr-codesign/i18n';
+import type { WireApi } from '@dsr-codesign/shared';
 import {
   isSupportedOnboardingProvider,
   PROVIDER_SHORTLIST as SHORTLIST,
-} from '@open-codesign/shared';
-import { Button } from '@open-codesign/ui';
+} from '@dsr-codesign/shared';
+import { Button } from '@dsr-codesign/ui';
 import { Check, Loader2, Plus, Zap } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import type { ProviderRow } from '../../../../preload/index';
@@ -28,7 +28,7 @@ import {
  */
 const PARSE_REASON_NOT_JSON_OBJECT = '__parse_reason_not_json_object__';
 
-const DISMISSED_BANNER_PREFIX = 'open-codesign:settings:dismissed-import-banner:';
+const DISMISSED_BANNER_PREFIX = 'dsr-codesign:settings:dismissed-import-banner:';
 
 const CPA_DETECTION_DISMISSED_KEY = 'cpa-detection-dismissed-v1';
 

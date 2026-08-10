@@ -19,6 +19,6 @@
 
 ## Verification
 
-- `pnpm --filter @open-codesign/core test -- --run agent-session tool-manifest tools/ask tools/scaffold tools/skill tools/preview tools/done security/bash-blocklist`: 8 files / 64 tests passed.
-- `pnpm --filter @open-codesign/desktop test -- --run ask-ipc permission-ipc preview-runtime process-registry workspace-watcher migration/v01-to-v02 ensure-user-templates`: 7 files / 39 tests passed.
+- `pnpm --filter @dsr-codesign/core test -- --run agent-session tool-manifest tools/ask tools/scaffold tools/skill tools/preview tools/done security/bash-blocklist`: 8 files / 64 tests passed.
+- `pnpm --filter @dsr-codesign/desktop test -- --run ask-ipc permission-ipc preview-runtime process-registry workspace-watcher migration/v01-to-v02 ensure-user-templates`: 7 files / 39 tests passed.
 - `pnpm typecheck`: 10/10 package tasks passed.

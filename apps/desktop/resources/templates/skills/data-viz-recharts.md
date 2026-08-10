@@ -20,7 +20,7 @@ user_invocable: true
 
 ## Data Visualization with Recharts
 
-Open CoDesign's default `App.jsx` runtime provides React and ReactDOM, not
+DSR CoDesign's default `App.jsx` runtime provides React and ReactDOM, not
 Recharts. If `Recharts` is not already available in the artifact context, do
 not reference `<ResponsiveContainer>`, `<LineChart>`, or other Recharts globals;
 draw the chart with inline SVG instead.

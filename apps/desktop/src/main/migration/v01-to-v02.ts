@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, renameSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { SessionManager } from '@dsr-codesign/core';
 import type { Message, Usage } from '@mariozechner/pi-ai';
-import { SessionManager } from '@open-codesign/core';
 import { normalizeDesignFilePath } from '../snapshots-db';
 import { prepareWorkspaceWriteContent } from '../workspace-file-content';
 
@@ -279,7 +279,7 @@ function toLegacySessionMessage(msg: ChatMessageRow): Message {
 
 function toLegacyCommentMessage(comment: LegacyCommentRow, timestamp: number): Message {
   const lines = [
-    'Legacy inline comment migrated from Open CoDesign v0.1.',
+    'Legacy inline comment migrated from DSR CoDesign v0.1.',
     `Kind: ${comment.kind}`,
     `Status: ${comment.status}`,
     `Selector: ${comment.selector}`,

@@ -1,7 +1,7 @@
 import { lstat, readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import type { AgentTool, AgentToolResult } from '@mariozechner/pi-agent-core';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
 import { Type } from '@sinclair/typebox';
 
 /**

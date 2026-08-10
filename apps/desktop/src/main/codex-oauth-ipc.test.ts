@@ -7,7 +7,7 @@
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ConfigV3Schema, toPersistedV3 } from '@open-codesign/shared';
+import { ConfigV3Schema, toPersistedV3 } from '@dsr-codesign/shared';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const handlers = new Map<string, (...args: unknown[]) => unknown>();
@@ -76,9 +76,9 @@ const startCallbackServerMock = vi.fn(async () => ({
 }));
 const exchangeCodeMock = vi.fn();
 
-vi.mock('@open-codesign/providers/codex', async () => {
-  const actual = await vi.importActual<typeof import('@open-codesign/providers/codex')>(
-    '@open-codesign/providers/codex',
+vi.mock('@dsr-codesign/providers/codex', async () => {
+  const actual = await vi.importActual<typeof import('@dsr-codesign/providers/codex')>(
+    '@dsr-codesign/providers/codex',
   );
   return {
     ...actual,

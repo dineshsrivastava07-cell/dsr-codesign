@@ -1,4 +1,4 @@
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import { describe, expect, it, vi } from 'vitest';
 
 const handlers = new Map<string, (event: unknown, raw: unknown) => unknown>();

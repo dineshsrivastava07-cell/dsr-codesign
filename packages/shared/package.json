@@ -1,5 +1,5 @@
 {
-  "name": "@open-codesign/shared",
+  "name": "@dsr-codesign/shared",
   "version": "0.2.1",
   "private": true,
   "type": "module",

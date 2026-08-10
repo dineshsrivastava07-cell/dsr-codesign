@@ -4,7 +4,7 @@ import { getLogger } from './logger';
 /**
  * Per-provider TLS verification bypass.
  *
- * Some users run open-codesign against internal OpenAI-compatible gateways
+ * Some users run dsr-codesign against internal OpenAI-compatible gateways
  * served with self-signed or private-CA certificates. Node 22's built-in fetch
  * is implemented by undici, which intentionally ignores
  * NODE_TLS_REJECT_UNAUTHORIZED. The only working bypass is to install a

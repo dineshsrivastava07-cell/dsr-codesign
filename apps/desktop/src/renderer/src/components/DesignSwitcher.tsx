@@ -1,5 +1,5 @@
-import { useT } from '@open-codesign/i18n';
-import type { Design } from '@open-codesign/shared';
+import { useT } from '@dsr-codesign/i18n';
+import type { Design } from '@dsr-codesign/shared';
 import { Check, ChevronDown, FolderOpen, Pencil, Plus } from 'lucide-react';
 import { type CSSProperties, useEffect, useRef, useState } from 'react';
 import { useCodesignStore } from '../store';

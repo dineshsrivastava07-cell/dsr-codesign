@@ -14,7 +14,7 @@ import {
   type JudgeVisualParityFn,
   STANDARD_VISUAL_PARITY_CHECKS,
   type VisualParityImageRef,
-} from '@open-codesign/core';
+} from '@dsr-codesign/core';
 
 // Use the canonical check list from core. Previously this file kept its own
 // duplicate copy; that risked drift if one was updated without the other

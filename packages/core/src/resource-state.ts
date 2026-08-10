@@ -6,7 +6,7 @@ import {
   LEGACY_SOURCE_ENTRY,
   normalizeResourceState,
   type ResourceStateV1,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import type { TextEditorFsCallbacks } from './tools/text-editor.js';
 
 export function cloneResourceState(input: ResourceStateV1 | undefined): ResourceStateV1 {

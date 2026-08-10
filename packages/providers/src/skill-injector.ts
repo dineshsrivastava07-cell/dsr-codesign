@@ -1,4 +1,4 @@
-import type { LoadedSkill } from '@open-codesign/shared';
+import type { LoadedSkill } from '@dsr-codesign/shared';
 
 // ---------------------------------------------------------------------------
 // Provider-agnostic skill manifest helpers.

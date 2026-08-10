@@ -42,7 +42,7 @@ export function makeCommentsSlice(set: SetState, get: GetState): CommentsSliceAc
         });
       } catch (err) {
         const msg = err instanceof Error ? err.message : tr('errors.unknown');
-        console.warn('[open-codesign] loadCommentsForCurrentDesign failed:', msg);
+        console.warn('[dsr-codesign] loadCommentsForCurrentDesign failed:', msg);
         set({ commentsLoaded: true });
       }
     },
@@ -96,7 +96,7 @@ export function makeCommentsSlice(set: SetState, get: GetState): CommentsSliceAc
           snapshotId = snaps[0]?.id ?? null;
           if (snapshotId) set({ currentSnapshotId: snapshotId });
         } catch (err) {
-          console.warn('[open-codesign] addComment: failed to look up latest snapshot', err);
+          console.warn('[dsr-codesign] addComment: failed to look up latest snapshot', err);
         }
       }
       if (!snapshotId) {

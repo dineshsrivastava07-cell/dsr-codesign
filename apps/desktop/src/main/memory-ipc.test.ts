@@ -14,8 +14,8 @@ vi.mock('./logger', () => ({
   getLogger: () => ({ warn: vi.fn(), info: vi.fn(), error: vi.fn() }),
 }));
 
-vi.mock('@open-codesign/core', async () => {
-  const actual = await vi.importActual<typeof import('@open-codesign/core')>('@open-codesign/core');
+vi.mock('@dsr-codesign/core', async () => {
+  const actual = await vi.importActual<typeof import('@dsr-codesign/core')>('@dsr-codesign/core');
   return {
     ...actual,
     updateWorkspaceMemory: vi.fn(async () => ({
@@ -33,7 +33,7 @@ vi.mock('@open-codesign/core', async () => {
   };
 });
 
-import { updateUserMemory, updateWorkspaceMemory } from '@open-codesign/core';
+import { updateUserMemory, updateWorkspaceMemory } from '@dsr-codesign/core';
 import {
   loadMemoryContext,
   readUserMemoryFile,

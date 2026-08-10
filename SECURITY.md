@@ -6,11 +6,11 @@
 
 Please report security issues privately via GitHub Security Advisories:
 
-1. Go to https://github.com/OpenCoworkAI/open-codesign/security/advisories/new
+1. Go to https://github.com/DSR-AI-Lab/dsr-codesign/security/advisories/new
 2. Fill in the form with reproduction steps and impact assessment
 3. We will acknowledge within 72 hours and provide an initial response within 7 days
 
-For urgent or sensitive matters, you may also email **security@opencowork.ai** (PGP key TBD).
+For urgent or sensitive matters, you may also email **security@dsrailab.com** (PGP key TBD).
 
 ## Supported Versions
 

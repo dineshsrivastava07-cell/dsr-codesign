@@ -1,6 +1,6 @@
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock electron and logger before importing the module under test.
@@ -78,7 +78,7 @@ describe('readPersisted()', () => {
     try {
       await readPersisted();
       expect(readFileMock).toHaveBeenLastCalledWith(
-        join(xdg, 'open-codesign', 'preferences.json'),
+        join(xdg, 'dsr-codesign', 'preferences.json'),
         'utf8',
       );
     } finally {

@@ -9,9 +9,9 @@ import { getActiveStorageLocations } from './storage-settings';
  * Centralized logger for the main + preload + renderer processes.
  *
  * Files:
- *   macOS:   ~/Library/Logs/open-codesign/main.log
- *   Windows: %APPDATA%/open-codesign/logs/main.log
- *   Linux:   ~/.config/open-codesign/logs/main.log
+ *   macOS:   ~/Library/Logs/dsr-codesign/main.log
+ *   Windows: %APPDATA%/dsr-codesign/logs/main.log
+ *   Linux:   ~/.config/dsr-codesign/logs/main.log
  *
  * Console mirror: WARN+ in dev, ERROR only in prod, off when packaged-quiet.
  * Format example:
@@ -53,7 +53,7 @@ export function initLogger(): typeof log {
   });
 
   log.scope.labelPadding = false;
-  log.info('[boot] open-codesign starting', {
+  log.info('[boot] dsr-codesign starting', {
     version: app.getVersion(),
     platform: process.platform,
     electron: process.versions.electron,

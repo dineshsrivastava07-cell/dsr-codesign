@@ -1,4 +1,4 @@
-import { CURRENT_TOOL_ORDER, TOOL_MANIFEST_V1 } from '@open-codesign/shared';
+import { CURRENT_TOOL_ORDER, TOOL_MANIFEST_V1 } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { availableToolNames } from './tool-manifest';
 

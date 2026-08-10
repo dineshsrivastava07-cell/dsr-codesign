@@ -1,5 +1,5 @@
-import { initI18n } from '@open-codesign/i18n';
-import type { DiagnosticHypothesis } from '@open-codesign/shared';
+import { initI18n } from '@dsr-codesign/i18n';
+import type { DiagnosticHypothesis } from '@dsr-codesign/shared';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { buildGenerateDisplayMessage } from './errors';
 

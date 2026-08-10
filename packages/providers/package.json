@@ -1,5 +1,5 @@
 {
-  "name": "@open-codesign/providers",
+  "name": "@dsr-codesign/providers",
   "version": "0.2.1",
   "private": true,
   "type": "module",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@mariozechner/pi-ai": "^0.72.1",
-    "@open-codesign/shared": "workspace:*"
+    "@dsr-codesign/shared": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^6.0.3",

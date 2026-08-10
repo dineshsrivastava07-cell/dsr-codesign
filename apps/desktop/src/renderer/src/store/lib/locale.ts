@@ -1,5 +1,5 @@
-import { i18n } from '@open-codesign/i18n';
-import type { LocalInputFile, ModelRef } from '@open-codesign/shared';
+import { i18n } from '@dsr-codesign/i18n';
+import type { LocalInputFile, ModelRef } from '@dsr-codesign/shared';
 
 export function tr(key: string, options?: Record<string, unknown>): string {
   return i18n.t(key, options ?? {}) as string;

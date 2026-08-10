@@ -1,5 +1,5 @@
-import type { DiagnosticHypothesis, OnboardingState } from '@open-codesign/shared';
-import { diagnoseGenerateFailure } from '@open-codesign/shared';
+import type { DiagnosticHypothesis, OnboardingState } from '@dsr-codesign/shared';
+import { diagnoseGenerateFailure } from '@dsr-codesign/shared';
 import { tr } from '../lib/locale.js';
 
 export type ToastVariant = 'success' | 'error' | 'info';

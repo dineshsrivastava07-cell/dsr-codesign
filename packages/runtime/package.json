@@ -1,5 +1,5 @@
 {
-  "name": "@open-codesign/runtime",
+  "name": "@dsr-codesign/runtime",
   "version": "0.1.6",
   "private": true,
   "type": "module",
@@ -18,7 +18,7 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@open-codesign/shared": "workspace:*"
+    "@dsr-codesign/shared": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^6.0.3",

@@ -1,4 +1,4 @@
-import { CodesignError, type Config, ERROR_CODES, type SecretRef } from '@open-codesign/shared';
+import { CodesignError, type Config, ERROR_CODES, type SecretRef } from '@dsr-codesign/shared';
 import { safeStorage } from './electron-runtime';
 import { getLogger } from './logger';
 

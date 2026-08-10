@@ -21,8 +21,8 @@ import type {
   DesignSnapshot,
   PreviewMode,
   SnapshotCreateInput,
-} from '@open-codesign/shared';
-import { ChatMessageKind, CodesignError, CommentKind, CommentRect } from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import { ChatMessageKind, CodesignError, CommentKind, CommentRect } from '@dsr-codesign/shared';
 import type { BrowserWindow } from 'electron';
 import {
   bindWorkspace,

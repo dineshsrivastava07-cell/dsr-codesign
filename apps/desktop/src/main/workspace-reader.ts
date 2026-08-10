@@ -2,7 +2,7 @@ import type { Dirent } from 'node:fs';
 import { lstat, readdir, readFile, stat } from 'node:fs/promises';
 import { basename, extname, join, relative, resolve, sep } from 'node:path';
 import { TextDecoder } from 'node:util';
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 
 export const DEFAULT_WORKSPACE_PATTERNS = [
   '**/*.html',

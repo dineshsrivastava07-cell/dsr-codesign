@@ -1,5 +1,5 @@
 import { readFile, stat } from 'node:fs/promises';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import { getLogger } from '../logger';
 
 /**

@@ -1,4 +1,4 @@
-import { completeWithRetry } from '@open-codesign/providers';
+import { completeWithRetry } from '@dsr-codesign/providers';
 import type {
   ChatMessage,
   DesignRunPreferenceConfidence,
@@ -8,7 +8,7 @@ import type {
   ModelRef,
   ReasoningLevel,
   WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { remapProviderError } from './errors.js';
 import { type CoreLogger, NOOP_LOGGER } from './logger.js';
 import type { AskInput } from './tools/ask.js';
@@ -32,7 +32,7 @@ export const DEFAULT_RUN_PREFERENCES: DesignRunPreferencesV1 = {
 };
 
 export const RUN_PREFERENCES_ROUTER_SYSTEM_PROMPT = [
-  'You route Open CoDesign run preferences and design natural clarification questions from semantic intent.',
+  'You route DSR CoDesign run preferences and design natural clarification questions from semantic intent.',
   'Output ONLY valid JSON. No markdown.',
   '',
   'Return shape:',

@@ -1,6 +1,6 @@
-import { useT } from '@open-codesign/i18n';
-import type { SelectedElement } from '@open-codesign/shared';
-import { Tooltip } from '@open-codesign/ui';
+import { useT } from '@dsr-codesign/i18n';
+import type { SelectedElement } from '@dsr-codesign/shared';
+import { Tooltip } from '@dsr-codesign/ui';
 import { MessageSquareText, X } from 'lucide-react';
 import { useState } from 'react';
 import { useCodesignStore } from '../store';

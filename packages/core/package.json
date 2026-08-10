@@ -1,5 +1,5 @@
 {
-  "name": "@open-codesign/core",
+  "name": "@dsr-codesign/core",
   "version": "0.2.1",
   "private": true,
   "type": "module",
@@ -16,8 +16,8 @@
     "@mariozechner/pi-agent-core": "^0.72.1",
     "@mariozechner/pi-ai": "^0.72.1",
     "@mariozechner/pi-coding-agent": "^0.72.1",
-    "@open-codesign/providers": "workspace:*",
-    "@open-codesign/shared": "workspace:*",
+    "@dsr-codesign/providers": "workspace:*",
+    "@dsr-codesign/shared": "workspace:*",
     "@sinclair/typebox": "^0.34.49"
   },
   "devDependencies": {

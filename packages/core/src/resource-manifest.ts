@@ -1,12 +1,12 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { filterActive } from '@open-codesign/providers';
+import { filterActive } from '@dsr-codesign/providers';
 import {
   type LoadedSkill,
   RESOURCE_MANIFEST_SCHEMA_VERSION,
   type ResourceManifestEntryV1,
   type ResourceManifestV1,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import type { CoreLogger } from './logger.js';
 import { loadScaffoldManifest, type ScaffoldManifest } from './tools/scaffold.js';
 
@@ -106,7 +106,7 @@ async function loadBrandEntries(brandRefsRoot: string): Promise<ResourceManifest
       aliases: [brand.name],
       whenToUse: `Use when the user explicitly asks for ${brand.name} or brand:${brand.slug}.`,
       dependencies: [],
-      source: 'Open CoDesign curated brand reference',
+      source: 'DSR CoDesign curated brand reference',
       license: 'reference-only',
       path: brand.path,
     }));
@@ -124,7 +124,7 @@ async function loadBrandEntries(brandRefsRoot: string): Promise<ResourceManifest
       aliases: [],
       whenToUse: `Use when the user explicitly asks for brand:${entry.name}.`,
       dependencies: [],
-      source: 'Open CoDesign curated brand reference',
+      source: 'DSR CoDesign curated brand reference',
       license: 'reference-only',
       path: `${entry.name}/DESIGN.md`,
     }))

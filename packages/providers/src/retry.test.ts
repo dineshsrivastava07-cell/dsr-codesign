@@ -1,4 +1,4 @@
-import { type ChatMessage, CodesignError, type ModelRef } from '@open-codesign/shared';
+import { type ChatMessage, CodesignError, type ModelRef } from '@dsr-codesign/shared';
 import { describe, expect, it, vi } from 'vitest';
 import type { GenerateOptions, GenerateResult } from './index';
 import {

@@ -1,11 +1,11 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import {
   type ChatToolCallPayload,
   DEFAULT_SOURCE_ENTRY,
   getToolManifestEntry,
   TOOL_MANIFEST_V1,
   type ToolManifestIconKeyV1,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   AlertCircle,
   Brain,

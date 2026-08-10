@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('@open-codesign/i18n', () => ({
+vi.mock('@dsr-codesign/i18n', () => ({
   useT: () => (key: string) => key,
 }));
 

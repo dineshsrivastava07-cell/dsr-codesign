@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { FolderOpen, Loader2, RotateCcw } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { AppPaths, StorageKind } from '../../../../preload/index';

@@ -1,10 +1,10 @@
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import {
   collapseWhitespace,
   decodeHtmlEntities,
   removeHtmlElementBlocks,
   stripHtmlTags,
-} from '@open-codesign/shared/html-utils';
+} from '@dsr-codesign/shared/html-utils';
 import type { ExportResult } from './index';
 import { buildExportHtmlDocument } from './rendered-html';
 

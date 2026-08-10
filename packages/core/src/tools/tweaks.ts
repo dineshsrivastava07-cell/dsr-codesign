@@ -14,12 +14,12 @@
  * pre-populate controls so the user can nudge values without re-prompting.
  */
 
-import type { AgentTool, AgentToolResult } from '@mariozechner/pi-agent-core';
 import {
   type EditmodeTokens,
   type EditmodeTokenValue,
   parseEditmodeBlock,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import type { AgentTool, AgentToolResult } from '@mariozechner/pi-agent-core';
 import { Type } from '@sinclair/typebox';
 
 export interface TweakFileInput {

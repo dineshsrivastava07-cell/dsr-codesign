@@ -3,7 +3,7 @@ import {
   type ChatMessageRow,
   type ChatToolCallPayload,
   LEGACY_SOURCE_ENTRY,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   hasWorkspaceSourceReference,
   inferPreviewSourcePath,
@@ -183,7 +183,7 @@ export function makeChatSlice(set: SetState, get: GetState): ChatSliceActions {
         set({ chatMessages: compactChatRowsForUi(rows), chatLoaded: true });
       } catch (err) {
         const msg = err instanceof Error ? err.message : tr('errors.unknown');
-        console.warn('[open-codesign] loadChatForCurrentDesign failed:', msg);
+        console.warn('[dsr-codesign] loadChatForCurrentDesign failed:', msg);
         set({ chatLoaded: true });
       }
     },
@@ -200,7 +200,7 @@ export function makeChatSlice(set: SetState, get: GetState): ChatSliceActions {
         return row;
       } catch (err) {
         const msg = err instanceof Error ? err.message : tr('errors.unknown');
-        console.warn('[open-codesign] appendChatMessage failed:', msg);
+        console.warn('[dsr-codesign] appendChatMessage failed:', msg);
         return null;
       }
     },
@@ -301,7 +301,7 @@ export function makeChatSlice(set: SetState, get: GetState): ChatSliceActions {
         });
       } catch (err) {
         const msg = err instanceof Error ? err.message : 'unknown';
-        console.warn('[open-codesign] updateChatToolStatus failed:', msg);
+        console.warn('[dsr-codesign] updateChatToolStatus failed:', msg);
         return;
       }
       // Mirror the patch into local chatMessages so WorkingCard re-renders

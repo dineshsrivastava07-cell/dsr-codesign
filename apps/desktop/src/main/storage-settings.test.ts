@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ERROR_CODES } from '@open-codesign/shared';
+import { ERROR_CODES } from '@dsr-codesign/shared';
 import { afterEach, describe, expect, it } from 'vitest';
 import {
   buildAppPaths,
@@ -16,7 +16,7 @@ import {
 const tempDirs: string[] = [];
 
 async function tempRoot(): Promise<string> {
-  const dir = await mkdtemp(join(tmpdir(), 'open-codesign-storage-'));
+  const dir = await mkdtemp(join(tmpdir(), 'dsr-codesign-storage-'));
   tempDirs.push(dir);
   return dir;
 }
@@ -28,17 +28,17 @@ afterEach(async () => {
 describe('buildAppPaths', () => {
   it('returns file paths and their containing folders for config and logs', () => {
     const paths = buildAppPaths(
-      '/tmp/open-codesign/config.toml',
-      '/tmp/open-codesign/logs/main.log',
-      '/tmp/open-codesign',
+      '/tmp/dsr-codesign/config.toml',
+      '/tmp/dsr-codesign/logs/main.log',
+      '/tmp/dsr-codesign',
     );
 
     expect(paths).toEqual({
-      config: '/tmp/open-codesign/config.toml',
-      configFolder: '/tmp/open-codesign',
-      logs: '/tmp/open-codesign/logs/main.log',
-      logsFolder: '/tmp/open-codesign/logs',
-      data: '/tmp/open-codesign',
+      config: '/tmp/dsr-codesign/config.toml',
+      configFolder: '/tmp/dsr-codesign',
+      logs: '/tmp/dsr-codesign/logs/main.log',
+      logsFolder: '/tmp/dsr-codesign/logs',
+      data: '/tmp/dsr-codesign',
     });
   });
 

@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { invokeSkill, listSkillManifest, makeSkillTool } from './skill';
 

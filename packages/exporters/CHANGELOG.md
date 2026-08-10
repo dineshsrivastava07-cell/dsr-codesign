@@ -1,4 +1,4 @@
-# @open-codesign/exporters
+# @dsr-codesign/exporters
 
 ## 0.1.6
 
@@ -6,8 +6,8 @@
 
 - Updated dependencies [7a1977d]
 - Updated dependencies [6cbb639]
-  - @open-codesign/shared@0.3.0
-  - @open-codesign/runtime@0.1.6
+  - @dsr-codesign/shared@0.3.0
+  - @dsr-codesign/runtime@0.1.6
 
 ## 0.1.5
 
@@ -32,5 +32,5 @@
 - Updated dependencies [b2a6d15]
 - Updated dependencies [013fd34]
 - Updated dependencies [d3a62fe]
-  - @open-codesign/shared@0.2.0
-  - @open-codesign/runtime@0.1.5
+  - @dsr-codesign/shared@0.2.0
+  - @dsr-codesign/runtime@0.1.5

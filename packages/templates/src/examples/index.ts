@@ -12,11 +12,10 @@
  * interface language.
  */
 
-import { availableLocales, type Locale, normalizeLocale } from '@open-codesign/i18n';
+import { availableLocales, type Locale, normalizeLocale } from '@dsr-codesign/i18n';
 import { enExamples } from './locales/en';
 import { esExamples } from './locales/es';
 import { ptBRExamples } from './locales/pt-BR';
-import { zhCNExamples } from './locales/zh-CN';
 import {
   thumbAgencyHomepage,
   thumbAgendaPlanner,
@@ -727,7 +726,6 @@ const REGISTRY: Record<Locale, Record<string, ExampleContent>> = {
   en: enExamples,
   es: esExamples,
   'pt-BR': ptBRExamples,
-  'zh-CN': zhCNExamples,
 };
 
 function getRegistry(locale: string | undefined): Record<string, ExampleContent> {

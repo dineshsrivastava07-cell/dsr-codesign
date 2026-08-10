@@ -84,6 +84,6 @@ Standard IP protection, phishing prevention, and out-of-scope deflection. Brief 
 
 Describes how capability "Skills" are serialized and injected into the prompt at runtime. Each skill is a named, versioned block of instructions that can be included or excluded depending on the generation context.
 
-## Implications for open-codesign
+## Implications for dsr-codesign
 
 Our prompt composer in `packages/core/src/prompts/index.ts` mirrors this 10-section architecture with independently authored text. The EDITMODE protocol described in Section 6 is implemented in `docs/research/11-custom-sliders.md` (corrected 2026-04-18) and `packages/runtime/`.

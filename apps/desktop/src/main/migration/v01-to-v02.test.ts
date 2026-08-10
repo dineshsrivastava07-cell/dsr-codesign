@@ -360,7 +360,7 @@ describe('runMigration', () => {
         {
           type: 'text',
           text: [
-            'Legacy inline comment migrated from Open CoDesign v0.1.',
+            'Legacy inline comment migrated from DSR CoDesign v0.1.',
             'Kind: edit',
             'Status: pending',
             'Selector: .hero-title',

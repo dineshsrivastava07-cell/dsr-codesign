@@ -1,5 +1,5 @@
-import { useT } from '@open-codesign/i18n';
-import { IconButton, Tooltip } from '@open-codesign/ui';
+import { useT } from '@dsr-codesign/i18n';
+import { IconButton, Tooltip } from '@dsr-codesign/ui';
 import { FolderOpen, Layers, Link2, Paperclip, Plus } from 'lucide-react';
 import {
   type KeyboardEvent as ReactKeyboardEvent,

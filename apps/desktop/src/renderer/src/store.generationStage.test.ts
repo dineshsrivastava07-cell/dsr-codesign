@@ -1,5 +1,5 @@
-import { initI18n } from '@open-codesign/i18n';
-import type { OnboardingState } from '@open-codesign/shared';
+import { initI18n } from '@dsr-codesign/i18n';
+import type { OnboardingState } from '@dsr-codesign/shared';
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useCodesignStore } from './store';
 
@@ -20,7 +20,7 @@ const DEFAULT_DESIGN = {
   updatedAt: '2024-01-01T00:00:00.000Z',
   thumbnailText: null,
   deletedAt: null,
-  workspacePath: '/tmp/open-codesign-stage-test',
+  workspacePath: '/tmp/dsr-codesign-stage-test',
 };
 
 function mockChatApi() {

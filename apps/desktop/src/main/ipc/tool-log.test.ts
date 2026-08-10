@@ -1,4 +1,4 @@
-import type { AgentEvent } from '@open-codesign/core';
+import type { AgentEvent } from '@dsr-codesign/core';
 import { describe, expect, it } from 'vitest';
 import {
   compactToolResultForHistory,

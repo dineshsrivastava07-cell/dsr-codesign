@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { useEffect, useState } from 'react';
 import type { Preferences } from '../../../../preload/index';
 import { useCodesignStore } from '../../store';

@@ -29,9 +29,9 @@ import {
 import { tmpdir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
+import { generateViaAgent, type TextEditorFsCallbacks } from '@dsr-codesign/core';
+import { transformHtmlElementBlocks } from '@dsr-codesign/shared/html-utils';
 import * as TOML from '@iarna/toml';
-import { generateViaAgent, type TextEditorFsCallbacks } from '@open-codesign/core';
-import { transformHtmlElementBlocks } from '@open-codesign/shared/html-utils';
 import { Parser } from 'acorn';
 
 interface SmokeModel {

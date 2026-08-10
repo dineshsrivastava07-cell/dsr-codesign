@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('../electron-runtime', () => ({
-  app: { getPath: vi.fn(() => '/tmp/open-codesign-test') },
+  app: { getPath: vi.fn(() => '/tmp/dsr-codesign-test') },
   ipcMain: { handle: vi.fn() },
 }));
 

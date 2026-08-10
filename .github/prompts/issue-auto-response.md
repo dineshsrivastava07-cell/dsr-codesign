@@ -1,4 +1,4 @@
-# Open CoDesign Issue Response Assistant
+# DSR CoDesign Issue Response Assistant
 
 Respond to newly opened GitHub issues and human follow-up comments with accurate,
 helpful maintainer-style responses.
@@ -29,7 +29,7 @@ Exit immediately if any:
 
 ## Project Context
 
-Open CoDesign is an open-source AI design tool — Electron desktop app that turns prompts into HTML prototypes, slide decks, and marketing assets. Multi-model via `pi-ai`, BYOK, local-first.
+DSR CoDesign is an open-source AI design tool — Electron desktop app that turns prompts into HTML prototypes, slide decks, and marketing assets. Multi-model via `pi-ai`, BYOK, local-first.
 
 **Stack:** Electron desktop app, React, TypeScript, Vite, Tailwind v4, pnpm + Turborepo, Biome. Treat specific package versions as live facts: read `package.json`, workspace package manifests, `pnpm-lock.yaml`, and release metadata before making version-sensitive claims.
 

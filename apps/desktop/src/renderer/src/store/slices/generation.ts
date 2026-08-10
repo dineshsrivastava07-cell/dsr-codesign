@@ -5,8 +5,8 @@ import type {
   ReasoningLevel,
   ResourceStateV1,
   WireApi,
-} from '@open-codesign/shared';
-import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import type { CodesignApi, ExportFormat } from '../../../../preload/index.js';
 import { recordAction } from '../../lib/action-timeline.js';
 import { redactUrls } from '../../lib/redact.js';
@@ -457,7 +457,7 @@ function applyGenerateSuccess(
   }
   if (rejectedUsageFields.length > 0) {
     const detail = rejectedUsageFields.join(', ');
-    console.warn('[open-codesign] dropped non-finite usage values from provider:', detail);
+    console.warn('[dsr-codesign] dropped non-finite usage values from provider:', detail);
   }
 }
 
@@ -793,7 +793,7 @@ export function makeGenerationSlice(set: SetState, get: GetState): GenerationSli
         try {
           await get().syncGenerationStatus();
         } catch (err) {
-          console.warn('[open-codesign] generation status refresh failed:', err);
+          console.warn('[dsr-codesign] generation status refresh failed:', err);
         }
       }
       if (get().generationByDesign[designIdAtStart] !== undefined) return;
@@ -907,7 +907,7 @@ export function makeGenerationSlice(set: SetState, get: GetState): GenerationSli
               }
             }
           } catch (err) {
-            console.warn('[open-codesign] markApplied failed:', err);
+            console.warn('[dsr-codesign] markApplied failed:', err);
           }
         }
       } catch (err) {

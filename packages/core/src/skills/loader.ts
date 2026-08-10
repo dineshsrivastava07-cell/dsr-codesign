@@ -1,6 +1,6 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { basename, extname, join } from 'node:path';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import { type LoadedSkill, SkillFrontmatterV1 } from './types.js';
 
 // ---------------------------------------------------------------------------
@@ -281,7 +281,7 @@ export async function loadSkillsFromDir(
 
 export interface LoadAllSkillsOptions {
   builtinDir: string;
-  /** ~/.config/open-codesign/skills */
+  /** ~/.config/dsr-codesign/skills */
   userDir?: string | undefined;
   /** <project>/.codesign/skills */
   projectDir?: string | undefined;

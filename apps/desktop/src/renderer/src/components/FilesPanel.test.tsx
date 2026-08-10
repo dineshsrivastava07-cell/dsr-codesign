@@ -1,5 +1,5 @@
-import { initI18n } from '@open-codesign/i18n';
-import type { Design } from '@open-codesign/shared';
+import { initI18n } from '@dsr-codesign/i18n';
+import type { Design } from '@dsr-codesign/shared';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';

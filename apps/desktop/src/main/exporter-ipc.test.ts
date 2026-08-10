@@ -1,7 +1,7 @@
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import {
   buildDefaultExportPath,
@@ -134,7 +134,7 @@ describe('export path helpers', () => {
     expect(out).toBe(join('/Users/roy/Downloads', 'Launch-Deck-Q2-Home-2026-05-05-102030.pptx'));
   });
 
-  it('falls back to an open-codesign name inside Downloads when no design name is available', () => {
+  it('falls back to an dsr-codesign name inside Downloads when no design name is available', () => {
     const out = buildDefaultExportPath({
       format: 'markdown',
       downloadsPath: '/Users/roy/Downloads',
@@ -143,7 +143,7 @@ describe('export path helpers', () => {
       now: new Date('2026-05-05T10:20:30.000Z'),
     });
 
-    expect(out).toBe(join('/Users/roy/Downloads', 'open-codesign-App-2026-05-05-102030.md'));
+    expect(out).toBe(join('/Users/roy/Downloads', 'dsr-codesign-App-2026-05-05-102030.md'));
   });
 
   it('treats legacy defaultFilename as a Downloads filename, not a cwd-relative path', () => {

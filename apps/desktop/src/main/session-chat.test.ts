@@ -2,7 +2,7 @@ import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { type DesignSessionBriefV1, SessionManager } from '@open-codesign/core';
+import { type DesignSessionBriefV1, SessionManager } from '@dsr-codesign/core';
 import { describe, expect, it, vi } from 'vitest';
 import {
   appendSessionChatMessage,

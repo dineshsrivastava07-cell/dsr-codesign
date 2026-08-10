@@ -1,4 +1,4 @@
-import { setLocale as applyLocale, useT } from '@open-codesign/i18n';
+import { setLocale as applyLocale, useT } from '@dsr-codesign/i18n';
 import { useEffect, useState } from 'react';
 import { useCodesignStore } from '../../store';
 import { cleanIpcError, NativeSelect, Row, SectionTitle } from './primitives';
@@ -118,7 +118,6 @@ export function AppearanceTab() {
               { value: 'en', label: t('settings.appearance.langEn') },
               { value: 'es', label: t('settings.appearance.langEs') },
               { value: 'pt-BR', label: t('settings.appearance.langPtBR') },
-              { value: 'zh-CN', label: t('settings.appearance.langZhCN') },
             ]}
           />
         </Row>

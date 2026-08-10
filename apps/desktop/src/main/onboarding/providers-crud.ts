@@ -10,7 +10,7 @@ import {
   type ProviderEntry,
   type SupportedOnboardingProvider,
   WireApiSchema,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { buildAuthHeadersForWire } from '../auth-headers';
 import { writeConfig } from '../config';
 import { buildSecretRef, decryptSecret } from '../keychain';

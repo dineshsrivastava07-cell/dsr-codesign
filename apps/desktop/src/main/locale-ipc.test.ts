@@ -38,10 +38,10 @@ describe('locale-ipc XDG_CONFIG_HOME', () => {
       registerLocaleIpc();
       const setHandler = handlers.get('locale:set');
       if (!setHandler) throw new Error('locale:set not registered');
-      await setHandler({}, 'zh-CN');
+      await setHandler({}, 'es');
       expect(writeFileMock).toHaveBeenCalled();
       const firstCall = writeFileMock.mock.calls[0];
-      expect(firstCall?.[0]).toBe(join(xdg, 'open-codesign', 'locale.json'));
+      expect(firstCall?.[0]).toBe(join(xdg, 'dsr-codesign', 'locale.json'));
     } finally {
       if (prev === undefined) process.env['XDG_CONFIG_HOME'] = undefined;
       else process.env['XDG_CONFIG_HOME'] = prev;
@@ -73,11 +73,11 @@ describe('locale-ipc input validation', () => {
   it('canonicalizes alias forms before persisting', async () => {
     writeFileMock.mockClear();
     const set = getSetHandler();
-    const result = await set({}, 'zh-Hans-CN');
-    expect(result).toBe('zh-CN');
+    const result = await set({}, 'pt-br');
+    expect(result).toBe('pt-BR');
     const firstCall = writeFileMock.mock.calls.at(-1);
     const persisted = JSON.parse(String(firstCall?.[1] ?? '{}'));
-    expect(persisted.locale).toBe('zh-CN');
+    expect(persisted.locale).toBe('pt-BR');
     expect(persisted.schemaVersion).toBe(1);
   });
 

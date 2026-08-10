@@ -1,18 +1,18 @@
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import type { AgentEvent, AgentMessage, AgentOptions } from '@mariozechner/pi-agent-core';
 import type {
   LoadedSkill,
   ModelRef,
   ResourceStateV1,
   StoredDesignSystem,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   CodesignError,
   ERROR_CODES,
   STORED_DESIGN_SYSTEM_SCHEMA_VERSION,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import type { AgentEvent, AgentMessage, AgentOptions } from '@mariozechner/pi-agent-core';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const loadBuiltinSkillsMock = vi.fn(async (): Promise<LoadedSkill[]> => []);
@@ -466,7 +466,7 @@ describe('generateViaAgent()', () => {
     if (!call) throw new Error('expected agent call');
     const init = call.options.initialState;
     expect(init?.tools).toEqual([]);
-    expect(init?.systemPrompt).toContain('open-codesign');
+    expect(init?.systemPrompt).toContain('dsr-codesign');
     expect(init?.messages).toHaveLength(1);
     const seed = init?.messages?.[0];
     expect(seed?.role).toBe('user');
@@ -798,9 +798,7 @@ describe('generateViaAgent()', () => {
     });
 
     const resolver = agentCalls[0]?.options.getApiKey;
-    await expect(Promise.resolve(resolver?.('openai-codex'))).resolves.toBe(
-      'open-codesign-keyless',
-    );
+    await expect(Promise.resolve(resolver?.('openai-codex'))).resolves.toBe('dsr-codesign-keyless');
   });
 
   it('uses the placeholder when static apiKey is whitespace in explicit keyless mode', async () => {
@@ -814,9 +812,7 @@ describe('generateViaAgent()', () => {
     });
 
     const resolver = agentCalls[0]?.options.getApiKey;
-    await expect(Promise.resolve(resolver?.('openai-codex'))).resolves.toBe(
-      'open-codesign-keyless',
-    );
+    await expect(Promise.resolve(resolver?.('openai-codex'))).resolves.toBe('dsr-codesign-keyless');
   });
 
   it('rethrows the original input.getApiKey error (preserves structured code)', async () => {

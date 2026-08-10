@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Project Design System
-description: Neutral starter system for an Open CoDesign workspace
+description: Neutral starter system for an DSR CoDesign workspace
 colors:
   background: "#F7F3EC"
   surface: "#FFFAF2"

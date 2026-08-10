@@ -1,10 +1,7 @@
 import type { Dirent } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import { basename, extname, join, relative } from 'node:path';
-import {
-  STORED_DESIGN_SYSTEM_SCHEMA_VERSION,
-  type StoredDesignSystem,
-} from '@open-codesign/shared';
+import { STORED_DESIGN_SYSTEM_SCHEMA_VERSION, type StoredDesignSystem } from '@dsr-codesign/shared';
 
 const IGNORED_DIRS = new Set([
   '.git',

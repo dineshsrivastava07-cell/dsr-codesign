@@ -9,7 +9,7 @@
 # directory when the new one does not yet exist.
 #
 # Also derives the mac .app bundle name from apps/desktop/electron-builder.yml
-# so that renaming productName (e.g. "open-codesign" → "Open CoDesign")
+# so that renaming productName (e.g. "dsr-codesign" → "DSR CoDesign")
 # propagates into the cask without manual edits.
 #
 # Usage:
@@ -32,7 +32,7 @@ if [[ "$PACKAGING_CHANNEL" != "all" && "$PACKAGING_CHANNEL" != "scoop" ]]; then
   exit 1
 fi
 
-REPO="OpenCoworkAI/open-codesign"
+REPO="DSR-AI-Lab/dsr-codesign"
 REL_URL_BASE="https://github.com/${REPO}/releases/download/v${VERSION}"
 RELEASE_DATE="$(
   curl -fsSL "https://api.github.com/repos/${REPO}/releases/tags/v${VERSION}" \
@@ -54,13 +54,13 @@ APP_BUNDLE="${PRODUCT_NAME}.app"
 WIN_EXE_NAME="${PRODUCT_NAME}.exe"
 
 # Actual artifact filenames (from electron-builder.yml `artifactName` fields).
-MAC_ARM64_DMG="open-codesign-${VERSION}-arm64.dmg"
-MAC_X64_DMG="open-codesign-${VERSION}-x64.dmg"
-WIN_X64_EXE="open-codesign-${VERSION}-x64-setup.exe"
-WIN_ARM64_EXE="open-codesign-${VERSION}-arm64-setup.exe"
-WIN_X64_ZIP="open-codesign-${VERSION}-x64.zip"
-WIN_ARM64_ZIP="open-codesign-${VERSION}-arm64.zip"
-LINUX_APPIMAGE="open-codesign-${VERSION}-x64.AppImage"
+MAC_ARM64_DMG="dsr-codesign-${VERSION}-arm64.dmg"
+MAC_X64_DMG="dsr-codesign-${VERSION}-x64.dmg"
+WIN_X64_EXE="dsr-codesign-${VERSION}-x64-setup.exe"
+WIN_ARM64_EXE="dsr-codesign-${VERSION}-arm64-setup.exe"
+WIN_X64_ZIP="dsr-codesign-${VERSION}-x64.zip"
+WIN_ARM64_ZIP="dsr-codesign-${VERSION}-arm64.zip"
+LINUX_APPIMAGE="dsr-codesign-${VERSION}-x64.AppImage"
 
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
@@ -175,7 +175,7 @@ echo ""
 # ---------------------------------------------------------------
 # 2. Homebrew cask
 # ---------------------------------------------------------------
-cask="packaging/homebrew/Casks/open-codesign.rb"
+cask="packaging/homebrew/Casks/dsr-codesign.rb"
 if [[ "$PACKAGING_CHANNEL" == "all" ]]; then
   echo "Homebrew cask…"
   perl -pi -e "s/^(\\s*version\\s+)\"[^\"]+\"/\${1}\"${VERSION}\"/" "$cask"
@@ -193,7 +193,7 @@ fi
 # 3. Scoop
 # ---------------------------------------------------------------
 echo "Scoop manifest… (${scoop_mode})"
-scoop="packaging/scoop/bucket/open-codesign.json"
+scoop="packaging/scoop/bucket/dsr-codesign.json"
 python3 - "$scoop" "$VERSION" "$scoop_mode" "$WIN_EXE_NAME" \
   "$WIN_X64_EXE" "$win_x64_sha" "$WIN_ARM64_EXE" "$win_arm_sha" \
   "$WIN_X64_ZIP" "${win_x64_zip_sha:-}" "$WIN_ARM64_ZIP" "${win_arm_zip_sha:-}" <<'PY'
@@ -216,8 +216,8 @@ from collections import OrderedDict
     win_arm_zip_sha,
 ) = sys.argv[1:]
 
-base = f"https://github.com/OpenCoworkAI/open-codesign/releases/download/v{version}"
-autoupdate_base = "https://github.com/OpenCoworkAI/open-codesign/releases/download/v$version"
+base = f"https://github.com/DSR-AI-Lab/dsr-codesign/releases/download/v{version}"
+autoupdate_base = "https://github.com/DSR-AI-Lab/dsr-codesign/releases/download/v$version"
 
 with open(path, encoding="utf-8") as fh:
     manifest = json.load(fh, object_pairs_hook=OrderedDict)
@@ -240,8 +240,8 @@ if mode == "zip":
                 "architecture",
                 OrderedDict(
                     [
-                        ("64bit", OrderedDict([("url", f"{autoupdate_base}/open-codesign-$version-x64.zip")])),
-                        ("arm64", OrderedDict([("url", f"{autoupdate_base}/open-codesign-$version-arm64.zip")])),
+                        ("64bit", OrderedDict([("url", f"{autoupdate_base}/dsr-codesign-$version-x64.zip")])),
+                        ("arm64", OrderedDict([("url", f"{autoupdate_base}/dsr-codesign-$version-arm64.zip")])),
                     ]
                 ),
             )
@@ -284,13 +284,13 @@ else:
                         (
                             "64bit",
                             OrderedDict(
-                                [("url", f"{autoupdate_base}/open-codesign-$version-x64-setup.exe#/dl.7z")]
+                                [("url", f"{autoupdate_base}/dsr-codesign-$version-x64-setup.exe#/dl.7z")]
                             ),
                         ),
                         (
                             "arm64",
                             OrderedDict(
-                                [("url", f"{autoupdate_base}/open-codesign-$version-arm64-setup.exe#/dl.7z")]
+                                [("url", f"{autoupdate_base}/dsr-codesign-$version-arm64-setup.exe#/dl.7z")]
                             ),
                         ),
                     ]
@@ -299,8 +299,8 @@ else:
         ]
     )
 
-manifest["bin"] = [[win_exe_name, "open-codesign"]]
-manifest["shortcuts"] = [[win_exe_name, "Open CoDesign"]]
+manifest["bin"] = [[win_exe_name, "dsr-codesign"]]
+manifest["shortcuts"] = [[win_exe_name, "DSR CoDesign"]]
 
 key_order = [
     "version",
@@ -332,7 +332,7 @@ PY
 # ---------------------------------------------------------------
 # 4. winget — auto-copy previous version directory if needed
 # ---------------------------------------------------------------
-winget_root="packaging/winget/manifests/o/OpenCoworkAI/OpenCoDesign"
+winget_root="packaging/winget/manifests/o/DSR-AI-Lab/DSRCoDesign"
 winget_dir="${winget_root}/${VERSION}"
 if [[ "$PACKAGING_CHANNEL" == "all" ]]; then
   echo "winget manifests…"
@@ -352,7 +352,7 @@ if [[ "$PACKAGING_CHANNEL" == "all" && -d "$winget_dir" ]]; then
     perl -pi -e "s/^PackageVersion:.*/PackageVersion: ${VERSION}/" "$f"
     perl -pi -e "s/^ManifestVersion:.*/ManifestVersion: 1.12.0/" "$f"
   done
-  installer="$winget_dir/OpenCoworkAI.OpenCoDesign.installer.yaml"
+  installer="$winget_dir/DSR-AI-Lab.DSRCoDesign.installer.yaml"
   # Rewrite the entire Installers block to the current (per-arch) shape.
   # electron-builder now emits separate x64 and arm64 NSIS installers.
   python3 - "$installer" "$VERSION" "$win_x64_sha" "$win_arm_sha" "$RELEASE_DATE" <<'PY'
@@ -362,10 +362,10 @@ src = open(path).read()
 new_block = (
     "Installers:\n"
     f"  - Architecture: x64\n"
-    f"    InstallerUrl: https://github.com/OpenCoworkAI/open-codesign/releases/download/v{version}/open-codesign-{version}-x64-setup.exe\n"
+    f"    InstallerUrl: https://github.com/DSR-AI-Lab/dsr-codesign/releases/download/v{version}/dsr-codesign-{version}-x64-setup.exe\n"
     f"    InstallerSha256: {x64.upper()}\n"
     f"  - Architecture: arm64\n"
-    f"    InstallerUrl: https://github.com/OpenCoworkAI/open-codesign/releases/download/v{version}/open-codesign-{version}-arm64-setup.exe\n"
+    f"    InstallerUrl: https://github.com/DSR-AI-Lab/dsr-codesign/releases/download/v{version}/dsr-codesign-{version}-arm64-setup.exe\n"
     f"    InstallerSha256: {arm64.upper()}\n"
 )
 out = re.sub(r"Installers:\n(?:(?:  -|    ).*\n)+", new_block, src, count=1)
@@ -376,17 +376,17 @@ if release_date:
         out = out.replace("UpgradeBehavior: install\n", f"UpgradeBehavior: install\nReleaseDate: {release_date}\n", 1)
 open(path, "w").write(out)
 PY
-  locale="$winget_dir/OpenCoworkAI.OpenCoDesign.locale.en-US.yaml"
+  locale="$winget_dir/DSR-AI-Lab.DSRCoDesign.locale.en-US.yaml"
   [[ -f "$locale" ]] && perl -pi -e "s{releases/tag/v[0-9][0-9A-Za-z.\\-]*}{releases/tag/v${VERSION}}g" "$locale"
 fi
 
 # ---------------------------------------------------------------
 # 5. Flatpak (manual Flathub PR; we just keep the template fresh)
 # ---------------------------------------------------------------
-flatpak="packaging/flatpak/ai.opencowork.codesign.yaml"
+flatpak="packaging/flatpak/ai.dsrailab.codesign.yaml"
 if [[ "$PACKAGING_CHANNEL" == "all" && -f "$flatpak" ]]; then
   echo "Flatpak manifest…"
-  perl -pi -e "s{releases/download/v[0-9][0-9A-Za-z.\\-]*/open-codesign-[0-9][0-9A-Za-z.\\-]*-x64\\.AppImage}{releases/download/v${VERSION}/open-codesign-${VERSION}-x64.AppImage}g" "$flatpak"
+  perl -pi -e "s{releases/download/v[0-9][0-9A-Za-z.\\-]*/dsr-codesign-[0-9][0-9A-Za-z.\\-]*-x64\\.AppImage}{releases/download/v${VERSION}/dsr-codesign-${VERSION}-x64.AppImage}g" "$flatpak"
   perl -pi -e "s/(sha256:\\s+)(REPLACE_WITH_[A-Z0-9_]+|[a-f0-9]{64})/\${1}${linux_sha}/g" "$flatpak"
   # Size: HEAD the release asset for Content-Length.
   size="$(curl -fsSLI "${REL_URL_BASE}/${LINUX_APPIMAGE}" | awk 'tolower($1)=="content-length:" {gsub("\r",""); print $2}' | tail -1 || true)"

@@ -18,7 +18,7 @@ import type {
   PreviewMode,
   SnapshotCreateInput,
   WorkspaceMode,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { assertWorkspacePath } from './workspace-path';
 
 interface StoreData {

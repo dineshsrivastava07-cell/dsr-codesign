@@ -1,4 +1,4 @@
-import type { AgentEvent } from '@open-codesign/core';
+import type { AgentEvent } from '@dsr-codesign/core';
 
 type ToolExecutionEndEvent = Extract<AgentEvent, { type: 'tool_execution_end' }>;
 type ToolStreamStatus = { status: 'done' | 'error'; errorMessage?: string };

@@ -1,4 +1,4 @@
-import { completeWithRetry, type RetryReason } from '@open-codesign/providers';
+import { completeWithRetry, type RetryReason } from '@dsr-codesign/providers';
 import type {
   Artifact,
   ChatMessage,
@@ -9,8 +9,8 @@ import type {
   SelectedElement,
   StoredDesignSystem,
   WireApi,
-} from '@open-codesign/shared';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import { type GenerateViaAgentDeps, generateViaAgent as runAgent } from './agent.js';
 import { remapProviderError } from './errors.js';
 import { formatUntrustedContext } from './lib/context-format.js';

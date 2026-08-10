@@ -4,7 +4,7 @@ import {
   type DesignSessionBriefV1,
   normalizeDesignSessionBrief,
   SessionManager,
-} from '@open-codesign/core';
+} from '@dsr-codesign/core';
 import type {
   ChatAppendInput,
   ChatMessageKind,
@@ -14,21 +14,21 @@ import type {
   CommentRow,
   CommentUpdateInput,
   DesignRunPreferencesV1,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   CodesignError,
   CommentRowV1,
   DesignRunPreferencesV1 as DesignRunPreferencesV1Schema,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { compactToolResultForHistory } from './ipc/tool-log';
 import { type Database, getDesign, listSnapshots, touchDesignActivity } from './snapshots-db';
 import { normalizeWorkspacePath } from './workspace-path';
 
-export const CHAT_MESSAGE_CUSTOM_TYPE = 'open-codesign.chat.message';
-export const CHAT_TOOL_STATUS_CUSTOM_TYPE = 'open-codesign.chat.tool_status';
-export const COMMENT_CUSTOM_TYPE = 'open-codesign.comment.v1';
-export const CONTEXT_BRIEF_CUSTOM_TYPE = 'open-codesign.context.brief.v1';
-export const RUN_PREFERENCES_CUSTOM_TYPE = 'open-codesign.context.run_preferences.v1';
+export const CHAT_MESSAGE_CUSTOM_TYPE = 'dsr-codesign.chat.message';
+export const CHAT_TOOL_STATUS_CUSTOM_TYPE = 'dsr-codesign.chat.tool_status';
+export const COMMENT_CUSTOM_TYPE = 'dsr-codesign.comment.v1';
+export const CONTEXT_BRIEF_CUSTOM_TYPE = 'dsr-codesign.context.brief.v1';
+export const RUN_PREFERENCES_CUSTOM_TYPE = 'dsr-codesign.context.run_preferences.v1';
 
 export interface SessionChatStoreOptions {
   db: Database;

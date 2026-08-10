@@ -1,4 +1,4 @@
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import { describe, expect, it, vi } from 'vitest';
 import {
   MAX_ASSET_ERRORS,

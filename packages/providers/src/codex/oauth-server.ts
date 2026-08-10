@@ -31,7 +31,7 @@ function escapeHtml(s: string): string {
 }
 
 function successPage(): string {
-  return '<html><body style="font-family:system-ui;padding:40px;max-width:560px;margin:0 auto"><h1 style="color:#0f766e;margin-bottom:8px">登录成功</h1><p style="color:#475569">你可以关闭此窗口回到 open-codesign。</p></body></html>';
+  return '<html><body style="font-family:system-ui;padding:40px;max-width:560px;margin:0 auto"><h1 style="color:#0f766e;margin-bottom:8px">Signed in successfully</h1><p style="color:#475569">You can close this window and return to DSR CoDesign.</p></body></html>';
 }
 
 function errorPage(title: string, detail: string): string {
@@ -62,12 +62,20 @@ export async function startCallbackServer(preferredPort?: number): Promise<Callb
     server = await listen(firstPort);
   } catch (err) {
     const code = (err as NodeJS.ErrnoException).code;
-    if (code === 'EADDRINUSE') {
-      throw new Error(
-        `Codex OAuth 回调端口 ${firstPort} 已被占用（通常是另一个 open-codesign 或 Codex CLI 实例）。请关闭它们后重试。`,
-      );
+    if (code === 'EADDRINUSE' && firstPort !== 0) {
+      // Preferred port is busy (e.g. Docker or another instance occupies it).
+      // Fall back to an OS-assigned ephemeral port so the OAuth flow still works.
+      try {
+        server = await listen(0);
+      } catch {
+        throw new Error(
+          `ChatGPT OAuth callback: port ${firstPort} is already in use and no fallback port could be allocated. ` +
+            `Close other DSR CoDesign or Codex CLI instances and try again.`,
+        );
+      }
+    } else {
+      throw err;
     }
-    throw err;
   }
 
   const address = server.address();

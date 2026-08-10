@@ -1,4 +1,4 @@
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import { describe, expect, it, vi } from 'vitest';
 import type { ResolveActiveApiKeyDeps, ResolveCredentialForProviderDeps } from './resolve-api-key';
 import { resolveActiveApiKey, resolveCredentialForProvider } from './resolve-api-key';

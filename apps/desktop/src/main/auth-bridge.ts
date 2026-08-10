@@ -1,12 +1,12 @@
 import path from 'node:path';
-import { AuthStorage, type ModelRegistry } from '@open-codesign/core';
+import { AuthStorage, type ModelRegistry } from '@dsr-codesign/core';
 import {
   CodesignError,
   type Config,
   ERROR_CODES,
   type ProviderEntry,
   resolveProviderCapabilities,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { decryptSecret } from './keychain';
 
 /**

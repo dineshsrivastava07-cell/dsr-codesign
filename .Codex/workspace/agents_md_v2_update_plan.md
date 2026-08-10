@@ -20,7 +20,7 @@ Update `AGENTS.md` so Codex agents follow the latest v0.2 plan instead of the st
 
 ## Findings
 
-- `CLAUDE.md` and current `AGENTS.md` still describe Open CoDesign mainly as a prompt-to-artifact app rather than a local design agent.
+- `CLAUDE.md` and current `AGENTS.md` still describe DSR CoDesign mainly as a prompt-to-artifact app rather than a local design agent.
 - They still point design history at SQLite, while v0.2 moves sessions to pi JSONL and files to real workspaces.
 - They say pi-ai gaps should become `packages/providers` extensions, but the pi spike says provider/session/capability/bash should be handed to pi-coding-agent.
 - They hard-code some stack versions; `AGENTS.md` should tell agents to read manifests for exact versions.

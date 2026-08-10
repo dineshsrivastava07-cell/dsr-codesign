@@ -1,5 +1,5 @@
-import { useT } from '@open-codesign/i18n';
-import { Tooltip } from '@open-codesign/ui';
+import { useT } from '@dsr-codesign/i18n';
+import { Tooltip } from '@dsr-codesign/ui';
 import { ArrowUp, Square } from 'lucide-react';
 import {
   type ClipboardEvent,

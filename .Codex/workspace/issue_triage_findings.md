@@ -1,7 +1,7 @@
 # Issue Triage Findings
 
 ## Project Context Read
-- `docs/VISION.md`: open-codesign is a local-first Electron app for prompt-to-design artifacts, with all model support routed through `pi-ai`.
+- `docs/VISION.md`: dsr-codesign is a local-first Electron app for prompt-to-design artifacts, with all model support routed through `pi-ai`.
 - `docs/PRINCIPLES.md`: keep features lean, lazy-load heavy capabilities, avoid silent fallbacks, and ensure public/persistent contracts are versioned.
 - Current branch is `dev/v0.2`, ahead of `origin/dev/v0.2` by 4 commits.
 - `AGENTS.md` is untracked in the working tree.

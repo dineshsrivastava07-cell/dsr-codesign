@@ -1,5 +1,5 @@
 /**
- * open-codesign brand wordmark.
+ * dsr-codesign brand wordmark.
  * Logo icon + word, optional pre-alpha pill.
  * Use anywhere the app needs to identify itself.
  */
@@ -43,7 +43,7 @@ export function Wordmark({ badge, size = 'md' }: WordmarkProps) {
             letterSpacing: '0',
           }}
         >
-          <span style={{ color: '#142d4c' }}>Open </span>
+          <span style={{ color: '#142d4c' }}>DSR </span>
           <span style={{ color: '#b5441a' }}>CoDesign</span>
         </span>
         {badge ? (

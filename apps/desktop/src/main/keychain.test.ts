@@ -1,4 +1,4 @@
-import { CodesignError, ERROR_CODES, hydrateConfig } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES, hydrateConfig } from '@dsr-codesign/shared';
 import { describe, expect, it, vi } from 'vitest';
 
 const loggerMock = vi.hoisted(() => ({

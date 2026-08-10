@@ -1,4 +1,4 @@
-# @open-codesign/desktop
+# @dsr-codesign/desktop
 
 ## 0.2.1
 
@@ -131,7 +131,7 @@
   支持用 ChatGPT Plus/Pro/Team 订阅直接调用 Codex 模型（`gpt-5.3-codex`、`gpt-5.4` 等），无需 API key。
 
   - PKCE OAuth 流程，本地 1455 端口 callback（冲突回退随机端口）
-  - Token 存 `~/.config/open-codesign/codex-auth.json` (0600)，5 分钟过期前主动刷新，并发去重
+  - Token 存 `~/.config/dsr-codesign/codex-auth.json` (0600)，5 分钟过期前主动刷新，并发去重
   - 独立 token store，不与 Codex CLI 冲突
   - 生成请求走 `chatgpt.com/backend-api/codex/responses`，401 自动刷新重试
   - Settings 里加 "用 ChatGPT 订阅登录" 卡片
@@ -150,7 +150,7 @@
 
   - New `diagnostic_events` SQLite table persists error-level events from renderer crashes, provider errors (`provider.error` / `provider.error.final`), and final `CodesignError` throws from `generate` / `applyComment` / `generateTitle` handlers.
   - 200 ms dedup window: repeated failures with the same fingerprint bump `count` on the existing row rather than inserting new rows, keeping the table small under retry storms.
-  - New `computeFingerprint({ errorCode, stack })` in `@open-codesign/shared`: 8-char sha1 over error code + top-3 normalized stack frames. Stable across different users / paths / line numbers so "the same bug" collapses to one group.
+  - New `computeFingerprint({ errorCode, stack })` in `@dsr-codesign/shared`: 8-char sha1 over error code + top-3 normalized stack frames. Stable across different users / paths / line numbers so "the same bug" collapses to one group.
   - Retry-in-flight events are marked `transient: true`; the default list view hides them (UI lands in PR4).
   - Startup prunes the events table to 500 newest rows.
   - New `RENDERER_ERROR` code for uncaught errors forwarded from the renderer bridge.
@@ -330,7 +330,7 @@ publish` without ever escalating to the user.
 - 022e1b6: feat(diagnostics): bridge generate failures to diagnose() hypotheses (#130)
 
   - Main process `codesign:v1:generate` catch block now tags the thrown error with `upstream_status` / `upstream_provider` / `upstream_baseurl` / `upstream_wire` so the renderer can reason about the failure without re-parsing `err.message`.
-  - New `diagnoseGenerateFailure()` in `@open-codesign/shared` maps generate-time failures to the same `DiagnosticHypothesis` shape the connection-test path already uses: 404 / "404 page not found" → missing `/v1`; 5xx with "not implemented" or "page not found" body → gateway does not implement the provider API; 400 with "instructions" body → openai-responses wire misconfigured; 401/403/429 reuse existing hypotheses.
+  - New `diagnoseGenerateFailure()` in `@dsr-codesign/shared` maps generate-time failures to the same `DiagnosticHypothesis` shape the connection-test path already uses: 404 / "404 page not found" → missing `/v1`; 5xx with "not implemented" or "page not found" body → gateway does not implement the provider API; 400 with "instructions" body → openai-responses wire misconfigured; 401/403/429 reuse existing hypotheses.
   - Renderer `applyGenerateError` now appends the most-likely-cause sentence to the failure toast description and, for the missing-`/v1` case, surfaces an "Apply fix" action that updates the provider's baseUrl via `config:v1:update-provider` — addressing the Win11 relay-gateway failure in #130 with a one-click fix rather than a dead-end error message.
   - Adds new i18n cause keys (`gatewayIncompatible`, `openaiResponsesMisconfigured`, `serverError`) and fix keys (`switchWire`) in en + zh-CN.
 
@@ -464,7 +464,7 @@ publish` without ever escalating to the user.
 - 4c66392: fix: align build, tool prompts, and model switcher token output
 
   - Keep root and desktop builds on the fast Vite compilation path, with installer packaging available through explicit package/release scripts.
-  - Bundle local `@open-codesign/*` workspace packages into the desktop main bundle so electron-builder only packages true runtime externals.
+  - Bundle local `@dsr-codesign/*` workspace packages into the desktop main bundle so electron-builder only packages true runtime externals.
   - Prune packaged dependency noise such as source maps, declaration files, tests, examples, unused Electron languages, and non-target native binaries from the desktop app bundle.
   - Fail packaging when the target better-sqlite3 Electron native binary is missing, instead of shipping an app that crashes on database open.
   - Merge newly bundled template files into existing user template folders without overwriting user edits, so manifest-first skills are available after upgrades.

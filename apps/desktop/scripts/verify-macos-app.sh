@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  echo "usage: $0 <Open CoDesign.app|release-dir> <arm64|x64>" >&2
+  echo "usage: $0 <DSR CoDesign.app|release-dir> <arm64|x64>" >&2
 }
 
 if [ "$#" -ne 2 ]; then
@@ -58,20 +58,20 @@ resolve_app_path() {
   fi
 
   while IFS= read -r -d '' app_path; do
-    binary_path="$app_path/Contents/MacOS/Open CoDesign"
+    binary_path="$app_path/Contents/MacOS/DSR CoDesign"
     [ -f "$binary_path" ] || continue
     binary_archs="$(archs_for "$binary_path")"
     if has_arch "$binary_archs" "$expected_macho"; then
       printf '%s\n' "$app_path"
       return 0
     fi
-  done < <(find "$target_path" -type d -name 'Open CoDesign.app' -prune -print0)
+  done < <(find "$target_path" -type d -name 'DSR CoDesign.app' -prune -print0)
 
-  fail "no Open CoDesign.app with $expected_arch architecture found under $target_path"
+  fail "no DSR CoDesign.app with $expected_arch architecture found under $target_path"
 }
 
 app_path="$(resolve_app_path)"
-main_binary="$app_path/Contents/MacOS/Open CoDesign"
+main_binary="$app_path/Contents/MacOS/DSR CoDesign"
 
 [ -f "$main_binary" ] || fail "missing main binary: $main_binary"
 

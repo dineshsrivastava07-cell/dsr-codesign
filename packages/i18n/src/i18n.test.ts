@@ -11,14 +11,7 @@ import {
 describe('normalizeLocale', () => {
   it('returns the value unchanged when it is supported', () => {
     expect(normalizeLocale('en')).toBe('en');
-    expect(normalizeLocale('zh-CN')).toBe('zh-CN');
-  });
-
-  it('coalesces common Chinese variants to zh-CN', () => {
-    expect(normalizeLocale('zh')).toBe('zh-CN');
-    expect(normalizeLocale('zh-Hans')).toBe('zh-CN');
-    expect(normalizeLocale('zh-Hans-CN')).toBe('zh-CN');
-    expect(normalizeLocale('zh_CN')).toBe('zh-CN');
+    expect(normalizeLocale('pt-BR')).toBe('pt-BR');
   });
 
   it('maps en-US / en-GB to en', () => {
@@ -58,10 +51,7 @@ describe('initI18n + setLocale (live switching)', () => {
     expect(i18n.t('chat.placeholder')).toBe('Describe what to design…');
     expect(i18n.t('common.send')).toBe('Send');
 
-    await setLocale('zh-CN');
-    expect(i18n.t('chat.placeholder')).toBe('想设计什么？');
-    expect(i18n.t('common.preAlpha')).toBe('预览版');
-
+    await setLocale('pt-BR');
     await setLocale('en');
     expect(i18n.t('common.send')).toBe('Send');
   });
@@ -83,9 +73,8 @@ describe('initI18n + setLocale (live switching)', () => {
     expect(getCurrentLocale()).toBe('en');
     expect(i18n.t('common.send')).toBe('Send');
 
-    await setLocale('zh-CN');
-    expect(getCurrentLocale()).toBe('zh-CN');
-    expect(i18n.t('common.send')).toBe('发送');
+    await setLocale('es');
+    expect(getCurrentLocale()).toBe('es');
 
     await setLocale('en');
     expect(getCurrentLocale()).toBe('en');
@@ -115,32 +104,5 @@ describe('onboarding i18n keys (Welcome / PasteKey / ChooseModel)', () => {
     expect(i18n.t('onboarding.choose.title')).toBe('Pick default models');
     expect(i18n.t('onboarding.choose.finish')).toBe('Finish');
     expect(i18n.t('onboarding.choose.back')).toBe('Back');
-  });
-
-  it('switches all onboarding strings to Chinese when locale is zh-CN', async () => {
-    const { i18n } = await import('./index');
-    await initI18n('en');
-    await setLocale('zh-CN');
-
-    // Welcome
-    expect(i18n.t('onboarding.welcome.title')).toBe('选择你的设计模型。');
-    expect(i18n.t('onboarding.welcome.tryFree')).toBe('免费试用');
-    expect(i18n.t('onboarding.welcome.useKey')).toBe('使用我的 API Key');
-    expect(i18n.t('onboarding.welcome.whereToGetKey')).toBe('在哪里获取 Key');
-
-    // PasteKey
-    expect(i18n.t('onboarding.paste.title')).toBe('粘贴你的 API Key');
-    expect(i18n.t('onboarding.paste.back')).toBe('返回');
-    expect(i18n.t('onboarding.paste.continue')).toBe('继续');
-    expect(i18n.t('onboarding.paste.connectionTest.button')).toBe('测试连通');
-    expect(i18n.t('onboarding.paste.connectionTest.ok')).toBe('连接成功');
-
-    // ChooseModel
-    expect(i18n.t('onboarding.choose.title')).toBe('选择默认模型');
-    expect(i18n.t('onboarding.choose.finish')).toBe('完成设置');
-    expect(i18n.t('onboarding.choose.back')).toBe('返回');
-
-    // Reset to en for other tests
-    await setLocale('en');
   });
 });

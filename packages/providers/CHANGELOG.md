@@ -1,4 +1,4 @@
-# @open-codesign/providers
+# @dsr-codesign/providers
 
 ## 0.2.1
 
@@ -14,7 +14,7 @@
 - 7a1977d: Refresh v0.2 user-facing copy for ChatGPT subscription sign-in and current provider support.
 - Updated dependencies [7a1977d]
 - Updated dependencies [6cbb639]
-  - @open-codesign/shared@0.3.0
+  - @dsr-codesign/shared@0.3.0
 
 ## 0.2.0
 
@@ -91,7 +91,7 @@
   支持用 ChatGPT Plus/Pro/Team 订阅直接调用 Codex 模型（`gpt-5.3-codex`、`gpt-5.4` 等），无需 API key。
 
   - PKCE OAuth 流程，本地 1455 端口 callback（冲突回退随机端口）
-  - Token 存 `~/.config/open-codesign/codex-auth.json` (0600)，5 分钟过期前主动刷新，并发去重
+  - Token 存 `~/.config/dsr-codesign/codex-auth.json` (0600)，5 分钟过期前主动刷新，并发去重
   - 独立 token store，不与 Codex CLI 冲突
   - 生成请求走 `chatgpt.com/backend-api/codex/responses`，401 自动刷新重试
   - Settings 里加 "用 ChatGPT 订阅登录" 卡片
@@ -109,7 +109,7 @@
 
 ### Patch Changes
 
-- 63fa316: Fix: retry first-turn agent generation on transient provider errors (5xx, 429, network). The agent runtime now wraps `agent.prompt()` + `waitForIdle()` in a backoff loop for the first turn only — multi-turn requests still fail fast to avoid corrupting mid-session tool state. Extracted a generic `withBackoff` helper in `@open-codesign/providers` that shares the existing classify/jitter/Retry-After/abort logic with `completeWithRetry`. (#125)
+- 63fa316: Fix: retry first-turn agent generation on transient provider errors (5xx, 429, network). The agent runtime now wraps `agent.prompt()` + `waitForIdle()` in a backoff loop for the first turn only — multi-turn requests still fail fast to avoid corrupting mid-session tool state. Extracted a generic `withBackoff` helper in `@dsr-codesign/providers` that shares the existing classify/jitter/Retry-After/abort logic with `completeWithRetry`. (#125)
 - 4c66392: Harden HTML, URL, marker, stack-frame, and retry parsing paths flagged by CodeQL during the v0.2 mainline promotion.
 - bc7b311: Use conservative OpenAI Chat compatibility settings for DeepInfra endpoints to avoid unsupported OpenAI extension fields during generation.
 - a799cab: Show a friendly localized message when ChatGPT OAuth rejects token exchange for unsupported countries or regions.
@@ -185,4 +185,4 @@
 - Updated dependencies [b2a6d15]
 - Updated dependencies [013fd34]
 - Updated dependencies [d3a62fe]
-  - @open-codesign/shared@0.2.0
+  - @dsr-codesign/shared@0.2.0

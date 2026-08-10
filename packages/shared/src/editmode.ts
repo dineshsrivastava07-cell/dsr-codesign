@@ -182,7 +182,7 @@ function parseLegacyEditmodeObject(raw: string): EditmodeTokens | null {
  *
  * to the canonical JSON form consumed by `parseEditmodeBlock()`. This is not a
  * general JavaScript evaluator; it only accepts the simple flat string/number/
- * boolean objects that older Open CoDesign bundled templates used.
+ * boolean objects that older DSR CoDesign bundled templates used.
  */
 export function normalizeLegacyEditmodeBlock(source: string): string | null {
   const block = findMarkerBlock(source, 'EDITMODE');

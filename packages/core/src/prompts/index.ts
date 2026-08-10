@@ -1,5 +1,5 @@
 /**
- * System prompt composer for open-codesign.
+ * System prompt composer for dsr-codesign.
  *
  * Prompt text lives in `sections/*.md` and is loaded once at module init by
  * `sections/loader.ts`. The composer is intentionally deterministic: create

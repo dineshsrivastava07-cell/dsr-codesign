@@ -1,4 +1,4 @@
-import type { LocalInputFile, OnboardingState } from '@open-codesign/shared';
+import type { LocalInputFile, OnboardingState } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { buildComposerContextItems } from './Sidebar';
 

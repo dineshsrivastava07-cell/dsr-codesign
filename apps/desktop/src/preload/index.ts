@@ -25,7 +25,7 @@ import type {
   SnapshotCreateInput,
   SupportedOnboardingProvider,
   WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { contextBridge, ipcRenderer } from 'electron';
 import type { CodexOAuthStatus } from '../main/codex-oauth-ipc';
 import type {
@@ -327,7 +327,7 @@ export interface GenerationStatusResult {
 
 /**
  * Ask-tool wire shape. Mirrors packages/core/src/tools/ask.ts — duplicated
- * here so the preload does not take a hard dep on `@open-codesign/core`.
+ * here so the preload does not take a hard dep on `@dsr-codesign/core`.
  * Keep in lockstep with the TypeBox schema in that file.
  */
 export type AskQuestionType = 'text-options' | 'svg-options' | 'slider' | 'file' | 'freeform';

@@ -1,7 +1,7 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import type { Design } from '@open-codesign/shared';
+import type { Design } from '@dsr-codesign/shared';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 type Handler = (event: unknown, raw: unknown) => unknown;
@@ -67,7 +67,7 @@ generateControl.reset();
 
 vi.mock('../electron-runtime', () => ({
   app: {
-    getPath: vi.fn(() => path.join(os.tmpdir(), 'open-codesign-generate-rename-tests')),
+    getPath: vi.fn(() => path.join(os.tmpdir(), 'dsr-codesign-generate-rename-tests')),
   },
   ipcMain: {
     handle: vi.fn((channel: string, handler: Handler) => {
@@ -83,8 +83,8 @@ vi.mock('../logger', () => ({
   getLogger: () => ({ info: vi.fn(), warn: vi.fn(), error: vi.fn() }),
 }));
 
-vi.mock('@open-codesign/core', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@open-codesign/core')>();
+vi.mock('@dsr-codesign/core', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@dsr-codesign/core')>();
   return {
     ...actual,
     buildDesignContextPack: vi.fn(() => ({
@@ -122,7 +122,7 @@ vi.mock('@open-codesign/core', async (importOriginal) => {
   };
 });
 
-vi.mock('@open-codesign/providers', () => ({
+vi.mock('@dsr-codesign/providers', () => ({
   detectProviderFromKey: vi.fn(() => 'mock'),
   generateImage: vi.fn(),
 }));
@@ -195,7 +195,7 @@ vi.mock('../ask-ipc', () => ({
   requestAsk: vi.fn(async () => ({ status: 'answered', answers: [] })),
 }));
 
-import { generateViaAgent, routeRunPreferences } from '@open-codesign/core';
+import { generateViaAgent, routeRunPreferences } from '@dsr-codesign/core';
 import { requestAsk } from '../ask-ipc';
 import { appendSessionChatMessage } from '../session-chat';
 import { createDesign, initInMemoryDb, updateDesignWorkspace } from '../snapshots-db';
@@ -210,7 +210,7 @@ function getHandler(channel: string): Handler {
 }
 
 describe('generate IPC workspace rename coordination', () => {
-  const documentsRoot = path.join(os.tmpdir(), 'open-codesign-generate-rename-tests');
+  const documentsRoot = path.join(os.tmpdir(), 'dsr-codesign-generate-rename-tests');
   const defaultWorkspaceRoot = path.join(documentsRoot, 'CoDesign');
 
   function initTestDb() {

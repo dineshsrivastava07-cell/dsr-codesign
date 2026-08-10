@@ -7,7 +7,7 @@
  * module graph the first time a user actually exports.
  */
 
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import type { LocalAssetOptions } from './assets';
 
 export const EXPORTER_FORMATS = ['html', 'pdf', 'pptx', 'zip', 'markdown'] as const;

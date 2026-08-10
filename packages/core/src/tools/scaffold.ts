@@ -1,7 +1,7 @@
 import { lstat, mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { normalizeLegacyEditmodeBlock } from '@dsr-codesign/shared';
 import type { AgentTool, AgentToolResult } from '@mariozechner/pi-agent-core';
-import { normalizeLegacyEditmodeBlock } from '@open-codesign/shared';
 import { Type } from '@sinclair/typebox';
 
 /**

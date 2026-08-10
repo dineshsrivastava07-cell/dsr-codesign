@@ -1,4 +1,4 @@
-import { ERROR_CODES } from '@open-codesign/shared';
+import { ERROR_CODES } from '@dsr-codesign/shared';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defaultImageModel, generateImage } from './images';
 

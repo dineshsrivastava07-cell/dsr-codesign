@@ -12,15 +12,15 @@
  * preview / topbar) so a single crash never blanks the entire window.
  */
 
-import { useT } from '@open-codesign/i18n';
-import { Button } from '@open-codesign/ui';
+import { useT } from '@dsr-codesign/i18n';
+import { Button } from '@dsr-codesign/ui';
 import { Component, type ErrorInfo, type ReactNode, useState } from 'react';
 import { useCodesignStore } from '../store';
 
 // Source: apps/desktop/package.json → repository.url
 // Kept as a constant here so the ErrorBoundary has no runtime dependency on
 // the main process — it must render even when IPC is broken.
-const GITHUB_REPO_URL = 'https://github.com/OpenCoworkAI/open-codesign';
+const GITHUB_REPO_URL = 'https://github.com/DSR-AI-Lab/dsr-codesign';
 
 export interface ErrorBoundaryProps {
   children: ReactNode;

@@ -1,7 +1,7 @@
 import { mkdir, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ERROR_CODES } from '@open-codesign/shared';
+import { ERROR_CODES } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { MAX_IMPORT_FILE_BYTES, safeReadImportFile } from './safe-read';
 

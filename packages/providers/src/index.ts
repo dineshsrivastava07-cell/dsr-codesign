@@ -13,7 +13,7 @@ import {
   type ModelRef,
   type ReasoningLevel as SharedReasoningLevel,
   type WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   claudeCodeIdentityHeaders,
   looksLikeClaudeOAuthToken,
@@ -25,7 +25,7 @@ import { normalizeGeminiModelId } from './gemini-compat';
  * field, which Anthropic adapters translate to extended-thinking effort/budget
  * (and OpenAI/Gemini adapters translate to their respective reasoning knobs).
  *
- * `off` is an Open CoDesign config/UI override and is intentionally omitted
+ * `off` is an DSR CoDesign config/UI override and is intentionally omitted
  * before calling pi-ai. */
 export type ReasoningLevel = SharedReasoningLevel;
 type PiReasoningLevel = Exclude<ReasoningLevel, 'off'>;
@@ -183,7 +183,7 @@ const MAX_TOTAL_CODEX_IMAGE_BYTES = 4_000_000;
  * `reasoning: true` on a synthesized PiModel makes pi-ai's openai-responses /
  * openai-chat adapters write the system prompt with role `'developer'`
  * instead of `'system'`. That's OpenAI-Responses-only; every OpenAI-compat
- * gateway out there (DashScope/Qwen, DeepSeek, GLM/BigModel, Moonshot, …)
+ * gateway out there (DashScope/Qwen, DeepSeek, and other OpenAI-compat endpoints)
  * rejects `developer` with HTTP 400. So only claim reasoning when we
  * actually know the target accepts it. (#183)
  */
@@ -201,9 +201,10 @@ function isReasoningModelId(modelId: string): boolean {
  * Some vendors use OpenAI-compatible chat endpoints but reject the
  * reasoning/developer-role path. Check these before the broad reasoning
  * allowlist below so namespaced catalog IDs do not accidentally opt in.
+ * DSR CoDesign: scoped to Ollama/Gemma and known non-reasoning endpoints.
  */
 const OPENAI_CHAT_NON_REASONING_MODEL_PATTERN = new RegExp(
-  ['(^|/)kimi[-/]', '(^|/)moonshot[-/]', '(^|/)minimax[-/]'].join('|'),
+  ['(^|/)gemma[0-9]', '(^|/)phi[-/]', '(^|/)mistral[-/]'].join('|'),
   'i',
 );
 
@@ -353,7 +354,7 @@ export async function complete(
   if (trimmedApiKey.length === 0 && opts.allowKeyless !== true) {
     throw new CodesignError('Missing API key', ERROR_CODES.PROVIDER_AUTH_MISSING);
   }
-  const apiKey = trimmedApiKey.length > 0 ? trimmedApiKey : 'open-codesign-keyless';
+  const apiKey = trimmedApiKey.length > 0 ? trimmedApiKey : 'dsr-codesign-keyless';
 
   // Gemini's OpenAI-compat endpoint rejects the `models/` prefix that its own
   // /models listing returns (issue #175). Normalize on the wire only; Settings

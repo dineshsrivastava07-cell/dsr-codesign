@@ -1,4 +1,4 @@
-# @open-codesign/ui
+# @dsr-codesign/ui
 
 ## 0.1.5
 
@@ -7,7 +7,7 @@
 - 4c66392: fix: align build, tool prompts, and model switcher token output
 
   - Keep root and desktop builds on the fast Vite compilation path, with installer packaging available through explicit package/release scripts.
-  - Bundle local `@open-codesign/*` workspace packages into the desktop main bundle so electron-builder only packages true runtime externals.
+  - Bundle local `@dsr-codesign/*` workspace packages into the desktop main bundle so electron-builder only packages true runtime externals.
   - Prune packaged dependency noise such as source maps, declaration files, tests, examples, unused Electron languages, and non-target native binaries from the desktop app bundle.
   - Fail packaging when the target better-sqlite3 Electron native binary is missing, instead of shipping an app that crashes on database open.
   - Merge newly bundled template files into existing user template folders without overwriting user edits, so manifest-first skills are available after upgrades.

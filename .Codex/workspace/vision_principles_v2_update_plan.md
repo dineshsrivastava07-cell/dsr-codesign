@@ -31,7 +31,7 @@ Update `docs/VISION.md` and `docs/PRINCIPLES.md` so they reflect the latest v0.2
 - The latest plan treats each design as a pi session, not a project entity.
 - The latest plan says every design has a workspace; sealed/open mode is removed.
 - `pi-coding-agent` now owns session, built-in tools, bash, model capabilities, provider registration, and events.
-- Open CoDesign owns design-specific tools: ask, scaffold, skill, preview, gen_image, tweaks, todos, done.
+- DSR CoDesign owns design-specific tools: ask, scaffold, skill, preview, gen_image, tweaks, todos, done.
 - `DESIGN.md` is now both design-system input and generated artifact, using Google's spec.
 - Built-in skills, scaffolds, and brand refs need progressive disclosure and license/source metadata.
 - Repo license is MIT, so `docs/VISION.md` should not keep the older Apache-2.0 row.

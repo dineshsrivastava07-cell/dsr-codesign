@@ -1,6 +1,6 @@
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { resolveGenerationWorkspaceRoot } from './generation-workspace';
 import {

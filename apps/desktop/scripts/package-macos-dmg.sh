@@ -11,7 +11,7 @@ cleanup_open_codesign_volumes() {
     hdiutil detach -force "$device" >/dev/null 2>&1 || true
   done < <(
     hdiutil info 2>/dev/null |
-      awk '/\/Volumes\/Open CoDesign/ { device=$1; sub(/s[0-9]+$/, "", device); print device }' |
+      awk '/\/Volumes\/DSR CoDesign/ { device=$1; sub(/s[0-9]+$/, "", device); print device }' |
       sort -u
   )
 }

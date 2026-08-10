@@ -2,7 +2,7 @@
  * Hidden runtime verifier for the agent's `done` tool.
  *
  * The agent emits a JSX module (TWEAK_DEFAULTS + App + ReactDOM.createRoot).
- * We wrap it via `@open-codesign/runtime`'s `buildSrcdoc` (same path the
+ * We wrap it via `@dsr-codesign/runtime`'s `buildSrcdoc` (same path the
  * preview iframe uses), write the srcdoc to a temporary HTML file, load it with
  * the same system Chrome/Puppeteer engine used by `preview`, and capture
  * console/page errors for a short settle window. The collected errors flow
@@ -18,9 +18,9 @@ import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL, URL } from 'node:url';
-import type { DoneError, DoneRuntimeVerifier } from '@open-codesign/core';
-import { findSystemChrome } from '@open-codesign/exporters';
-import { buildSrcdoc } from '@open-codesign/runtime';
+import type { DoneError, DoneRuntimeVerifier } from '@dsr-codesign/core';
+import { findSystemChrome } from '@dsr-codesign/exporters';
+import { buildSrcdoc } from '@dsr-codesign/runtime';
 import type { Browser, ConsoleMessage, HTTPRequest, Page } from 'puppeteer-core';
 
 const VERIFY_LOAD_TIMEOUT_MS = 15_000;

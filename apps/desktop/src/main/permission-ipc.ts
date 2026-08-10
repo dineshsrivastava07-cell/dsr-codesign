@@ -1,4 +1,4 @@
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import { type BrowserWindow, ipcMain } from 'electron';
 import { getLogger } from './logger';
 

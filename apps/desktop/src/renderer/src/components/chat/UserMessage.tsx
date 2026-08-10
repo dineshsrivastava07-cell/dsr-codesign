@@ -1,5 +1,5 @@
-import { useT } from '@open-codesign/i18n';
-import type { LocalInputFile } from '@open-codesign/shared';
+import { useT } from '@dsr-codesign/i18n';
+import type { LocalInputFile } from '@dsr-codesign/shared';
 import { Paperclip } from 'lucide-react';
 
 interface UserMessageProps {

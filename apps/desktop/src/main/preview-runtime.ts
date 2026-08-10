@@ -9,7 +9,7 @@
  * wire shape (screenshot + metrics) evolve without perturbing done's lint +
  * console contract.
  *
- * Reuses `findSystemChrome` from `@open-codesign/exporters` so we match the
+ * Reuses `findSystemChrome` from `@dsr-codesign/exporters` so we match the
  * PDF exporter's discovery rules (no bundled Chromium — PRINCIPLES §1).
  */
 
@@ -17,13 +17,13 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL, URL } from 'node:url';
-import type { PreviewResult } from '@open-codesign/core';
-import { findSystemChrome } from '@open-codesign/exporters';
+import type { PreviewResult } from '@dsr-codesign/core';
+import { findSystemChrome } from '@dsr-codesign/exporters';
 import {
   buildPreviewDocument,
   findArtifactSourceReference,
   resolveArtifactSourceReferencePath,
-} from '@open-codesign/runtime';
+} from '@dsr-codesign/runtime';
 import type { Browser, ConsoleMessage, HTTPRequest, HTTPResponse, Page } from 'puppeteer-core';
 import { resolveSafeWorkspaceChildPath } from './workspace-reader';
 

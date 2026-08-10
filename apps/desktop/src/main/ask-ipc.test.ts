@@ -1,5 +1,5 @@
-import type { AskInput } from '@open-codesign/core';
-import { CodesignError } from '@open-codesign/shared';
+import type { AskInput } from '@dsr-codesign/core';
+import { CodesignError } from '@dsr-codesign/shared';
 import { describe, expect, it, vi } from 'vitest';
 
 const handlers = new Map<string, (event: unknown, raw: unknown) => unknown>();

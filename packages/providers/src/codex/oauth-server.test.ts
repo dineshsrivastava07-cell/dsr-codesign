@@ -38,7 +38,7 @@ describe('startCallbackServer', () => {
     const res = await fetch(`${server.redirectUri}?code=AAA&state=expected-state`);
     expect(res.status).toBe(200);
     const body = await res.text();
-    expect(body).toContain('登录成功');
+    expect(body).toContain('Signed in successfully');
     await expect(waiter).resolves.toEqual({ code: 'AAA', state: 'expected-state' });
   });
 
@@ -131,9 +131,11 @@ describe('startCallbackServer', () => {
     expect(res.status).toBe(404);
   });
 
-  it('throws an actionable Chinese error when the preferred port is occupied', async () => {
+  it('falls back to an OS-assigned port when the preferred port is occupied', async () => {
     const first = await track(await startCallbackServer(0));
     const busyPort = portOf(first.redirectUri);
-    await expect(startCallbackServer(busyPort)).rejects.toThrow(/已被占用/);
+    const second = await track(await startCallbackServer(busyPort));
+    expect(portOf(second.redirectUri)).not.toBe(busyPort);
+    expect(second.redirectUri).toMatch(/^http:\/\/localhost:\d+\/auth\/callback$/);
   });
 });

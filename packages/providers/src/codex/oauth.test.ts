@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { ERROR_CODES } from '@open-codesign/shared';
+import { ERROR_CODES } from '@dsr-codesign/shared';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   AUTH_BASE,
@@ -58,7 +58,7 @@ describe('buildAuthorizeUrl', () => {
     expect(params.get('code_challenge_method')).toBe('S256');
     expect(params.get('state')).toBe('state-xyz');
     expect(params.get('codex_cli_simplified_flow')).toBe('true');
-    expect(params.get('originator')).toBe('open-codesign');
+    expect(params.get('originator')).toBe('dsr-codesign');
     expect(params.get('id_token_add_organizations')).toBe('true');
   });
 

@@ -1,4 +1,4 @@
-import type { ChatToolCallPayload } from '@open-codesign/shared';
+import type { ChatToolCallPayload } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { buildActivityRows } from '../WorkingCard';
 

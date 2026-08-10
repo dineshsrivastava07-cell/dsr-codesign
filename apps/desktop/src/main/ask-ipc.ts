@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import type { AskInput, AskResult } from '@open-codesign/core';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import type { AskInput, AskResult } from '@dsr-codesign/core';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import { type BrowserWindow, ipcMain } from 'electron';
 import { getLogger } from './logger';
 

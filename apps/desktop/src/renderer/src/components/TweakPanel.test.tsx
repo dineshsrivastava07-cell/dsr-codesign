@@ -12,7 +12,7 @@ const fakeState = {
   setPreviewSource: vi.fn(),
 };
 
-vi.mock('@open-codesign/i18n', () => ({
+vi.mock('@dsr-codesign/i18n', () => ({
   useT: () => (key: string) =>
     ({
       'tweaks.close': 'Close tweaks',

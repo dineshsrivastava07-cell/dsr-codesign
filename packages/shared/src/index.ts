@@ -243,7 +243,7 @@ export const IframeErrorEvent = z.object({
 export type IframeErrorEvent = z.infer<typeof IframeErrorEvent>;
 
 export const BRAND = {
-  appName: 'Open CoDesign',
+  appName: 'DSR CoDesign',
   backgroundColor: '#faf8f3',
 } as const;
 
@@ -359,7 +359,7 @@ export type { CodesignErrorCode } from './error-codes';
 export { ERROR_CODE_DESCRIPTIONS, ERROR_CODES } from './error-codes';
 // NOTE: fingerprint.ts imports node:crypto and is intentionally NOT re-exported
 // from this barrel — it's main-process only. Import from
-// '@open-codesign/shared/fingerprint' directly.
+// '@dsr-codesign/shared/fingerprint' directly.
 export type { FingerprintInput } from './fingerprint';
 export type { ProxyPresetId } from './proxy-presets';
 export {

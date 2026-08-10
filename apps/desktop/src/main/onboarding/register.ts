@@ -1,10 +1,10 @@
-import { pingProvider, type ValidateResult } from '@open-codesign/providers';
+import { pingProvider, type ValidateResult } from '@dsr-codesign/providers';
 import {
   CodesignError,
   ERROR_CODES,
   type ExternalConfigsDetection,
   type OnboardingState,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { ipcMain } from '../electron-runtime';
 import { readClaudeCodeSettings } from '../imports/claude-code-config';
 import { readCodexConfig } from '../imports/codex-config';

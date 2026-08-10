@@ -1,5 +1,5 @@
 /**
- * i18n entry point for open-codesign.
+ * i18n entry point for dsr-codesign.
  *
  * Design notes:
  * - Two locales out of the gate: `en` and `zh-CN`. Adding a third means adding
@@ -18,9 +18,8 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 import en from './locales/en.json';
 import es from './locales/es.json';
 import ptBR from './locales/pt-BR.json';
-import zhCN from './locales/zh-CN.json';
 
-export const availableLocales = ['en', 'es', 'pt-BR', 'zh-CN'] as const;
+export const availableLocales = ['en', 'es', 'pt-BR'] as const;
 export type Locale = (typeof availableLocales)[number];
 
 const DEFAULT_LOCALE: Locale = 'en';
@@ -29,7 +28,6 @@ const resources = {
   en: { translation: en },
   es: { translation: es },
   'pt-BR': { translation: ptBR },
-  'zh-CN': { translation: zhCN },
 } as const;
 
 export function isSupportedLocale(value: string | undefined | null): value is Locale {
@@ -41,9 +39,6 @@ export function normalizeLocale(value: string | undefined | null): Locale {
   if (!value) return DEFAULT_LOCALE;
   if (isSupportedLocale(value)) return value;
   const lower = value.toLowerCase();
-  if (lower === 'zh' || lower.startsWith('zh-hans') || lower === 'zh-cn' || lower === 'zh_cn') {
-    return 'zh-CN';
-  }
   if (lower === 'pt-br' || lower === 'pt_br' || lower === 'pt' || lower.startsWith('pt-')) {
     return 'pt-BR';
   }

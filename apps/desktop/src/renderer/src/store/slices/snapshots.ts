@@ -1,4 +1,4 @@
-import type { ChatMessage } from '@open-codesign/shared';
+import type { ChatMessage } from '@dsr-codesign/shared';
 import { rendererLogger } from '../../lib/renderer-logger.js';
 import type { CodesignState } from '../../store.js';
 import { autoNameFromPrompt, isDefaultDesignName } from '../lib/auto-name.js';

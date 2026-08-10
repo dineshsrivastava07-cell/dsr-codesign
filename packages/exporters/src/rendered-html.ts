@@ -1,7 +1,7 @@
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { classifyRenderableSource } from '@open-codesign/runtime';
+import { classifyRenderableSource } from '@dsr-codesign/runtime';
 import { inlineLocalAssetsInHtml, type LocalAssetOptions } from './assets';
 import { buildHtmlDocument } from './html';
 

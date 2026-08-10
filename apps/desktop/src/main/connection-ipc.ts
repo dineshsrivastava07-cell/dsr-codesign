@@ -12,7 +12,7 @@ import {
   type SupportedOnboardingProvider,
   stripInferenceEndpointSuffix,
   type WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { buildAuthHeaders, buildAuthHeadersForWire } from './auth-headers';
 import { getCodexTokenStore } from './codex-oauth-ipc';
 import { ipcMain } from './electron-runtime';
@@ -352,7 +352,7 @@ function classifyNetworkError(err: unknown): { code: ConnectionTestError['code']
   }
   return {
     code: 'NETWORK',
-    hint: `网络错误：${message}。查看日志：~/Library/Logs/open-codesign/main.log`,
+    hint: `网络错误：${message}。查看日志：~/Library/Logs/dsr-codesign/main.log`,
   };
 }
 

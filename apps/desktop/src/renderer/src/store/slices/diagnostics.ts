@@ -1,5 +1,5 @@
-import type { ReportableError } from '@open-codesign/shared';
-import { computeFingerprint } from '@open-codesign/shared/fingerprint';
+import type { ReportableError } from '@dsr-codesign/shared';
+import { computeFingerprint } from '@dsr-codesign/shared/fingerprint';
 import { snapshotTimeline } from '../../lib/action-timeline.js';
 import type { CodesignState } from '../../store.js';
 import { newId } from '../lib/locale.js';

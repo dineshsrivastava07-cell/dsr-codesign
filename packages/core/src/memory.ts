@@ -1,5 +1,5 @@
 /**
- * Memory system for Open CoDesign.
+ * Memory system for DSR CoDesign.
  *
  * Boundary:
  * - Global user memory records long-running design taste and workflow habits.
@@ -8,9 +8,9 @@
  * - DesignSessionBrief is a compact JSONL cache derived from these sources.
  */
 
+import { completeWithRetry } from '@dsr-codesign/providers';
+import type { ChatMessage, ModelRef, ReasoningLevel, WireApi } from '@dsr-codesign/shared';
 import type { AgentMessage } from '@mariozechner/pi-agent-core';
-import { completeWithRetry } from '@open-codesign/providers';
-import type { ChatMessage, ModelRef, ReasoningLevel, WireApi } from '@open-codesign/shared';
 import { remapProviderError } from './errors.js';
 import { escapeUntrustedXml, formatUntrustedContext } from './lib/context-format.js';
 import { type CoreLogger, NOOP_LOGGER } from './logger.js';
@@ -121,7 +121,7 @@ export const WORKSPACE_MEMORY_SYSTEM_PROMPT = [
 ].join('\n');
 
 export const USER_MEMORY_SYSTEM_PROMPT = [
-  'You maintain a cross-workspace global user design memory for Open CoDesign.',
+  'You maintain a cross-workspace global user design memory for DSR CoDesign.',
   'Output ONLY the memory file content in the specified format. No preamble.',
   '',
   'Format:',

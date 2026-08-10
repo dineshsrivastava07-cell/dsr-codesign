@@ -1,12 +1,12 @@
-import type { Locale } from '@open-codesign/i18n';
-import { setLocale as applyLocale, getCurrentLocale, useT } from '@open-codesign/i18n';
+import type { Locale } from '@dsr-codesign/i18n';
+import { setLocale as applyLocale, getCurrentLocale, useT } from '@dsr-codesign/i18n';
 import { Globe } from 'lucide-react';
 import type { CSSProperties } from 'react';
 import { useEffect, useState } from 'react';
 
 const noDragStyle = { WebkitAppRegion: 'no-drag' } as CSSProperties;
 
-const LOCALE_CYCLE: Locale[] = ['en', 'es', 'pt-BR', 'zh-CN'];
+const LOCALE_CYCLE: Locale[] = ['en', 'es', 'pt-BR'];
 
 function nextLocale(locale: Locale): Locale {
   const i = LOCALE_CYCLE.indexOf(locale);
@@ -14,7 +14,6 @@ function nextLocale(locale: Locale): Locale {
 }
 
 function localeLabel(locale: Locale): string {
-  if (locale === 'zh-CN') return 'ZH';
   if (locale === 'pt-BR') return 'PT';
   if (locale === 'es') return 'ES';
   return 'EN';

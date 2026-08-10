@@ -25,14 +25,14 @@ describe('isTrustedMainWindowNavigationUrl', () => {
   });
 
   it('allows hash navigation on the packaged renderer file', () => {
-    const trusted = pathToFileURL('/Applications/Open CoDesign.app/Contents/renderer/index.html');
+    const trusted = pathToFileURL('/Applications/DSR CoDesign.app/Contents/renderer/index.html');
     const target = new URL('#workspace', trusted);
 
     expect(isTrustedMainWindowNavigationUrl(target.href, trusted.href)).toBe(true);
   });
 
   it('rejects other file URLs when the packaged renderer is trusted', () => {
-    const trusted = pathToFileURL('/Applications/Open CoDesign.app/Contents/renderer/index.html');
+    const trusted = pathToFileURL('/Applications/DSR CoDesign.app/Contents/renderer/index.html');
     const target = pathToFileURL('/Users/user/Documents/notes.md');
 
     expect(isTrustedMainWindowNavigationUrl(target.href, trusted.href)).toBe(false);

@@ -15,17 +15,17 @@ const fakeState = {
   openSettingsTab: vi.fn(),
 };
 
-vi.mock('@open-codesign/i18n', () => ({
+vi.mock('@dsr-codesign/i18n', () => ({
   useT: () => (key: string, _opts?: Record<string, unknown>) => key,
 }));
 
-vi.mock('@open-codesign/ui', () => ({
+vi.mock('@dsr-codesign/ui', () => ({
   IconButton: (props: { label: string; children: ReactNode; onClick?: () => void }) => (
     <button type="button" aria-label={props.label} onClick={props.onClick}>
       {props.children}
     </button>
   ),
-  Wordmark: () => <div>Open CoDesign</div>,
+  Wordmark: () => <div>DSR CoDesign</div>,
 }));
 
 vi.mock('./LanguageToggle', () => ({

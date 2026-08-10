@@ -1,7 +1,7 @@
 # Issue Triage Plan
 
 ## Goal
-Review recent GitHub issue activity for open-codesign, identify still-active problems in recently closed issues, and fix the Gemini-related issue if it is reproducible from the codebase.
+Review recent GitHub issue activity for dsr-codesign, identify still-active problems in recently closed issues, and fix the Gemini-related issue if it is reproducible from the codebase.
 
 ## Phases
 - [complete] Gather issue context from GitHub, focusing on recent comments and Gemini-related threads.

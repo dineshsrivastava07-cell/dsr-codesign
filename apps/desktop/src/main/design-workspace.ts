@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { copyFile, mkdir, stat } from 'node:fs/promises';
 import path from 'node:path';
-import type { Design, WorkspaceMode } from '@open-codesign/shared';
+import type { Design, WorkspaceMode } from '@dsr-codesign/shared';
 import { type BrowserWindow, dialog, shell } from 'electron';
 import { getLogger } from './logger';
 import {

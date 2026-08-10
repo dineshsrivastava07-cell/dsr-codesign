@@ -1,4 +1,4 @@
-import { CodesignError, type Config, ERROR_CODES, hydrateConfig } from '@open-codesign/shared';
+import { CodesignError, type Config, ERROR_CODES, hydrateConfig } from '@dsr-codesign/shared';
 import { defaultConfigDir, writeConfig } from '../config';
 import { dialog, shell } from '../electron-runtime';
 import { defaultLogsDir } from '../logger';

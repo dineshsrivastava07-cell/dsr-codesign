@@ -1,5 +1,5 @@
-import { initI18n } from '@open-codesign/i18n';
-import type { ChatMessageRow } from '@open-codesign/shared';
+import { initI18n } from '@dsr-codesign/i18n';
+import type { ChatMessageRow } from '@dsr-codesign/shared';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { ChatMessageList } from './ChatMessageList';

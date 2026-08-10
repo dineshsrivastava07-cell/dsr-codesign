@@ -1,4 +1,4 @@
-import type { StoredDesignSystem } from '@open-codesign/shared';
+import type { StoredDesignSystem } from '@dsr-codesign/shared';
 import type { AttachmentContext, ReferenceUrlContext } from '../index.js';
 
 export function escapeUntrustedXml(text: string): string {

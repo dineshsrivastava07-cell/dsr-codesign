@@ -1,23 +1,23 @@
 {
-  "name": "Open CoDesign",
-  "slug": "open-codesign",
-  "alternate_names": ["open-codesign"],
-  "description": "Open CoDesign is an open-source desktop AI design tool. It turns natural-language prompts into HTML prototypes, React components, slide decks, PDFs, and marketing assets while keeping user data local, storing v0.2 design sessions in workspace-backed files, and using bring-your-own-key model access, local endpoints, or ChatGPT subscription login.",
-  "canonical_url": "https://opencoworkai.github.io/open-codesign/",
-  "repository": "https://github.com/OpenCoworkAI/open-codesign",
-  "sourceforge_mirror": "https://sourceforge.net/projects/open-codesign.mirror/files/",
+  "name": "DSR CoDesign",
+  "slug": "dsr-codesign",
+  "alternate_names": ["dsr-codesign"],
+  "description": "DSR CoDesign is an open-source desktop AI design tool. It turns natural-language prompts into HTML prototypes, React components, slide decks, PDFs, and marketing assets while keeping user data local, storing v0.2 design sessions in workspace-backed files, and using bring-your-own-key model access, local endpoints, or ChatGPT subscription login.",
+  "canonical_url": "https://dsrailab.github.io/dsr-codesign/",
+  "repository": "https://github.com/DSR-AI-Lab/dsr-codesign",
+  "sourceforge_mirror": "https://sourceforge.net/projects/dsr-codesign.mirror/files/",
   "organization": {
-    "name": "OpenCoworkAI",
-    "url": "https://github.com/OpenCoworkAI"
+    "name": "DSR-AI-Lab",
+    "url": "https://github.com/DSR-AI-Lab"
   },
   "license": {
     "spdx_id": "MIT",
-    "url": "https://github.com/OpenCoworkAI/open-codesign/blob/main/LICENSE"
+    "url": "https://github.com/DSR-AI-Lab/dsr-codesign/blob/main/LICENSE"
   },
   "latest_release": {
     "version": "v0.2.0",
     "published_at": "2026-05-09T08:44:10Z",
-    "source": "https://github.com/OpenCoworkAI/open-codesign/releases/tag/v0.2.0",
+    "source": "https://github.com/DSR-AI-Lab/dsr-codesign/releases/tag/v0.2.0",
     "summary": "v0.2.0 is the Agentic Design release: workspace-backed design sessions, permissioned local tools, Files panel upgrades, provider diagnostics, security hardening, and DESIGN.md design-system artifacts."
   },
   "repository_snapshot": {
@@ -70,63 +70,63 @@
   "important_pages": [
     {
       "name": "Home",
-      "url": "https://opencoworkai.github.io/open-codesign/"
+      "url": "https://dsrailab.github.io/dsr-codesign/"
     },
     {
       "name": "Quickstart",
-      "url": "https://opencoworkai.github.io/open-codesign/quickstart"
+      "url": "https://dsrailab.github.io/dsr-codesign/quickstart"
     },
     {
       "name": "Architecture",
-      "url": "https://opencoworkai.github.io/open-codesign/architecture"
+      "url": "https://dsrailab.github.io/dsr-codesign/architecture"
     },
     {
       "name": "Roadmap",
-      "url": "https://opencoworkai.github.io/open-codesign/roadmap"
+      "url": "https://dsrailab.github.io/dsr-codesign/roadmap"
     },
     {
       "name": "FAQ",
-      "url": "https://opencoworkai.github.io/open-codesign/faq"
+      "url": "https://dsrailab.github.io/dsr-codesign/faq"
     },
     {
-      "name": "Open CoDesign vs Claude Design",
-      "url": "https://opencoworkai.github.io/open-codesign/claude-design-alternative"
+      "name": "DSR CoDesign vs Claude Design",
+      "url": "https://dsrailab.github.io/dsr-codesign/claude-design-alternative"
     }
   ],
   "machine_readable_resources": [
     {
       "name": "llms.txt",
-      "url": "https://opencoworkai.github.io/open-codesign/llms.txt",
+      "url": "https://dsrailab.github.io/dsr-codesign/llms.txt",
       "media_type": "text/markdown"
     },
     {
       "name": "llms-full.txt",
-      "url": "https://opencoworkai.github.io/open-codesign/llms-full.txt",
+      "url": "https://dsrailab.github.io/dsr-codesign/llms-full.txt",
       "media_type": "text/markdown"
     },
     {
       "name": "project.json",
-      "url": "https://opencoworkai.github.io/open-codesign/project.json",
+      "url": "https://dsrailab.github.io/dsr-codesign/project.json",
       "media_type": "application/json"
     },
     {
       "name": "site-index.json",
-      "url": "https://opencoworkai.github.io/open-codesign/site-index.json",
+      "url": "https://dsrailab.github.io/dsr-codesign/site-index.json",
       "media_type": "application/json"
     },
     {
       "name": "faq.json",
-      "url": "https://opencoworkai.github.io/open-codesign/faq.json",
+      "url": "https://dsrailab.github.io/dsr-codesign/faq.json",
       "media_type": "application/json"
     },
     {
       "name": "sitemap.xml",
-      "url": "https://opencoworkai.github.io/open-codesign/sitemap.xml",
+      "url": "https://dsrailab.github.io/dsr-codesign/sitemap.xml",
       "media_type": "application/xml"
     }
   ],
   "non_affiliation_notes": [
-    "Open CoDesign is not affiliated with Anthropic, Vercel, StackBlitz, Lovable, or Figma.",
+    "DSR CoDesign is not affiliated with Anthropic, Vercel, StackBlitz, Lovable, or Figma.",
     "Claude, Claude Design, v0, Bolt.new, Lovable, and Figma are names or trademarks of their respective owners."
   ],
   "content_policy": "This file summarizes public project facts for readers and automated tools. It is intended to make real public content easier to understand and cite, not to create marketing filler.",
@@ -134,31 +134,31 @@
     {
       "name": "GitHub Releases",
       "status": "live",
-      "url": "https://github.com/OpenCoworkAI/open-codesign/releases/tag/v0.2.0",
+      "url": "https://github.com/DSR-AI-Lab/dsr-codesign/releases/tag/v0.2.0",
       "role": "primary binary release source"
     },
     {
       "name": "SourceForge mirror",
       "status": "live",
-      "url": "https://sourceforge.net/projects/open-codesign.mirror/files/",
+      "url": "https://sourceforge.net/projects/dsr-codesign.mirror/files/",
       "role": "download mirror for users who cannot reach GitHub reliably"
     },
     {
       "name": "Homebrew Cask",
       "status": "live",
-      "command": "brew install --cask opencoworkai/tap/open-codesign",
-      "repository": "https://github.com/OpenCoworkAI/homebrew-tap"
+      "command": "brew install --cask dsrailab/tap/dsr-codesign",
+      "repository": "https://github.com/DSR-AI-Lab/homebrew-tap"
     },
     {
       "name": "Scoop",
       "status": "live",
-      "command": "scoop bucket add opencoworkai https://github.com/OpenCoworkAI/scoop-bucket && scoop install opencoworkai/open-codesign",
-      "repository": "https://github.com/OpenCoworkAI/scoop-bucket"
+      "command": "scoop bucket add dsrailab https://github.com/DSR-AI-Lab/scoop-bucket && scoop install dsrailab/dsr-codesign",
+      "repository": "https://github.com/DSR-AI-Lab/scoop-bucket"
     },
     {
       "name": "winget",
       "status": "pending_review",
-      "command": "winget install OpenCoworkAI.OpenCoDesign",
+      "command": "winget install DSR-AI-Lab.DSRCoDesign",
       "pull_request": "https://github.com/microsoft/winget-pkgs/pull/372310"
     }
   ],

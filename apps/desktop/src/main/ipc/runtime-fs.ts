@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path_module from 'node:path';
-import type { AttachmentContext, CoreLogger, GenerateImageAssetRequest } from '@open-codesign/core';
-import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@open-codesign/shared';
+import type { AttachmentContext, CoreLogger, GenerateImageAssetRequest } from '@dsr-codesign/core';
+import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import type { AgentStreamEvent } from '../../preload/index';
 import {
   type Database,

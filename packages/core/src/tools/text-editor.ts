@@ -10,8 +10,8 @@
  * package must NOT depend on apps/desktop).
  */
 
+import { DEFAULT_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import type { AgentTool, AgentToolResult } from '@mariozechner/pi-agent-core';
-import { DEFAULT_SOURCE_ENTRY } from '@open-codesign/shared';
 import { Type } from '@sinclair/typebox';
 
 export interface TextEditorFsCallbacks {
@@ -94,7 +94,7 @@ function isExactEditFailure(message: string, path: string): boolean {
 
 function workspaceWriteFailureText(path: string, message: string): string | null {
   if (!message.startsWith(`Workspace write-through failed for ${path}:`)) return null;
-  return `Edit failed because Open CoDesign could not write ${path} to the workspace. Stop retrying this edit; ask the user to resolve the workspace write problem. Details: ${message}`;
+  return `Edit failed because DSR CoDesign could not write ${path} to the workspace. Stop retrying this edit; ask the user to resolve the workspace write problem. Details: ${message}`;
 }
 
 function requireString(

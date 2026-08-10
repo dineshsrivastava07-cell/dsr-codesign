@@ -1,4 +1,4 @@
-import { inspectWorkspaceFiles, type WorkspaceInspection } from '@open-codesign/core';
+import { inspectWorkspaceFiles, type WorkspaceInspection } from '@dsr-codesign/core';
 import { listWorkspaceFilesAt } from './workspace-reader';
 
 export async function inspectWorkspaceAt(workspaceRoot: string): Promise<WorkspaceInspection> {

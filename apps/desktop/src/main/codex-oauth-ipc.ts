@@ -10,7 +10,7 @@ import {
   type StoredCodexAuth,
   startCallbackServer,
   type TokenSet,
-} from '@open-codesign/providers/codex';
+} from '@dsr-codesign/providers/codex';
 import {
   CHATGPT_CODEX_PROVIDER_ID,
   CodesignError,
@@ -18,7 +18,7 @@ import {
   ERROR_CODES,
   hydrateConfig,
   type ProviderEntry,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { configDir, writeConfig } from './config';
 import { ipcMain, shell } from './electron-runtime';
 import { getLogger } from './logger';

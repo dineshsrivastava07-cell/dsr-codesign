@@ -1,4 +1,4 @@
-import { DEFAULT_SOURCE_ENTRY } from '@open-codesign/shared';
+import { DEFAULT_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { WorkspaceDirectoryEntry, WorkspaceFileKind } from '../../../preload/index';
 import { buildLazyFileTree, type FileTreeNode, type LazyDirectoryMap } from '../lib/file-tree';

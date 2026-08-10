@@ -12,7 +12,7 @@
  * marks any still-pending row as 'done' so the WorkingCard never sticks.
  */
 
-import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@open-codesign/shared';
+import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import { useEffect, useRef } from 'react';
 import type { AgentStreamEvent } from '../../../preload/index';
 import { resolveReferencedWorkspacePreviewPath } from '../preview/workspace-source';

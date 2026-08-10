@@ -5,7 +5,7 @@ import {
   isSupportedOnboardingProvider,
   type SupportedOnboardingProvider,
   stripInferenceEndpointSuffix,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { looksLikeClaudeOAuthToken, withClaudeCodeIdentity } from './claude-code-compat';
 
 export type ValidateResult =

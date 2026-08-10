@@ -1,5 +1,5 @@
 {
-  "name": "@open-codesign/i18n",
+  "name": "@dsr-codesign/i18n",
   "version": "0.2.1",
   "private": true,
   "type": "module",
@@ -9,8 +9,7 @@
     ".": "./src/index.ts",
     "./locales/en": "./src/locales/en.json",
     "./locales/es": "./src/locales/es.json",
-    "./locales/pt-BR": "./src/locales/pt-BR.json",
-    "./locales/zh-CN": "./src/locales/zh-CN.json"
+    "./locales/pt-BR": "./src/locales/pt-BR.json"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
@@ -24,7 +23,7 @@
     "react": "^19.2.6"
   },
   "devDependencies": {
-    "@open-codesign/shared": "workspace:*",
+    "@dsr-codesign/shared": "workspace:*",
     "@types/react": "^19.2.15",
     "react": "^19.2.6",
     "typescript": "^6.0.3",

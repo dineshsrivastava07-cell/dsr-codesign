@@ -1,4 +1,4 @@
-# Open CoDesign Built-In Resources
+# DSR CoDesign Built-In Resources
 
 This directory is copied into the user's app data as an editable templates tree.
 Treat every file here as shippable product surface.

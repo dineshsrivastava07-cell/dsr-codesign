@@ -1,5 +1,5 @@
-import { useT } from '@open-codesign/i18n';
-import { IconButton, Wordmark } from '@open-codesign/ui';
+import { useT } from '@dsr-codesign/i18n';
+import { IconButton, Wordmark } from '@dsr-codesign/ui';
 import { AlertCircle, ArrowLeft, FolderOpen, Settings as SettingsIcon } from 'lucide-react';
 import { type CSSProperties, useEffect } from 'react';
 import { type HubTab, useCodesignStore } from '../store';

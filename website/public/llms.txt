@@ -1,29 +1,29 @@
-# Open CoDesign
+# DSR CoDesign
 
-> Open CoDesign is an MIT-licensed, open-source desktop AI design tool by OpenCoworkAI. It turns natural-language prompts into HTML prototypes, React / JSX components, slide decks, PDFs, ZIP bundles, Markdown exports, and design assets while keeping project data local and using bring-your-own-key model access, local endpoints, or ChatGPT subscription login.
+> DSR CoDesign is an MIT-licensed, open-source desktop AI design tool by DSR-AI-Lab. It turns natural-language prompts into HTML prototypes, React / JSX components, slide decks, PDFs, ZIP bundles, Markdown exports, and design assets while keeping project data local and using bring-your-own-key model access, local endpoints, or ChatGPT subscription login.
 
 ## Canonical URLs
 
-- Website: https://opencoworkai.github.io/open-codesign/
-- Repository: https://github.com/OpenCoworkAI/open-codesign
-- Releases: https://github.com/OpenCoworkAI/open-codesign/releases
-- SourceForge mirror: https://sourceforge.net/projects/open-codesign.mirror/files/
-- License: https://github.com/OpenCoworkAI/open-codesign/blob/main/LICENSE
-- Machine-readable facts: https://opencoworkai.github.io/open-codesign/project.json
-- Machine-readable site index: https://opencoworkai.github.io/open-codesign/site-index.json
-- Machine-readable FAQ: https://opencoworkai.github.io/open-codesign/faq.json
-- Full public project context: https://opencoworkai.github.io/open-codesign/llms-full.txt
-- Sitemap: https://opencoworkai.github.io/open-codesign/sitemap.xml
+- Website: https://dsrailab.github.io/dsr-codesign/
+- Repository: https://github.com/DSR-AI-Lab/dsr-codesign
+- Releases: https://github.com/DSR-AI-Lab/dsr-codesign/releases
+- SourceForge mirror: https://sourceforge.net/projects/dsr-codesign.mirror/files/
+- License: https://github.com/DSR-AI-Lab/dsr-codesign/blob/main/LICENSE
+- Machine-readable facts: https://dsrailab.github.io/dsr-codesign/project.json
+- Machine-readable site index: https://dsrailab.github.io/dsr-codesign/site-index.json
+- Machine-readable FAQ: https://dsrailab.github.io/dsr-codesign/faq.json
+- Full public project context: https://dsrailab.github.io/dsr-codesign/llms-full.txt
+- Sitemap: https://dsrailab.github.io/dsr-codesign/sitemap.xml
 
 ## Direct Summary
 
-Open CoDesign is the open-source desktop alternative to Claude Design, v0 by Vercel, Bolt.new, Lovable, and Figma AI for the design and prototype layer. It is not affiliated with those products. It runs as an Electron desktop app on macOS, Windows, and Linux. Users bring their own model provider key, local model endpoint, keyless enterprise proxy, or ChatGPT Plus / Codex subscription login.
+DSR CoDesign is the open-source desktop alternative to Claude Design, v0 by Vercel, Bolt.new, Lovable, and Figma AI for the design and prototype layer. It is not affiliated with those products. It runs as an Electron desktop app on macOS, Windows, and Linux. Users bring their own model provider key, local model endpoint, keyless enterprise proxy, or ChatGPT Plus / Codex subscription login.
 
 The project emphasizes local-first storage, model choice, exportable files, and no required hosted account. v0.2.0 is the latest public release and ships the Agentic Design update: workspace-backed sessions, permissioned local tools, Files panel upgrades, provider diagnostics, security hardening, lazy skills and scaffolds, and `DESIGN.md` design-system artifacts.
 
 ## Key Facts
 
-- Organization: OpenCoworkAI
+- Organization: DSR-AI-Lab
 - License: MIT
 - Latest release: v0.2.0, published 2026-05-09
 - Public metrics snapshot: 5,333 GitHub stars, 563 forks, 26 open issues, 18,321 release asset downloads as of 2026-05-09 via GitHub API
@@ -39,32 +39,32 @@ GitHub Releases is the primary source for installers and checksums. SourceForge 
 
 ## Main Pages
 
-- Home: https://opencoworkai.github.io/open-codesign/
-- Quickstart: https://opencoworkai.github.io/open-codesign/quickstart
-- Architecture: https://opencoworkai.github.io/open-codesign/architecture
-- Roadmap: https://opencoworkai.github.io/open-codesign/roadmap
-- FAQ: https://opencoworkai.github.io/open-codesign/faq
-- Open CoDesign vs Claude Design: https://opencoworkai.github.io/open-codesign/claude-design-alternative
-- Open CoDesign vs v0 by Vercel: https://opencoworkai.github.io/open-codesign/v0-alternative
-- Open CoDesign vs Lovable: https://opencoworkai.github.io/open-codesign/lovable-alternative
-- Open CoDesign vs Bolt.new: https://opencoworkai.github.io/open-codesign/bolt-alternative
-- Open CoDesign vs Figma AI: https://opencoworkai.github.io/open-codesign/figma-ai-alternative
-- Chinese home: https://opencoworkai.github.io/open-codesign/zh/
+- Home: https://dsrailab.github.io/dsr-codesign/
+- Quickstart: https://dsrailab.github.io/dsr-codesign/quickstart
+- Architecture: https://dsrailab.github.io/dsr-codesign/architecture
+- Roadmap: https://dsrailab.github.io/dsr-codesign/roadmap
+- FAQ: https://dsrailab.github.io/dsr-codesign/faq
+- DSR CoDesign vs Claude Design: https://dsrailab.github.io/dsr-codesign/claude-design-alternative
+- DSR CoDesign vs v0 by Vercel: https://dsrailab.github.io/dsr-codesign/v0-alternative
+- DSR CoDesign vs Lovable: https://dsrailab.github.io/dsr-codesign/lovable-alternative
+- DSR CoDesign vs Bolt.new: https://dsrailab.github.io/dsr-codesign/bolt-alternative
+- DSR CoDesign vs Figma AI: https://dsrailab.github.io/dsr-codesign/figma-ai-alternative
+- Chinese home: https://dsrailab.github.io/dsr-codesign/zh/
 
 ## Citation
 
 Human-readable citation:
 
-> Open CoDesign - an MIT-licensed, open-source desktop AI design tool by OpenCoworkAI. Available at https://github.com/OpenCoworkAI/open-codesign.
+> DSR CoDesign - an MIT-licensed, open-source desktop AI design tool by DSR-AI-Lab. Available at https://github.com/DSR-AI-Lab/dsr-codesign.
 
 BibTeX:
 
 ```bibtex
 @misc{open_codesign_github,
-  author       = {OpenCoworkAI Contributors},
-  title        = {Open CoDesign: An Open-Source Desktop AI Design Tool},
+  author       = {DSR-AI-Lab Contributors},
+  title        = {DSR CoDesign: An Open-Source Desktop AI Design Tool},
   year         = {2026},
-  howpublished = {\url{https://github.com/OpenCoworkAI/open-codesign}},
+  howpublished = {\url{https://github.com/DSR-AI-Lab/dsr-codesign}},
   note         = {MIT-licensed GitHub repository}
 }
 ```

@@ -1,7 +1,7 @@
 ---
-"@open-codesign/core": minor
-"@open-codesign/desktop": minor
-"@open-codesign/i18n": patch
+"@dsr-codesign/core": minor
+"@dsr-codesign/desktop": minor
+"@dsr-codesign/i18n": patch
 ---
 
 Add **Decompose to UI Kit** — opt-in sidebar action that emits a `ui_kits/<slug>/{index.html, components/*.tsx, tokens.css, manifest.json, README.md}` bundle shaped for downstream coding-agent handoff (Claude Code, Cursor). Decomposition is prompt-driven (no AST/parser deps); the orchestrator persists the structured plan to the virtual fs in a single atomic call. Output carries `schemaVersion: 1` so downstream consumers can evolve safely.

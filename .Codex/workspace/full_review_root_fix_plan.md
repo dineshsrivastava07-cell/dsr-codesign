@@ -28,10 +28,10 @@
 - Reference URLs, local attachments, and selected artifact DOM snippets were injected as plain prompt context while only DESIGN.md-derived tokens were wrapped as untrusted scanned content. External pages, user files, and artifact HTML can contain prompt-like text, so all four context sources now share the same untrusted wrapper and XML escaping boundary. Apply-comment also no longer pre-embeds the same context before calling the agent, so supporting context is injected once.
 - `str_replace_based_edit_tool` documented `view_range: [-1, -1]` as wrong, but the implementation treated `rawStart = -1` as line 1. That let repeated ranged views bypass the full-file view budget and re-inject the entire artifact. `-1` now means EOF for both bounds, and `[-1, -1]` returns only the last line.
 - The agent guidance still described `view_range: [-1, -1]` as "wrong" after the EOF fix. Updated the prompt so model-facing instructions now match the implementation: it reads only the final line and is not a full-file shortcut.
-- Local `electron-builder --dir` smoke first entered packaging but stayed in "searching for node modules" for more than 16 minutes. The root cause was partly that desktop main output externalized `@open-codesign/*` workspace packages, forcing electron-builder to resolve and package workspace dependencies instead of the already-built bundle. Desktop now bundles workspace packages into the Vite output, keeps them as dev dependencies, and keeps only true runtime externals in production dependencies.
+- Local `electron-builder --dir` smoke first entered packaging but stayed in "searching for node modules" for more than 16 minutes. The root cause was partly that desktop main output externalized `@dsr-codesign/*` workspace packages, forcing electron-builder to resolve and package workspace dependencies instead of the already-built bundle. Desktop now bundles workspace packages into the Vite output, keeps them as dev dependencies, and keeps only true runtime externals in production dependencies.
 - `electron-builder --dir` then exposed a real plist parse failure: the root `@xmldom/xmldom@<0.8.13` override used the open range `>=0.8.13`, which resolved to `0.9.10`; `plist@3.1.0` calls `DOMParser.parseFromString(..., undefined)`, which `xmldom@0.9.x` rejects. The override is now pinned to `0.8.13`, satisfying the security floor without crossing the plist compatibility boundary.
 - `electron-builder --dir` also surfaced missing desktop app metadata warnings. Added desktop package `description` and `author` so packaged app metadata no longer depends on root-package fallback.
-- Desktop's bundled main build still emitted a Vite warning because `packages/core/src/agent.ts` dynamically imported `@open-codesign/providers` even though the same module was already statically imported by the main bundle. The dynamic import could not create a chunk, so `filterActive` and `formatSkillsForPrompt` are now static imports and only the skill loader remains lazy.
+- Desktop's bundled main build still emitted a Vite warning because `packages/core/src/agent.ts` dynamically imported `@dsr-codesign/providers` even though the same module was already statically imported by the main bundle. The dynamic import could not create a chunk, so `filterActive` and `formatSkillsForPrompt` are now static imports and only the skill loader remains lazy.
 - Local ignored `docs/v0.2-plan.md` had stale tool-surface rows that still said `read-url` should be kept and `list-files` only maybe cut later. Updated it to match the current default tool surface and host-prefetched Reference URL flow.
 - Follow-up security review tightened the untrusted context helper itself: the wrapper body was escaped, but the exported helper did not escape the wrapper `type` attribute or description text. Those fields are now escaped as well.
 - Follow-up security review also constrained host-side reference URL prefetching to non-credentialed `http:` / `https:` URLs before calling `fetch`, so `file:` and embedded-credential URLs never enter the network path or prompt context.
@@ -42,25 +42,25 @@
 
 ## Verification
 
-- Passed: `pnpm --filter open-codesign-website build`
-- Passed: `pnpm --filter @open-codesign/desktop exec electron-vite build`
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/renderer/src/store.test.ts`
-- Passed: `pnpm --filter @open-codesign/core test -- src/agent.test.ts`
-- Passed: `pnpm --filter @open-codesign/core test -- src/agent.test.ts src/generate.test.ts`
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/renderer/src/store.buildEnrichedPrompt.test.ts src/renderer/src/store.test.ts`
-- Passed: `pnpm --filter @open-codesign/core test -- src/context-format.test.ts src/generate.test.ts src/agent.test.ts`
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/generation-ipc.test.ts src/renderer/src/store.buildEnrichedPrompt.test.ts`
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/generation-ipc.test.ts`
+- Passed: `pnpm --filter dsr-codesign-website build`
+- Passed: `pnpm --filter @dsr-codesign/desktop exec electron-vite build`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/renderer/src/store.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/core test -- src/agent.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/core test -- src/agent.test.ts src/generate.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/renderer/src/store.buildEnrichedPrompt.test.ts src/renderer/src/store.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/core test -- src/context-format.test.ts src/generate.test.ts src/agent.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/generation-ipc.test.ts src/renderer/src/store.buildEnrichedPrompt.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/generation-ipc.test.ts`
 - Passed after cleanup: `rg` found no remaining `makeReadUrlTool` / `makeReadDesignSystemTool` / `makeListFilesTool` references.
-- Passed after selected-element hardening: `pnpm --filter @open-codesign/core test -- src/context-format.test.ts src/generate.test.ts src/agent.test.ts`
+- Passed after selected-element hardening: `pnpm --filter @dsr-codesign/core test -- src/context-format.test.ts src/generate.test.ts src/agent.test.ts`
 - Passed: generated CSS scan for `space-1 5` / `space-0 5` / `space-2 5` in `apps/desktop/out` and `website/.vitepress/dist`
 - Passed: `pnpm build`
 - Passed: `pnpm lint`
 - Passed: `pnpm typecheck`
 - Passed: `pnpm test`
 - Passed: `git diff --check`
-- Passed after `view_range` EOF fix: `pnpm --filter @open-codesign/core test -- src/tools/text-editor.test.ts src/agent.test.ts src/generate.test.ts src/context-format.test.ts`
-- Passed after `view_range` EOF fix: `pnpm --filter @open-codesign/core typecheck`
+- Passed after `view_range` EOF fix: `pnpm --filter @dsr-codesign/core test -- src/tools/text-editor.test.ts src/agent.test.ts src/generate.test.ts src/context-format.test.ts`
+- Passed after `view_range` EOF fix: `pnpm --filter @dsr-codesign/core typecheck`
 - Passed final full run: `pnpm build`
 - Passed final full run: `pnpm typecheck`
 - Passed final full run: `pnpm test`
@@ -70,8 +70,8 @@
 - Passed final static scan: no remaining `makeReadUrlTool` / `makeReadDesignSystemTool` / `makeListFilesTool` symbols outside deleted files/lock exclusions
 - Passed final static scan: no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
 - Passed after prompt/metadata follow-up: `pnpm install --frozen-lockfile`
-- Passed after prompt/metadata follow-up: `pnpm --filter @open-codesign/core test -- src/agent.test.ts src/tools/text-editor.test.ts`
-- Passed after prompt/metadata follow-up: `pnpm --filter @open-codesign/core typecheck`
+- Passed after prompt/metadata follow-up: `pnpm --filter @dsr-codesign/core test -- src/agent.test.ts src/tools/text-editor.test.ts`
+- Passed after prompt/metadata follow-up: `pnpm --filter @dsr-codesign/core typecheck`
 - Passed after prompt/metadata follow-up: `pnpm build`
 - Passed after prompt/metadata follow-up: `pnpm typecheck`
 - Passed after prompt/metadata follow-up: `pnpm test`
@@ -80,71 +80,71 @@
 - Passed after prompt/metadata follow-up: generated CSS scan for `space-1 5` / `space-0 5` / `space-2 5` in `apps/desktop/out` and `website/.vitepress/dist`
 - Passed after prompt/metadata follow-up: no remaining `makeReadUrlTool` / `makeReadDesignSystemTool` / `makeListFilesTool` symbols outside deleted files/lock exclusions
 - Passed after prompt/metadata follow-up: no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
-- Passed after packaging-root follow-up: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed after packaging-root follow-up: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed after packaging-root follow-up: `pnpm build`
 - Passed after packaging-root follow-up: `pnpm typecheck`
 - Passed after packaging-root follow-up: `pnpm test`
 - Passed after packaging-root follow-up: `pnpm lint`
 - Passed after packaging-root follow-up: `git diff --check`
-- Passed after packaging-root follow-up: generated desktop build scan found no remaining `@open-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+- Passed after packaging-root follow-up: generated desktop build scan found no remaining `@dsr-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
 - Passed after packaging-root follow-up: generated CSS scan for `space-1 5` / `space-0 5` / `space-2 5` in `apps/desktop/out` and `website/.vitepress/dist`
 - Passed after packaging-root follow-up: lockfile scan shows `@xmldom/xmldom@<0.8.13` pinned to `0.8.13` and no `0.9.10` entry
-- Passed after dynamic-import cleanup: `pnpm --filter @open-codesign/core test -- src/agent.test.ts src/tools/text-editor.test.ts`
-- Passed after dynamic-import cleanup: `pnpm --filter @open-codesign/core typecheck`
-- Passed after dynamic-import cleanup: `pnpm --filter @open-codesign/desktop exec electron-vite build` with no Vite dynamic-import warning
-- Passed after dynamic-import cleanup: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed after dynamic-import cleanup: `pnpm --filter @dsr-codesign/core test -- src/agent.test.ts src/tools/text-editor.test.ts`
+- Passed after dynamic-import cleanup: `pnpm --filter @dsr-codesign/core typecheck`
+- Passed after dynamic-import cleanup: `pnpm --filter @dsr-codesign/desktop exec electron-vite build` with no Vite dynamic-import warning
+- Passed after dynamic-import cleanup: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed after dynamic-import cleanup: `pnpm build`
 - Passed after dynamic-import cleanup: `pnpm typecheck`
 - Passed after dynamic-import cleanup: `pnpm test`
 - Passed after dynamic-import cleanup: `pnpm lint`
 - Passed after dynamic-import cleanup: `git diff --check`
-- Passed after dynamic-import cleanup: generated desktop build scan found no remaining `@open-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+- Passed after dynamic-import cleanup: generated desktop build scan found no remaining `@dsr-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
 - Passed after dynamic-import cleanup: generated build scan found no remaining dynamic-import warning text
 - Passed after dynamic-import cleanup: generated CSS scan for `space-1 5` / `space-0 5` / `space-2 5` in `apps/desktop/out` and `website/.vitepress/dist`
-- Passed after untrusted-context metadata hardening: `pnpm --filter @open-codesign/core test -- src/context-format.test.ts`
-- Passed after untrusted-context metadata hardening: `pnpm --filter @open-codesign/core typecheck`
-- Passed after reference URL guard: `pnpm --filter @open-codesign/desktop test -- src/main/prompt-context.test.ts`
-- Passed after reference URL guard: `pnpm --filter @open-codesign/desktop typecheck`
+- Passed after untrusted-context metadata hardening: `pnpm --filter @dsr-codesign/core test -- src/context-format.test.ts`
+- Passed after untrusted-context metadata hardening: `pnpm --filter @dsr-codesign/core typecheck`
+- Passed after reference URL guard: `pnpm --filter @dsr-codesign/desktop test -- src/main/prompt-context.test.ts`
+- Passed after reference URL guard: `pnpm --filter @dsr-codesign/desktop typecheck`
 - Passed final follow-up run: `pnpm install --frozen-lockfile`
 - Passed final follow-up run: `pnpm build`
 - Passed final follow-up run: `pnpm typecheck`
 - Passed final follow-up run: `pnpm test`
 - Passed final follow-up run: `pnpm lint`
-- Passed final follow-up run: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed final follow-up run: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed final follow-up run: `git diff --check`
-- Passed final follow-up scan: no generated `@open-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+- Passed final follow-up scan: no generated `@dsr-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
 - Passed final follow-up scan: no generated dynamic-import warning text
 - Passed final follow-up scan: no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
 - Passed final follow-up scan: no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
 - Passed final follow-up scan: `@xmldom/xmldom@<0.8.13` resolves to `0.8.13`, with no `0.9.10` lockfile entry
-- Measured package smoke output before size pruning: `release/mac-arm64/Open CoDesign.app` 431M, `app.asar` 127M, `app.asar.unpacked` 47M.
-- Measured package smoke output after size pruning: `release/mac-arm64/Open CoDesign.app` 334M, `Contents/Frameworks` 209M, `Contents/Resources` 125M, `app.asar` 75M, `app.asar.unpacked` 47M.
-- Measured package smoke output after native pruning: `release/mac-arm64/Open CoDesign.app` 292M, `Contents/Frameworks` 209M, `Contents/Resources` 82M, `app.asar` 75M, `app.asar.unpacked` 4.6M.
-- Passed after size-pruning follow-up: `pnpm --filter @open-codesign/desktop build:dir`
+- Measured package smoke output before size pruning: `release/mac-arm64/DSR CoDesign.app` 431M, `app.asar` 127M, `app.asar.unpacked` 47M.
+- Measured package smoke output after size pruning: `release/mac-arm64/DSR CoDesign.app` 334M, `Contents/Frameworks` 209M, `Contents/Resources` 125M, `app.asar` 75M, `app.asar.unpacked` 47M.
+- Measured package smoke output after native pruning: `release/mac-arm64/DSR CoDesign.app` 292M, `Contents/Frameworks` 209M, `Contents/Resources` 82M, `app.asar` 75M, `app.asar.unpacked` 4.6M.
+- Passed after size-pruning follow-up: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed after size-pruning follow-up: `pnpm lint`
 - Passed after size-pruning follow-up: `git diff --check`
-- Passed after size-pruning follow-up: generated desktop build scan found no remaining `@open-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+- Passed after size-pruning follow-up: generated desktop build scan found no remaining `@dsr-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
 - Passed after size-pruning follow-up: generated build scan found no remaining dynamic-import warning text
 - Passed after size-pruning follow-up: generated CSS scan for `space-1 5` / `space-0 5` / `space-2 5`
 - Passed after size-pruning follow-up: no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
-- Passed after native-pruning test follow-up: `pnpm --filter @open-codesign/desktop test -- scripts/after-pack-prune.test.mjs`
+- Passed after native-pruning test follow-up: `pnpm --filter @dsr-codesign/desktop test -- scripts/after-pack-prune.test.mjs`
 - Passed after native-pruning test follow-up: `pnpm lint`
 - Passed after native-pruning test follow-up: `git diff --check`
 - Passed final post-test-hook run: `pnpm typecheck`
-- Passed final post-test-hook run: `pnpm test` (`@open-codesign/desktop`: 80 files, 1151 tests)
+- Passed final post-test-hook run: `pnpm test` (`@dsr-codesign/desktop`: 80 files, 1151 tests)
 - Passed final post-test-hook run: `pnpm lint`
-- Passed after Reference URL redirect hardening: `pnpm --filter @open-codesign/desktop test -- src/main/prompt-context.test.ts` (11 tests)
-- Passed after Reference URL redirect hardening: `pnpm --filter @open-codesign/desktop typecheck`
+- Passed after Reference URL redirect hardening: `pnpm --filter @dsr-codesign/desktop test -- src/main/prompt-context.test.ts` (11 tests)
+- Passed after Reference URL redirect hardening: `pnpm --filter @dsr-codesign/desktop typecheck`
 - Passed after Reference URL redirect hardening: `pnpm lint`
 - Passed after Reference URL redirect hardening: `git diff --check`
 - Passed final redirect follow-up run: `pnpm build`
-- Passed final redirect follow-up run: `pnpm test` (`@open-codesign/desktop`: 80 files, 1154 tests)
-- Passed final redirect follow-up scan: no generated `@open-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+- Passed final redirect follow-up run: `pnpm test` (`@dsr-codesign/desktop`: 80 files, 1154 tests)
+- Passed final redirect follow-up scan: no generated `@dsr-codesign/*` imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
 - Passed final redirect follow-up scan: no generated dynamic-import warning text
 - Passed final redirect follow-up scan: no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
 - Passed final redirect follow-up scan: no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
-- Passed after native-binding migration fix: `pnpm --filter @open-codesign/desktop test -- src/main/db/native-binding.test.ts src/main/migration/v01-to-v02.test.ts`
-- Passed after native-binding migration fix: `pnpm --filter @open-codesign/desktop typecheck`
+- Passed after native-binding migration fix: `pnpm --filter @dsr-codesign/desktop test -- src/main/db/native-binding.test.ts src/main/migration/v01-to-v02.test.ts`
+- Passed after native-binding migration fix: `pnpm --filter @dsr-codesign/desktop typecheck`
 - Passed after native-binding migration fix: `pnpm lint`
 - Passed after native-binding migration fix: `git diff --check`
 - Earlier partial: full `pnpm build` originally passed website + desktop Vite compilation, then spent more than 9 minutes in electron-builder directory scanning with high CPU and no new logs. Root fix was to move installer packaging out of the ordinary desktop `build` script and keep it in `package` / `release`.
@@ -164,9 +164,9 @@
   - `pnpm build`: passed; desktop build used Vite 7.3.2 and stayed on the Vite compilation path.
   - `pnpm typecheck`: passed, 10/10 tasks.
   - `pnpm test`: passed, 10/10 tasks; desktop reported 81 test files and 1159 tests.
-  - `pnpm --filter @open-codesign/desktop build:dir`: passed through electron-builder dependency search, packaging, signing, and afterPack pruning.
-  - Static scans passed: no stale `anti-slop.md` in `out/main`; no generated `@open-codesign/*` runtime imports; no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS; no generated dynamic-import warning text; no direct app/package imports of forbidden provider SDKs; no bad `@xmldom/xmldom` override or `0.9.x` lock entry.
-- Final package smoke size sample: `Open CoDesign.app` 252M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+  - `pnpm --filter @dsr-codesign/desktop build:dir`: passed through electron-builder dependency search, packaging, signing, and afterPack pruning.
+  - Static scans passed: no stale `anti-slop.md` in `out/main`; no generated `@dsr-codesign/*` runtime imports; no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS; no generated dynamic-import warning text; no direct app/package imports of forbidden provider SDKs; no bad `@xmldom/xmldom` override or `0.9.x` lock entry.
+- Final package smoke size sample: `DSR CoDesign.app` 252M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Second Review Pass
 
@@ -188,33 +188,33 @@
 - Third review pass fixed v0.1 migration data loss and cleanup hazards: inline comments are migrated into the pi session timeline, the legacy DB is closed before backup rename, existing backup names get a unique suffix, optional missing `comments` tables do not fail older migrations, and legacy file paths are validated before workspace directories are created.
 - Fourth review pass removed the Electron native-binding default fallback: missing target Electron better-sqlite3 binaries now fail before DB open instead of falling through to a possibly Node-ABI `better_sqlite3.node`; the postinstall script now requires the Node ABI binary for local test/runtime use.
 - Targeted checks passed after the second pass:
-  - `pnpm --filter @open-codesign/desktop test -- scripts/after-pack-prune.test.mjs src/main/generation-ipc.test.ts`
-  - `pnpm --filter @open-codesign/desktop test -- src/main/migration/v01-to-v02.test.ts src/main/db/native-binding.test.ts`
-  - `pnpm --filter @open-codesign/core test -- src/tools/skill.test.ts`
-  - `pnpm --filter @open-codesign/desktop test -- src/main/ensure-user-templates.test.ts`
-  - `pnpm --filter @open-codesign/core test -- src/tools/skill.test.ts src/tools/scaffold.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop test -- scripts/after-pack-prune.test.mjs src/main/generation-ipc.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/migration/v01-to-v02.test.ts src/main/db/native-binding.test.ts`
+  - `pnpm --filter @dsr-codesign/core test -- src/tools/skill.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/ensure-user-templates.test.ts`
+  - `pnpm --filter @dsr-codesign/core test -- src/tools/skill.test.ts src/tools/scaffold.test.ts`
 - Targeted checks passed after the third pass:
-  - `pnpm --filter @open-codesign/desktop test -- src/main/prompt-context.test.ts`
-  - `pnpm --filter @open-codesign/core test -- src/tools/text-editor.test.ts`
-  - `pnpm --filter @open-codesign/desktop test -- src/main/index.workspace.test.ts`
-  - `pnpm --filter @open-codesign/desktop test -- src/main/migration/v01-to-v02.test.ts`
-  - `pnpm --filter @open-codesign/desktop typecheck`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/prompt-context.test.ts`
+  - `pnpm --filter @dsr-codesign/core test -- src/tools/text-editor.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/index.workspace.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/migration/v01-to-v02.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop typecheck`
   - `pnpm lint`
 - Targeted checks passed after the fourth pass:
-  - `pnpm --filter @open-codesign/desktop exec node scripts/install-sqlite-bindings.cjs`
-  - `pnpm --filter @open-codesign/desktop test -- src/main/prompt-context.test.ts src/main/db/native-binding.test.ts`
-  - `pnpm --filter @open-codesign/desktop test -- src/main/db/native-binding.test.ts src/main/migration/v01-to-v02.test.ts`
-  - `pnpm --filter @open-codesign/desktop typecheck`
+  - `pnpm --filter @dsr-codesign/desktop exec node scripts/install-sqlite-bindings.cjs`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/prompt-context.test.ts src/main/db/native-binding.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/db/native-binding.test.ts src/main/migration/v01-to-v02.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop typecheck`
   - `pnpm lint`
 - Final second-pass full checks:
   - `pnpm lint`: passed, 454 files checked.
   - `pnpm typecheck`: passed, 10/10 tasks.
   - `pnpm test`: passed, 10/10 tasks; desktop reported 81 test files and 1162 tests.
-  - `pnpm --filter @open-codesign/desktop build:dir`: passed through Vite build, electron-builder packaging, ad-hoc signing, and afterPack pruning.
+  - `pnpm --filter @dsr-codesign/desktop build:dir`: passed through Vite build, electron-builder packaging, ad-hoc signing, and afterPack pruning.
   - `pnpm test:e2e`: not available; pnpm returned `Command "test:e2e" not found`.
   - `git diff --check`: passed.
-  - Static scans passed: no stale `anti-slop.md` in `out/main`; no generated `@open-codesign/*` runtime imports; no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS; no generated dynamic-import warning text; no direct app/package imports of forbidden provider SDKs; no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry; no source `skill('__list__')` guidance remains outside the regression assertion.
-  - Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+  - Static scans passed: no stale `anti-slop.md` in `out/main`; no generated `@dsr-codesign/*` runtime imports; no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS; no generated dynamic-import warning text; no direct app/package imports of forbidden provider SDKs; no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry; no source `skill('__list__')` guidance remains outside the regression assertion.
+  - Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Third Review Final Verification
 
@@ -223,18 +223,18 @@
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm lint` (454 files checked)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1170 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - Source scan note: old tool names remain only in renderer history-label compatibility and regression assertions, not in the core agent tool surface.
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Tenth Review Final Verification
 
@@ -243,17 +243,17 @@
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm lint` (461 files checked)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1200 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Tenth Review Pass
 
@@ -279,120 +279,120 @@
   - Product file writes, runtime edit-tool write-through, and duplicate/migrate tracked-file copies all reuse the same safe path resolver.
   - Renderer file listing now surfaces list IPC failures with a toast instead of silently presenting an empty folder.
 - Targeted checks passed during this pass:
-  - `pnpm --filter @open-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/main/design-workspace.test.ts src/main/snapshots-db.test.ts src/main/index.workspace.test.ts src/renderer/src/store.test.ts src/renderer/src/components/FilesPanel.test.tsx` (288 tests)
-  - `pnpm --filter @open-codesign/desktop typecheck`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/main/design-workspace.test.ts src/main/snapshots-db.test.ts src/main/index.workspace.test.ts src/renderer/src/store.test.ts src/renderer/src/components/FilesPanel.test.tsx` (288 tests)
+  - `pnpm --filter @dsr-codesign/desktop typecheck`
   - `pnpm lint`
-  - `pnpm --filter @open-codesign/i18n test`
-  - `pnpm --filter @open-codesign/shared test -- src/generate-payload.test.ts src/error-codes.test.ts`
-  - `pnpm --filter @open-codesign/desktop test -- src/main/workspace-reader.test.ts src/main/snapshots-ipc.test.ts src/main/index.workspace.test.ts src/main/design-workspace.test.ts src/renderer/src/store.test.ts` (244 tests)
+  - `pnpm --filter @dsr-codesign/i18n test`
+  - `pnpm --filter @dsr-codesign/shared test -- src/generate-payload.test.ts src/error-codes.test.ts`
+  - `pnpm --filter @dsr-codesign/desktop test -- src/main/workspace-reader.test.ts src/main/snapshots-ipc.test.ts src/main/index.workspace.test.ts src/main/design-workspace.test.ts src/renderer/src/store.test.ts` (244 tests)
 
 ## Eighth Review Final Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/renderer/src/components/FilesPanel.test.tsx` (142 tests)
-- Passed: `pnpm --filter @open-codesign/desktop typecheck`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/renderer/src/components/FilesPanel.test.tsx` (142 tests)
+- Passed: `pnpm --filter @dsr-codesign/desktop typecheck`
 - Passed: `pnpm lint` (455 files checked)
 - Passed: `pnpm install --frozen-lockfile`
 - Passed: `pnpm build`
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1186 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Ninth Review Final Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/workspace-watcher.test.ts src/renderer/src/components/FilesPanel.test.tsx` (42 tests)
-- Passed: `pnpm --filter @open-codesign/desktop typecheck`
-- Passed: `pnpm --filter @open-codesign/core test -- src/tools/skill.test.ts src/resource-manifest.test.ts src/agent.test.ts src/generate.test.ts` (87 tests)
-- Passed: `pnpm --filter @open-codesign/core typecheck`
-- Passed: `pnpm --filter @open-codesign/i18n test` (13 tests)
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/workspace-watcher.test.ts src/renderer/src/components/FilesPanel.test.tsx` (42 tests)
+- Passed: `pnpm --filter @dsr-codesign/desktop typecheck`
+- Passed: `pnpm --filter @dsr-codesign/core test -- src/tools/skill.test.ts src/resource-manifest.test.ts src/agent.test.ts src/generate.test.ts` (87 tests)
+- Passed: `pnpm --filter @dsr-codesign/core typecheck`
+- Passed: `pnpm --filter @dsr-codesign/i18n test` (13 tests)
 - Passed: `pnpm install --frozen-lockfile`
 - Passed: `pnpm build`; the previous `dynamic import will not move module` warning for `skills/loader.ts` is gone and the build now emits a separate `loader` chunk.
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm lint` (461 files checked)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1191 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Seventh Review Final Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/design-workspace.test.ts src/main/snapshots-db.test.ts src/main/index.workspace.test.ts src/main/snapshots-ipc.test.ts` (190 tests)
-- Passed: `pnpm --filter @open-codesign/desktop typecheck`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/design-workspace.test.ts src/main/snapshots-db.test.ts src/main/index.workspace.test.ts src/main/snapshots-ipc.test.ts` (190 tests)
+- Passed: `pnpm --filter @dsr-codesign/desktop typecheck`
 - Passed: `pnpm lint` (455 files checked)
 - Passed: `pnpm install --frozen-lockfile`
 - Passed: `pnpm build`
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1182 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Sixth Review Final Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/design-workspace.test.ts src/main/snapshots-db.test.ts src/main/index.workspace.test.ts src/main/snapshots-ipc.test.ts` (188 tests)
-- Passed: `pnpm --filter @open-codesign/desktop typecheck`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/design-workspace.test.ts src/main/snapshots-db.test.ts src/main/index.workspace.test.ts src/main/snapshots-ipc.test.ts` (188 tests)
+- Passed: `pnpm --filter @dsr-codesign/desktop typecheck`
 - Passed: `pnpm lint` (454 files checked)
 - Passed: `pnpm install --frozen-lockfile`
 - Passed: `pnpm build`
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1180 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Fifth Review Final Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/prompt-context.test.ts` (16 tests)
-- Passed: `pnpm --filter @open-codesign/desktop typecheck`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/prompt-context.test.ts` (16 tests)
+- Passed: `pnpm --filter @dsr-codesign/desktop typecheck`
 - Passed: `pnpm lint` (454 files checked)
 - Passed: `pnpm install --frozen-lockfile`
 - Passed: `pnpm build`
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1175 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Fourth Review Final Verification
 
@@ -401,17 +401,17 @@
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm lint` (454 files checked)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1174 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Eleventh Review Final Verification
 
@@ -419,17 +419,17 @@
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm lint` (461 files checked)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 81 test files and 1204 tests)
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
 
 ## Twelfth Review Pass
 
@@ -440,8 +440,8 @@
 
 ## Twelfth Review Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/snapshots-ipc.test.ts`
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/main/snapshots-db.test.ts` (172 tests)
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/snapshots-ipc.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/main/snapshots-db.test.ts` (172 tests)
 
 ## Thirteenth Review Pass
 
@@ -454,12 +454,12 @@
 
 ## Thirteenth Review Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/generation-workspace.test.ts src/main/prompt-context.test.ts src/main/preview-runtime.test.ts`
-- Passed: `pnpm --filter @open-codesign/core test -- src/tools/scaffold.test.ts`
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/design-workspace.test.ts src/main/snapshots-ipc.test.ts src/main/generation-workspace.test.ts`
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/main/design-workspace.test.ts src/main/generation-workspace.test.ts src/main/prompt-context.test.ts src/main/preview-runtime.test.ts`
-- Passed: `pnpm --filter @open-codesign/core test -- src/tools/skill.test.ts src/tools/scaffold.test.ts`
-- Passed: `pnpm --filter @open-codesign/core test -- src/design-skills/index.test.ts src/agent.test.ts src/tools/skill.test.ts src/tools/scaffold.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/generation-workspace.test.ts src/main/prompt-context.test.ts src/main/preview-runtime.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/core test -- src/tools/scaffold.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/design-workspace.test.ts src/main/snapshots-ipc.test.ts src/main/generation-workspace.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/snapshots-ipc.test.ts src/main/design-workspace.test.ts src/main/generation-workspace.test.ts src/main/prompt-context.test.ts src/main/preview-runtime.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/core test -- src/tools/skill.test.ts src/tools/scaffold.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/core test -- src/design-skills/index.test.ts src/agent.test.ts src/tools/skill.test.ts src/tools/scaffold.test.ts`
 - Passed: `pnpm typecheck` (10/10 tasks)
 
 ## Fourteenth Review Pass
@@ -469,19 +469,19 @@
 
 ## Fourteenth Review Final Verification
 
-- Passed: `pnpm --filter @open-codesign/desktop test -- src/main/done-verify.test.ts`
+- Passed: `pnpm --filter @dsr-codesign/desktop test -- src/main/done-verify.test.ts`
 - Passed: `pnpm typecheck` (10/10 tasks)
 - Passed: `pnpm lint` (464 files checked)
 - Passed: `pnpm test` (10/10 tasks; desktop reported 83 test files and 1217 tests)
 - Passed: `pnpm build`
-- Passed: `pnpm --filter @open-codesign/desktop build:dir`
+- Passed: `pnpm --filter @dsr-codesign/desktop build:dir`
 - Passed: `git diff --check`
 - Passed static scans:
   - no stale `anti-slop.md` in `apps/desktop/out/main`
-  - no generated `@open-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
+  - no generated `@dsr-codesign/*` runtime imports in `apps/desktop/out/main`, `out/preload`, or `out/renderer`
   - no generated invalid `space-1 5` / `space-0 5` / `space-2 5` CSS
   - no generated dynamic-import warning text
   - no direct app/package imports of `@anthropic-ai/sdk`, `openai`, or `@google/genai`
   - no bad `@xmldom/xmldom` override or `0.9.x` lockfile entry
 - `pnpm test:e2e`: still not available; pnpm returned `Command "test:e2e" not found`.
-- Final package smoke size sample: `Open CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.
+- Final package smoke size sample: `DSR CoDesign.app` 251M, `Contents/Frameworks` 209M, `Contents/Resources` 42M, `app.asar` 38M, `app.asar.unpacked` 1.9M.

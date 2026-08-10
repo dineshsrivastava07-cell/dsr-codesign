@@ -1,8 +1,8 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const owner = process.env.GITHUB_REPOSITORY_OWNER ?? 'OpenCoworkAI';
-const repository = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'open-codesign';
+const owner = process.env.GITHUB_REPOSITORY_OWNER ?? 'DSR-AI-Lab';
+const repository = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'dsr-codesign';
 const token = process.env.GITHUB_TOKEN;
 const outputDirectory = process.env.ACTIVITY_SNAPSHOT_DIR ?? 'repository-activity';
 

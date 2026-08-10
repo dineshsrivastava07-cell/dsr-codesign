@@ -93,14 +93,14 @@ describe('ensureUserTemplates', () => {
             path: '../frames/iphone.jsx',
             category: 'device-frame',
             license: 'MIT-internal',
-            source: 'Open CoDesign built-in scaffold',
+            source: 'DSR CoDesign built-in scaffold',
           },
           'ipad-frame': {
             description: 'iPad frame.',
             path: '../frames/ipad.jsx',
             category: 'device-frame',
             license: 'MIT-internal',
-            source: 'Open CoDesign built-in scaffold',
+            source: 'DSR CoDesign built-in scaffold',
           },
         },
       }),
@@ -140,8 +140,8 @@ describe('ensureUserTemplates', () => {
       scaffolds: Record<string, { description: string; source: string }>;
     };
     expect(repaired.scaffolds['iphone-frame']?.description).toBe('User edited description.');
-    expect(repaired.scaffolds['iphone-frame']?.source).toBe('Open CoDesign built-in scaffold');
-    expect(repaired.scaffolds['ipad-frame']?.source).toBe('Open CoDesign built-in scaffold');
+    expect(repaired.scaffolds['iphone-frame']?.source).toBe('DSR CoDesign built-in scaffold');
+    expect(repaired.scaffolds['ipad-frame']?.source).toBe('DSR CoDesign built-in scaffold');
     expect(repaired.scaffolds['custom-frame']?.source).toBe('User');
   });
 

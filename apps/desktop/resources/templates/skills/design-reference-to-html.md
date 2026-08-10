@@ -50,7 +50,7 @@ or fidelity target.
 
 - Visual reference: screenshot, mockup export, frame image, browser capture, or
   local reference asset.
-- Output surface: default to `App.jsx` in an Open CoDesign workspace; use
+- Output surface: default to `App.jsx` in an DSR CoDesign workspace; use
   standalone `.html` only when requested or when editing an existing HTML file.
 - Reference canvas: preserve the image aspect ratio when dimensions are known.
 - Verification viewport: match the reference size when practical, then also
@@ -163,7 +163,7 @@ layout box disagree, which causes clipped edges or large empty bands.
   labels unless the reference shows them.
 - Prefer local assets and app-provided libraries. Do not install packages,
   download images, or add external hotlinks without user approval.
-- Use the repo's existing framework and source entry. In Open CoDesign, default
+- Use the repo's existing framework and source entry. In DSR CoDesign, default
   to `App.jsx`; reserve `index.html` for standalone exports or existing HTML
   workspaces.
 

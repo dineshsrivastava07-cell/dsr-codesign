@@ -1,6 +1,6 @@
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import type { AgentTool, AgentToolResult } from '@mariozechner/pi-agent-core';
 import type { ImageContent, TextContent } from '@mariozechner/pi-ai';
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
 import { type Static, Type } from '@sinclair/typebox';
 
 /**

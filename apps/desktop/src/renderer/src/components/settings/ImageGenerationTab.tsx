@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { Image as ImageIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { ImageGenerationSettingsView } from '../../../../preload/index';

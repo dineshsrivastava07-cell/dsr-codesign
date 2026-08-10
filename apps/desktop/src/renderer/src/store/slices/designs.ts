@@ -1,4 +1,4 @@
-import { DEFAULT_SOURCE_ENTRY } from '@open-codesign/shared';
+import { DEFAULT_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import {
   resolveDesignPreviewSource,
   type WorkspacePreviewReadResult,

@@ -1,4 +1,4 @@
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 
 export interface WorkspaceWriteContent {
   diskContent: string | Buffer;

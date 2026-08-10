@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import { AddCustomProviderModal, buildEndpointDiscoveryPayload } from './AddCustomProviderModal';
 
-vi.mock('@open-codesign/i18n', () => ({
+vi.mock('@dsr-codesign/i18n', () => ({
   useT: () => (key: string) => key,
 }));
 

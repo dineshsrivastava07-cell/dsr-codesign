@@ -123,7 +123,7 @@ vi.mock('./imports/opencode-config', () => ({
   readOpencodeConfig: vi.fn(async () => null),
 }));
 
-vi.mock('@open-codesign/providers', () => ({
+vi.mock('@dsr-codesign/providers', () => ({
   looksLikeClaudeOAuthToken: vi.fn(() => false),
   pingProvider: vi.fn(async () => ({ ok: true, modelCount: 1 })),
   withClaudeCodeIdentity: vi.fn(
@@ -369,7 +369,7 @@ describe('settings:v1:set-active-provider — payload validation', () => {
 
 describe('config:v1:remove-provider — empty-state normalization', () => {
   it('returns provider:null after removing the last configured provider', async () => {
-    const { hydrateConfig } = await import('@open-codesign/shared');
+    const { hydrateConfig } = await import('@dsr-codesign/shared');
     const { readConfig, writeConfig } = await import('./config');
     const { loadConfigOnBoot, registerOnboardingIpc } = await import('./onboarding-ipc');
     vi.mocked(writeConfig).mockClear();
@@ -412,7 +412,7 @@ describe('config:v1:remove-provider — empty-state normalization', () => {
 
 describe('settings:v1:reset-onboarding — empty-state normalization', () => {
   it('clears the active provider even when the old active provider is keyless', async () => {
-    const { BUILTIN_PROVIDERS, hydrateConfig } = await import('@open-codesign/shared');
+    const { BUILTIN_PROVIDERS, hydrateConfig } = await import('@dsr-codesign/shared');
     const { readConfig, writeConfig } = await import('./config');
     const { loadConfigOnBoot, registerOnboardingIpc } = await import('./onboarding-ipc');
     vi.mocked(writeConfig).mockClear();
@@ -490,7 +490,7 @@ describe('config:v1 provider mutations — fail-fast key handling', () => {
   });
 
   it('rejects clearing a non-keyless provider secret instead of writing a broken config', async () => {
-    const { hydrateConfig } = await import('@open-codesign/shared');
+    const { hydrateConfig } = await import('@dsr-codesign/shared');
     const { readConfig, writeConfig } = await import('./config');
     const { loadConfigOnBoot, registerOnboardingIpc } = await import('./onboarding-ipc');
     vi.mocked(writeConfig).mockClear();
@@ -663,7 +663,7 @@ describe('config:v1:list-endpoint-models — response parsing', () => {
 
 describe('registerOnboardingIpc — validate-key passes baseUrl to pingProvider', () => {
   it('forwards baseUrl to pingProvider when provided', async () => {
-    const { pingProvider } = await import('@open-codesign/providers');
+    const { pingProvider } = await import('@dsr-codesign/providers');
     const handler = handlers.get('onboarding:validate-key');
     expect(handler).toBeDefined();
 
@@ -681,7 +681,7 @@ describe('registerOnboardingIpc — validate-key passes baseUrl to pingProvider'
   });
 
   it('calls pingProvider without baseUrl when not provided', async () => {
-    const { pingProvider } = await import('@open-codesign/providers');
+    const { pingProvider } = await import('@dsr-codesign/providers');
     vi.mocked(pingProvider).mockClear();
     const handler = handlers.get('onboarding:validate-key');
     expect(handler).toBeDefined();
@@ -692,7 +692,7 @@ describe('registerOnboardingIpc — validate-key passes baseUrl to pingProvider'
   });
 
   it('allows explicitly keyless Ollama validation with an empty apiKey', async () => {
-    const { pingProvider } = await import('@open-codesign/providers');
+    const { pingProvider } = await import('@dsr-codesign/providers');
     vi.mocked(pingProvider).mockClear();
     const handler = handlers.get('onboarding:validate-key');
     expect(handler).toBeDefined();
@@ -707,7 +707,7 @@ describe('registerOnboardingIpc — validate-key passes baseUrl to pingProvider'
   });
 
   it('rejects malformed baseUrl before calling pingProvider', async () => {
-    const { pingProvider } = await import('@open-codesign/providers');
+    const { pingProvider } = await import('@dsr-codesign/providers');
     vi.mocked(pingProvider).mockClear();
     const handler = handlers.get('onboarding:validate-key');
     expect(handler).toBeDefined();
@@ -723,7 +723,7 @@ describe('registerOnboardingIpc — validate-key passes baseUrl to pingProvider'
   });
 
   it('rejects non-http provider baseUrls before calling pingProvider', async () => {
-    const { pingProvider } = await import('@open-codesign/providers');
+    const { pingProvider } = await import('@dsr-codesign/providers');
     vi.mocked(pingProvider).mockClear();
     const handler = handlers.get('onboarding:validate-key');
     expect(handler).toBeDefined();
@@ -800,7 +800,7 @@ describe('config:v1:import-codex-config empty env handling', () => {
 
     const handler = handlers.get('config:v1:import-codex-config');
     await expect(handler?.({} as unknown)).rejects.toThrow(
-      /Open CoDesign now supports ChatGPT subscription directly/,
+      /DSR CoDesign now supports ChatGPT subscription directly/,
     );
   });
 

@@ -124,11 +124,11 @@ The LLM generates the initial EDITMODE block; the renderer owns persistence.
 
 ---
 
-## open-codesign implementation plan
+## dsr-codesign implementation plan
 
 ### Artifact schema
 
-The existing `design_params` field in `@open-codesign/artifacts` needs updating:
+The existing `design_params` field in `@dsr-codesign/artifacts` needs updating:
 
 ```ts
 // Before (wrong — matched the inferred <script type="application/json"> approach)

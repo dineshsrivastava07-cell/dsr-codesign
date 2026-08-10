@@ -1,6 +1,6 @@
 # Demo · Calm Spaces meditation app
 
-The "Calm Spaces" mobile prototype is the headline first demo for Open CoDesign,
+The "Calm Spaces" mobile prototype is the headline first demo for DSR CoDesign,
 mirroring the marquee Claude Design example (see `docs/research/01-claude-design-teardown.md`).
 
 ## What it generates
@@ -17,7 +17,7 @@ export VITE_OPEN_CODESIGN_DEV_KEY=sk-ant-...
 
 # 2. Boot the desktop app from the repo root.
 pnpm install
-pnpm --filter @open-codesign/desktop dev
+pnpm --filter @dsr-codesign/desktop dev
 ```
 
 Then in the app:
@@ -32,7 +32,7 @@ Then in the app:
 ## Expected behaviour
 
 - The model emits exactly one `<artifact identifier="design-1" type="html" …>`
-  block. The orchestrator extracts it via `@open-codesign/artifacts` and feeds
+  block. The orchestrator extracts it via `@dsr-codesign/artifacts` and feeds
   the HTML into the sandbox iframe.
 - Tailwind is loaded via the official CDN (`https://cdn.tailwindcss.com`). The
   HTML exporter inlines the CDN tag if the model forgot to.

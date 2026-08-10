@@ -1,7 +1,7 @@
 import { type Dirent, type FSWatcher, watch as nodeWatch } from 'node:fs';
 import { readdir, stat } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import type { BrowserWindow } from 'electron';
 import { ipcMain } from './electron-runtime';
 import { getLogger } from './logger';

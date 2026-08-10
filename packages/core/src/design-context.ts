@@ -1,5 +1,4 @@
-import type { AgentMessage } from '@mariozechner/pi-agent-core';
-import { completeWithRetry } from '@open-codesign/providers';
+import { completeWithRetry } from '@dsr-codesign/providers';
 import type {
   ChatMessage,
   ChatMessageRow,
@@ -8,7 +7,8 @@ import type {
   ReasoningLevel,
   ResourceStateV1,
   WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import type { AgentMessage } from '@mariozechner/pi-agent-core';
 import { remapProviderError } from './errors.js';
 import { escapeUntrustedXml, formatUntrustedContext } from './lib/context-format.js';
 import { type CoreLogger, NOOP_LOGGER } from './logger.js';
@@ -108,7 +108,7 @@ const BRIEF_MAX_ITEM_CHARS = 240;
 const BRIEF_MAX_OUTPUT_TOKENS = 2_000;
 
 export const DESIGN_BRIEF_SYSTEM_PROMPT = [
-  'You maintain a compact structured brief for one Open CoDesign design session.',
+  'You maintain a compact structured brief for one DSR CoDesign design session.',
   'Output ONLY valid JSON. No markdown, no commentary, no code fences.',
   '',
   'Required JSON fields:',

@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { ChevronRight, FileCode2, Folder, FolderOpen, Plus } from 'lucide-react';
 import { type DragEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import {

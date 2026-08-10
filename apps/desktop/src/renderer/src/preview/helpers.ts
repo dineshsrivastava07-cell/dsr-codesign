@@ -5,7 +5,7 @@ import {
   isIframeErrorMessage,
   isOverlayMessage,
   type OverlayMessage,
-} from '@open-codesign/runtime';
+} from '@dsr-codesign/runtime';
 
 export function formatIframeError(
   kind: string,

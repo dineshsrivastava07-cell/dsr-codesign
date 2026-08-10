@@ -7,11 +7,10 @@
  * English alias for backward compatibility with pre-i18n callers.
  */
 
-import { availableLocales, type Locale, normalizeLocale } from '@open-codesign/i18n';
+import { availableLocales, type Locale, normalizeLocale } from '@dsr-codesign/i18n';
 import { enDemos } from './locales/en';
 import { esDemos } from './locales/es';
 import { ptBRDemos } from './locales/pt-BR';
-import { zhCNDemos } from './locales/zh-CN';
 
 export {
   EXAMPLES,
@@ -34,7 +33,6 @@ const REGISTRY: Record<Locale, DemoTemplate[]> = {
   en: enDemos,
   es: esDemos,
   'pt-BR': ptBRDemos,
-  'zh-CN': zhCNDemos,
 };
 
 export function getDemos(locale: string | undefined): DemoTemplate[] {

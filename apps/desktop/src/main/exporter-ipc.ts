@@ -1,17 +1,17 @@
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import { type ExporterFormat, type ExportOptions, exportArtifact } from '@open-codesign/exporters';
+import { type ExporterFormat, type ExportOptions, exportArtifact } from '@dsr-codesign/exporters';
 import {
   classifyRenderableSource,
   findArtifactSourceReference,
   resolveArtifactSourceReferencePath,
-} from '@open-codesign/runtime';
+} from '@dsr-codesign/runtime';
 import {
   CodesignError,
   DEFAULT_SOURCE_ENTRY,
   ERROR_CODES,
   LEGACY_SOURCE_ENTRY,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import type { BrowserWindow } from 'electron';
 import { app, dialog, ipcMain } from './electron-runtime';
 import { type Database, getDesign } from './snapshots-db';
@@ -144,7 +144,7 @@ export function buildDefaultExportPath(input: {
       input.format,
     );
   }
-  const design = sanitizeFilenamePart(input.designName ?? '') || 'open-codesign';
+  const design = sanitizeFilenamePart(input.designName ?? '') || 'dsr-codesign';
   const source =
     sanitizeFilenamePart(sourceStem(input.sourcePath ?? DEFAULT_SOURCE_ENTRY)) || 'App';
   const stamp = formatTimestamp(input.now ?? new Date());
@@ -274,7 +274,7 @@ function normalizeDefaultFilename(value: string): string {
   const normalized = value.trim().replace(/\\/g, '/');
   const basename = path.basename(normalized);
   const sanitized = sanitizeFilenamePart(basename);
-  return sanitized || 'open-codesign-export';
+  return sanitized || 'dsr-codesign-export';
 }
 
 function sanitizeFilenamePart(value: string): string {

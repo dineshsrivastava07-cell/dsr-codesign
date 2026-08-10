@@ -2,7 +2,7 @@ import {
   CURRENT_TOOL_ORDER,
   currentToolManifestEntries,
   type ToolManifestEntryV1,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 
 export interface ToolAvailabilityDeps {
   fs: boolean;

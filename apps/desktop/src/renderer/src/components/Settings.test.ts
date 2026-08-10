@@ -8,37 +8,37 @@ import {
   TIMEOUT_OPTION_SECONDS,
 } from './Settings';
 
-vi.mock('@open-codesign/i18n', () => ({
+vi.mock('@dsr-codesign/i18n', () => ({
   setLocale: vi.fn((locale: string) => Promise.resolve(locale)),
   useT: () => (key: string) => key,
 }));
 
 describe('applyLocaleChange', () => {
   it('calls locale IPC set, then applies the persisted locale via i18next', async () => {
-    const { setLocale: mockSetLocale } = await import('@open-codesign/i18n');
+    const { setLocale: mockSetLocale } = await import('@dsr-codesign/i18n');
     const mockLocaleApi = {
-      set: vi.fn((_locale: string) => Promise.resolve('zh-CN')),
+      set: vi.fn((_locale: string) => Promise.resolve('es')),
     };
 
-    const result = await applyLocaleChange('zh-CN', mockLocaleApi);
+    const result = await applyLocaleChange('es', mockLocaleApi);
 
-    expect(mockLocaleApi.set).toHaveBeenCalledWith('zh-CN');
-    expect(mockSetLocale).toHaveBeenCalledWith('zh-CN');
-    expect(result).toBe('zh-CN');
+    expect(mockLocaleApi.set).toHaveBeenCalledWith('es');
+    expect(mockSetLocale).toHaveBeenCalledWith('es');
+    expect(result).toBe('es');
   });
 
   it('applies the locale returned by the IPC bridge, not the requested locale', async () => {
-    const { setLocale: mockSetLocale } = await import('@open-codesign/i18n');
-    // Bridge normalises 'zh' → 'zh-CN'
+    const { setLocale: mockSetLocale } = await import('@dsr-codesign/i18n');
+    // Bridge normalises aliases — e.g. 'pt' → 'pt-BR'
     const mockLocaleApi = {
-      set: vi.fn((_locale: string) => Promise.resolve('zh-CN')),
+      set: vi.fn((_locale: string) => Promise.resolve('pt-BR')),
     };
 
-    const result = await applyLocaleChange('zh', mockLocaleApi);
+    const result = await applyLocaleChange('pt', mockLocaleApi);
 
-    expect(mockLocaleApi.set).toHaveBeenCalledWith('zh');
-    expect(mockSetLocale).toHaveBeenCalledWith('zh-CN');
-    expect(result).toBe('zh-CN');
+    expect(mockLocaleApi.set).toHaveBeenCalledWith('pt');
+    expect(mockSetLocale).toHaveBeenCalledWith('pt-BR');
+    expect(result).toBe('pt-BR');
   });
 });
 

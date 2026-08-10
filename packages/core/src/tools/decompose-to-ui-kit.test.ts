@@ -112,7 +112,7 @@ describe('makeDecomposeToUiKitTool', () => {
     if (!manifest) throw new Error('manifest.json was not written');
     const parsed = JSON.parse(manifest.content);
     expect(parsed.schemaVersion).toBe(1);
-    expect(parsed.generator).toBe('open-codesign decompose_to_ui_kit');
+    expect(parsed.generator).toBe('dsr-codesign decompose_to_ui_kit');
     expect(parsed.slug).toBe('x');
     expect(parsed.components).toEqual([]);
     expect(typeof parsed.generatedAt).toBe('string');

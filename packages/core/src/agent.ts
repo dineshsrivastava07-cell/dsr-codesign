@@ -20,19 +20,7 @@
  */
 
 import path from 'node:path';
-import {
-  Agent,
-  type AgentEvent,
-  type AgentMessage,
-  type AgentTool,
-  type AgentToolResult,
-} from '@mariozechner/pi-agent-core';
-import type {
-  ImageContent as PiAiImageContent,
-  Message as PiAiMessage,
-  Model as PiAiModel,
-} from '@mariozechner/pi-ai';
-import type { RetryDecision, RetryReason } from '@open-codesign/providers';
+import type { RetryDecision, RetryReason } from '@dsr-codesign/providers';
 import {
   classifyError,
   claudeCodeIdentityHeaders,
@@ -43,7 +31,7 @@ import {
   normalizeGeminiModelId,
   shouldForceClaudeCodeIdentity,
   withBackoff,
-} from '@open-codesign/providers';
+} from '@dsr-codesign/providers';
 import {
   type ChatMessage,
   CodesignError,
@@ -57,7 +45,19 @@ import {
   type ResourceStateV1,
   validateDesignMd,
   type WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import {
+  Agent,
+  type AgentEvent,
+  type AgentMessage,
+  type AgentTool,
+  type AgentToolResult,
+} from '@mariozechner/pi-agent-core';
+import type {
+  ImageContent as PiAiImageContent,
+  Message as PiAiMessage,
+  Model as PiAiModel,
+} from '@mariozechner/pi-ai';
 import type { TSchema } from '@sinclair/typebox';
 import { buildTransformContext } from './context-prune.js';
 import { remapProviderError } from './errors.js';
@@ -1336,7 +1336,7 @@ export async function generateViaAgent(
               const key = await input.getApiKey?.();
               const trimmedKey = key?.trim() ?? '';
               if (trimmedKey.length > 0) return trimmedKey;
-              if (input.allowKeyless === true) return initialApiKey || 'open-codesign-keyless';
+              if (input.allowKeyless === true) return initialApiKey || 'dsr-codesign-keyless';
               throw new CodesignError(
                 `No API key returned for provider "${input.model.provider}".`,
                 ERROR_CODES.PROVIDER_AUTH_MISSING,
@@ -1346,7 +1346,7 @@ export async function generateViaAgent(
               throw err;
             }
           }
-        : () => initialApiKey || 'open-codesign-keyless',
+        : () => initialApiKey || 'dsr-codesign-keyless',
       ...(onPayload !== undefined ? { onPayload } : {}),
     });
     if (deps.onEvent) {
@@ -1385,7 +1385,7 @@ export async function generateViaAgent(
   // whether the failed attempt produced any such artefact and, if so, mark the
   // error as non-retryable.
   const isFirstTurn = input.history.length === 0;
-  const RETRY_BLOCKED = Symbol.for('open-codesign.retry.blocked');
+  const RETRY_BLOCKED = Symbol.for('dsr-codesign.retry.blocked');
   type RetryBlockedError = Error & { [RETRY_BLOCKED]?: true };
   const sendOnce = async (): Promise<void> => {
     const preLen = agent.state.messages.length;

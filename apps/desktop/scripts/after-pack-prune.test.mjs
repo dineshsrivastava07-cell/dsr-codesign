@@ -22,7 +22,7 @@ describe('after-pack-prune', () => {
   it('keeps only target koffi native binaries in the mac app unpacked resources', async () => {
     const root = await mkdtemp(path.join(tmpdir(), 'codesign-after-pack-prune-'));
     try {
-      const resourcesDir = path.join(root, 'Open CoDesign.app', 'Contents', 'Resources');
+      const resourcesDir = path.join(root, 'DSR CoDesign.app', 'Contents', 'Resources');
       const nodeModules = path.join(resourcesDir, 'app.asar.unpacked', 'node_modules');
 
       await touch(path.join(nodeModules, 'koffi', 'build', 'koffi', 'darwin_arm64', 'koffi.node'));
@@ -38,7 +38,7 @@ describe('after-pack-prune', () => {
         appOutDir: root,
         electronPlatformName: 'darwin',
         arch: 'arm64',
-        packager: { appInfo: { productFilename: 'Open CoDesign' } },
+        packager: { appInfo: { productFilename: 'DSR CoDesign' } },
       });
 
       await expect(readdir(path.join(nodeModules, 'koffi', 'build', 'koffi'))).resolves.toEqual([
@@ -56,7 +56,7 @@ describe('after-pack-prune', () => {
   it('does not require a native database module in packaged resources', async () => {
     const root = await mkdtemp(path.join(tmpdir(), 'codesign-after-pack-prune-no-native-db-'));
     try {
-      const resourcesDir = path.join(root, 'Open CoDesign.app', 'Contents', 'Resources');
+      const resourcesDir = path.join(root, 'DSR CoDesign.app', 'Contents', 'Resources');
       const nodeModules = path.join(resourcesDir, 'app.asar.unpacked', 'node_modules');
       await touch(path.join(nodeModules, 'jszip', 'lib', 'index.js'));
 
@@ -65,7 +65,7 @@ describe('after-pack-prune', () => {
           appOutDir: root,
           electronPlatformName: 'darwin',
           arch: 'arm64',
-          packager: { appInfo: { productFilename: 'Open CoDesign' } },
+          packager: { appInfo: { productFilename: 'DSR CoDesign' } },
         }),
       ).resolves.toBeUndefined();
     } finally {

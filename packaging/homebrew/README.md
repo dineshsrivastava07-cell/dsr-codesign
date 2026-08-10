@@ -3,14 +3,14 @@
 Users install with:
 
 ```sh
-brew tap opencoworkai/tap
-brew install --cask open-codesign
+brew tap dsrailab/tap
+brew install --cask dsr-codesign
 ```
 
 ## One-time tap setup
 
-1. Create a public repo `OpenCoworkAI/homebrew-tap`.
-2. Seed it with this cask (copy `open-codesign.rb` into the repo's `Casks/` directory after filling in real SHA256 values from the release).
+1. Create a public repo `DSR-AI-Lab/homebrew-tap`.
+2. Seed it with this cask (copy `dsr-codesign.rb` into the repo's `Casks/` directory after filling in real SHA256 values from the release).
 3. Store a fine-scoped PAT as the `HOMEBREW_TAP_TOKEN` repo secret with `contents:write` on the tap repo.
 4. Keep the `homebrew` job in `.github/workflows/release.yml` enabled.
 

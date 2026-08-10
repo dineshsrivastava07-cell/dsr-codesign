@@ -27,7 +27,9 @@ export type SupportedOnboardingProvider = (typeof SUPPORTED_ONBOARDING_PROVIDERS
 /** Default Ollama local endpoint. Users override via Settings if they run
  *  Ollama on a different host/port. */
 export const OLLAMA_DEFAULT_BASE_URL = 'http://localhost:11434/v1';
-export const OLLAMA_DEFAULT_MODEL = 'llama3.2';
+/** DSR CoDesign default: Gemma 4 via local Ollama. Users can switch to any
+ *  pulled model in Settings → Models → Ollama. */
+export const OLLAMA_DEFAULT_MODEL = 'gemma4:26b';
 
 // ── Wire types (v3) ──────────────────────────────────────────────────────────
 
@@ -509,9 +511,9 @@ export const PROVIDER_SHORTLIST: Record<SupportedOnboardingProvider, ProviderSho
   },
   ollama: {
     provider: 'ollama',
-    label: 'Ollama (local)',
+    label: 'Ollama (local) — DSR default',
     keyHelpUrl: 'https://ollama.com/download',
-    primary: [OLLAMA_DEFAULT_MODEL, 'llama3.1', 'qwen2.5'],
+    primary: ['gemma4:26b', 'gemma4:e4b', 'gemma4:12b', 'gemma4:4b', OLLAMA_DEFAULT_MODEL],
     defaultPrimary: OLLAMA_DEFAULT_MODEL,
   },
 };

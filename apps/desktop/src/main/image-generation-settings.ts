@@ -2,7 +2,7 @@ import {
   defaultImageBaseUrl,
   defaultImageModel,
   type GenerateImageOptions,
-} from '@open-codesign/providers';
+} from '@dsr-codesign/providers';
 import {
   CHATGPT_CODEX_PROVIDER_ID,
   CodesignError,
@@ -22,7 +22,7 @@ import {
   ImageGenerationSettingsSchema,
   type ImageGenerationSize,
   ImageGenerationSizeSchema,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { getCodexTokenStore } from './codex-oauth-ipc';
 import { writeConfig } from './config';
 import { ipcMain } from './electron-runtime';

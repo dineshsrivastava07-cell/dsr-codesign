@@ -1,5 +1,5 @@
-import { useT } from '@open-codesign/i18n';
-import type { Design } from '@open-codesign/shared';
+import { useT } from '@dsr-codesign/i18n';
+import type { Design } from '@dsr-codesign/shared';
 import { FileText, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import { type MouseEvent, useEffect, useState } from 'react';
 import { useCodesignStore } from '../../store';

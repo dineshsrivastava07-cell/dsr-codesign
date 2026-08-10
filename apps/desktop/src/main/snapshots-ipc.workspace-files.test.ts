@@ -11,7 +11,7 @@ const handlers = vi.hoisted(() => new Map<string, Handler>());
 
 vi.mock('./electron-runtime', () => ({
   app: {
-    getPath: vi.fn(() => '/tmp/open-codesign-tests'),
+    getPath: vi.fn(() => '/tmp/dsr-codesign-tests'),
   },
   dialog: {
     showOpenDialog: vi.fn(),
@@ -52,7 +52,7 @@ describe('workspace files IPC legacy workspace fallback', () => {
   it('returns an empty file list when the bound workspace folder is missing', async () => {
     const db = initInMemoryDb();
     const design = createDesign(db, 'Missing workspace folder');
-    const missingWorkspace = path.join(tmpdir(), 'open-codesign-missing-workspace-for-list');
+    const missingWorkspace = path.join(tmpdir(), 'dsr-codesign-missing-workspace-for-list');
     await rm(missingWorkspace, { recursive: true, force: true });
     updateDesignWorkspace(db, design.id, missingWorkspace);
     registerWorkspaceIpc(db, () => null);

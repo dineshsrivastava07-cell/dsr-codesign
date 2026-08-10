@@ -1,4 +1,4 @@
-# AGENTS.md - Open CoDesign
+# AGENTS.md - DSR CoDesign
 
 Instructions for Codex and other AI coding agents working in this repository. Read this before making changes.
 
@@ -6,11 +6,11 @@ Instructions for Codex and other AI coding agents working in this repository. Re
 
 ## What This Project Is
 
-Open CoDesign is an open-source desktop design agent. It turns prompts, local files, skills, scaffolds, brand systems, and model output into design artifacts on the user's laptop.
+DSR CoDesign is an open-source desktop design agent. It turns prompts, local files, skills, scaffolds, brand systems, and model output into design artifacts on the user's laptop.
 
 The v0.2 direction is no longer a single-prompt generator. Each design is a long-running pi session with a real workspace. The agent can read and edit files, run permissioned commands, ask structured questions, preview artifacts, expose tweak controls, generate images when the configured model supports it, and produce `DESIGN.md` design-system artifacts.
 
-The original inspiration was Claude Design. The product boundary is now clearer: Open CoDesign borrows proven coding-agent mechanics, then adds design-specific tools and a local-first workspace model.
+The original inspiration was Claude Design. The product boundary is now clearer: DSR CoDesign borrows proven coding-agent mechanics, then adds design-specific tools and a local-first workspace model.
 
 Product model: a `Design` owns a workspace. The agent edits design source files in that workspace; the preview runtime turns those sources into a rendered web document; exporters turn the rendered/source document into standard outputs such as HTML, PDF, PPTX, ZIP, or Markdown. In v0.2 the default source entry is `App.jsx`; `index.html` is reserved for standalone exports or legacy workspace files.
 
@@ -48,7 +48,7 @@ When building or updating any website, project homepage, product page, personal 
 
 - Use `pi-coding-agent` and `pi-ai`.
 - Use pi built-ins for `read`, `write`, `edit`, `bash`, `grep`, `find`, and `ls`.
-- Gate tools through the pi `tool_call` hook and the Open CoDesign permission UI.
+- Gate tools through the pi `tool_call` hook and the DSR CoDesign permission UI.
 - Read capabilities from pi `Model<T>` fields such as `input`, `reasoning`, `cost`, `contextWindow`, and `maxTokens`.
 - Register custom providers through `pi.registerProvider()`. Do not build a parallel provider SDK layer.
 - All LLM calls go through `pi-ai`; do not import provider SDKs directly in app code.
@@ -64,7 +64,7 @@ When building or updating any website, project homepage, product page, personal 
 
 ### Tools
 
-The v0.2 tool surface is pi's seven built-ins plus Open CoDesign design tools:
+The v0.2 tool surface is pi's seven built-ins plus DSR CoDesign design tools:
 
 - `ask(questions)` renders structured questions and waits for the user.
 - `scaffold(kind, path)` copies a curated starter into the workspace.
@@ -157,7 +157,7 @@ examples/            # Public demo reproductions
 
 ## Permission Model
 
-Open CoDesign uses one permission model with tiers:
+DSR CoDesign uses one permission model with tiers:
 
 - Tier 0: workspace-local reads/writes, simple file commands, and read-only git may run without interruption.
 - Tier 1: installs, build commands, non-local network fetches, and cwd-external commands ask once and can be allowlisted.

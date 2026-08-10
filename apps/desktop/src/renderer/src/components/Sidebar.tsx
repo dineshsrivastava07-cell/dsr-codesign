@@ -1,5 +1,5 @@
-import { getCurrentLocale, useT, useTranslation } from '@open-codesign/i18n';
-import type { LocalInputFile, OnboardingState } from '@open-codesign/shared';
+import { getCurrentLocale, useT, useTranslation } from '@dsr-codesign/i18n';
+import type { LocalInputFile, OnboardingState } from '@dsr-codesign/shared';
 import { FolderOpen, Link2, Paperclip, X } from 'lucide-react';
 import { useCallback, useEffect, useRef } from 'react';
 import { useCodesignStore } from '../store';

@@ -1,18 +1,17 @@
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { LoadedSkill, ModelRef, StoredDesignSystem } from '@open-codesign/shared';
-import { CodesignError, STORED_DESIGN_SYSTEM_SCHEMA_VERSION } from '@open-codesign/shared';
+import type { LoadedSkill, ModelRef, StoredDesignSystem } from '@dsr-codesign/shared';
+import { CodesignError, STORED_DESIGN_SYSTEM_SCHEMA_VERSION } from '@dsr-codesign/shared';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { composeSystemPrompt, PROMPT_SECTION_FILES, PROMPT_SECTIONS } from './prompts/index.js';
 
 const completeMock = vi.fn();
 const loadBuiltinSkillsMock = vi.fn(async (): Promise<LoadedSkill[]> => []);
 
-vi.mock('@open-codesign/providers', async () => {
-  const actual = await vi.importActual<typeof import('@open-codesign/providers')>(
-    '@open-codesign/providers',
-  );
+vi.mock('@dsr-codesign/providers', async () => {
+  const actual =
+    await vi.importActual<typeof import('@dsr-codesign/providers')>('@dsr-codesign/providers');
   return {
     ...actual,
     complete: (...args: unknown[]) => completeMock(...args),
@@ -135,7 +134,7 @@ describe('composeSystemPrompt()', () => {
   it('create mode includes the compact base prompt sections', () => {
     const prompt = composeSystemPrompt({ mode: 'create' });
     for (const section of [
-      'open-codesign',
+      'dsr-codesign',
       'Design workflow',
       'Output rules',
       'Design methodology',

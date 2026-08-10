@@ -1,4 +1,4 @@
-import type { DesignRunPreferencesV1 } from '@open-codesign/shared';
+import type { DesignRunPreferencesV1 } from '@dsr-codesign/shared';
 import type { AskAnswer, AskInput } from './tools/ask.js';
 
 export interface RunProtocolWorkspaceState {

@@ -275,7 +275,7 @@ env_key  = "${envKey}"
 
 describe('readCodexConfig', () => {
   it('reads OPENAI_API_KEY from Codex auth.json for providers requiring OpenAI auth', async () => {
-    const home = join(tmpdir(), `open-codesign-codex-${Date.now()}-${Math.random()}`);
+    const home = join(tmpdir(), `dsr-codesign-codex-${Date.now()}-${Math.random()}`);
     const codexDir = join(home, '.codex');
     await mkdir(codexDir, { recursive: true });
     await writeFile(
@@ -301,7 +301,7 @@ requires_openai_auth = true
   });
 
   it('does not warn about auth.json when no Codex provider requires OpenAI auth', async () => {
-    const home = join(tmpdir(), `open-codesign-codex-keyless-${Date.now()}-${Math.random()}`);
+    const home = join(tmpdir(), `dsr-codesign-codex-keyless-${Date.now()}-${Math.random()}`);
     const codexDir = join(home, '.codex');
     await mkdir(codexDir, { recursive: true });
     await writeFile(
@@ -323,7 +323,7 @@ wire_api = "responses"
   });
 
   it('surfaces malformed auth.json as a warning instead of silently dropping the key', async () => {
-    const home = join(tmpdir(), `open-codesign-codex-bad-auth-${Date.now()}-${Math.random()}`);
+    const home = join(tmpdir(), `dsr-codesign-codex-bad-auth-${Date.now()}-${Math.random()}`);
     const codexDir = join(home, '.codex');
     await mkdir(codexDir, { recursive: true });
     await writeFile(
@@ -345,7 +345,7 @@ requires_openai_auth = true
   });
 
   it('surfaces unusable auth.json API key fields as warnings', async () => {
-    const home = join(tmpdir(), `open-codesign-codex-bad-key-${Date.now()}-${Math.random()}`);
+    const home = join(tmpdir(), `dsr-codesign-codex-bad-key-${Date.now()}-${Math.random()}`);
     const codexDir = join(home, '.codex');
     await mkdir(codexDir, { recursive: true });
     await writeFile(

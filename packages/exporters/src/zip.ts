@@ -1,4 +1,4 @@
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 import {
   collectLocalAssetsFromHtml,
   type LocalAssetOptions,
@@ -27,7 +27,7 @@ export interface ExportZipOptions extends LocalAssetOptions {
 
 const README_TEMPLATE = (title: string, generatedAt: string) => `# ${title}
 
-This bundle was exported from [open-codesign](https://github.com/OpenCoworkAI/open-codesign).
+This bundle was exported from [dsr-codesign](https://github.com/DSR-AI-Lab/dsr-codesign).
 
 ## Layout
 
@@ -84,7 +84,7 @@ export async function exportZip(
     await fs.writeFile(indexPath, exportHtml, 'utf8');
 
     const generatedAt = new Date().toISOString();
-    const readme = README_TEMPLATE(opts.readmeTitle ?? 'open-codesign export', generatedAt);
+    const readme = README_TEMPLATE(opts.readmeTitle ?? 'dsr-codesign export', generatedAt);
     const readmePath = path.join(stagingDir, 'README.md');
     await fs.writeFile(readmePath, readme, 'utf8');
 

@@ -1,10 +1,10 @@
-# CLAUDE.md — Open CoDesign
+# CLAUDE.md — DSR CoDesign
 
 Instructions for Claude Code (and any AI coding agent) working in this repository. Read this before making changes.
 
 ## What this project is
 
-open-codesign is an Electron desktop app that turns natural-language prompts into design artifacts (HTML prototypes, PDFs, PPTX decks, marketing assets). It's the open-source counterpart to Anthropic's Claude Design, with multi-provider model support via `pi-ai` and a local-first storage model.
+dsr-codesign is an Electron desktop app that turns natural-language prompts into design artifacts (HTML prototypes, PDFs, PPTX decks, marketing assets). It's the open-source counterpart to Anthropic's Claude Design, with multi-provider model support via `pi-ai` and a local-first storage model.
 
 The full vision and locked decisions live in `docs/VISION.md` when the internal docs are present locally. Public checkouts may not have `docs/`; in that case use `AGENTS.md`, public issues/PRs, and README context instead of blocking.
 
@@ -15,7 +15,7 @@ The full vision and locked decisions live in `docs/VISION.md` when the internal 
 These are project-level commitments, not preferences:
 
 1. **No bundled model runtimes.** No Ollama, llama.cpp, Python, or browser binaries shipped in the installer. Use system installs or lazy-download on demand.
-2. **BYOK only.** No proxied API calls, no cloud account, no telemetry by default. User credentials stay in `~/.config/open-codesign/config.toml` (plaintext, file mode 0600 — matching Claude Code / Codex / gh CLI conventions).
+2. **BYOK only.** No proxied API calls, no cloud account, no telemetry by default. User credentials stay in `~/.config/dsr-codesign/config.toml` (plaintext, file mode 0600 — matching Claude Code / Codex / gh CLI conventions).
 3. **Local-first storage.** v0.2 design state is file/session based and local-first. Do not add new SQLite-backed session/design feature state.
 4. **Permissive shipped dependencies.** Shipped app/runtime dependencies, bundled assets, scaffolds, skills, brand refs, and copied code must be MIT-compatible permissive. Workflow-only CI/release tools may use copyleft licenses when they are not vendored, bundled, linked, or copied into the product; document the reason.
 5. **Lazy-load heavy features.** PPTX export, web capture, codebase scan, etc. must dynamic-import on first use, not on app start.

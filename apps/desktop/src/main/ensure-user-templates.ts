@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { cp, mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { normalizeLegacyEditmodeBlock } from '@open-codesign/shared';
+import { normalizeLegacyEditmodeBlock } from '@dsr-codesign/shared';
 
 export interface EnsureUserTemplatesResult {
   action: 'seeded' | 'merged' | 'skipped' | 'missing-source';

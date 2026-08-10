@@ -1,4 +1,4 @@
-import { CodesignError, ERROR_CODES } from '@open-codesign/shared';
+import { CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
 
 export type ImageGenerationProvider = 'openai' | 'openrouter' | 'chatgpt-codex';
 export type ImageOutputFormat = 'png' | 'jpeg' | 'webp';
@@ -258,7 +258,7 @@ async function postChatGPTCodexImageStream(
       headers: {
         authorization: `Bearer ${options.apiKey}`,
         'chatgpt-account-id': accountId,
-        originator: 'open-codesign',
+        originator: 'dsr-codesign',
         'openai-beta': 'responses=experimental',
         'content-type': 'application/json',
         accept: 'text/event-stream',

@@ -1,4 +1,4 @@
-import { CancelGenerationPayloadV1, CodesignError } from '@open-codesign/shared';
+import { CancelGenerationPayloadV1, CodesignError } from '@dsr-codesign/shared';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   acquireInFlightWorkspaceGeneration,

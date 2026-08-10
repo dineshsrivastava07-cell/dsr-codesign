@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { Activity, Brain, Cpu, FolderOpen, Image, Palette, Sliders } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { type SettingsTab, useCodesignStore } from '../store';

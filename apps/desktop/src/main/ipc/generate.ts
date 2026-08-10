@@ -19,8 +19,8 @@ import {
   loadFrameTemplates,
   routeRunPreferences,
   updateDesignSessionBrief,
-} from '@open-codesign/core';
-import { complete, detectProviderFromKey, generateImage } from '@open-codesign/providers';
+} from '@dsr-codesign/core';
+import { complete, detectProviderFromKey, generateImage } from '@dsr-codesign/providers';
 import {
   ApplyCommentPayload,
   CancelGenerationPayloadV1,
@@ -28,8 +28,8 @@ import {
   type Config,
   deriveResourceStateFromChatRows,
   GeneratePayloadV1,
-} from '@open-codesign/shared';
-import { computeFingerprint } from '@open-codesign/shared/fingerprint';
+} from '@dsr-codesign/shared';
+import { computeFingerprint } from '@dsr-codesign/shared/fingerprint';
 import type { BrowserWindow as ElectronBrowserWindow } from 'electron';
 import type { AgentStreamEvent } from '../../preload/index';
 import { requestAsk } from '../ask-ipc';

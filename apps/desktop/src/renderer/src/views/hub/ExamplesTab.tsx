@@ -1,5 +1,5 @@
-import { getCurrentLocale, useT, useTranslation } from '@open-codesign/i18n';
-import { type ExampleCategory, getExamples, type LocalizedExample } from '@open-codesign/templates';
+import { getCurrentLocale, useT, useTranslation } from '@dsr-codesign/i18n';
+import { type ExampleCategory, getExamples, type LocalizedExample } from '@dsr-codesign/templates';
 import { useMemo, useState } from 'react';
 import { ExampleCard } from './ExampleCard';
 

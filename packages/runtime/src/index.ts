@@ -11,7 +11,7 @@
  * the same runtime, and can inject a workspace `baseHref` for relative assets.
  */
 
-import { ensureEditmodeMarkers } from '@open-codesign/shared';
+import { ensureEditmodeMarkers } from '@dsr-codesign/shared';
 import {
   findHtmlStartTag,
   getHtmlAttribute,
@@ -19,7 +19,7 @@ import {
   insertBeforeHtmlEndTag,
   removeCspMetaTags,
   transformHtmlElementBlocks,
-} from '@open-codesign/shared/html-utils';
+} from '@dsr-codesign/shared/html-utils';
 
 import BABEL_STANDALONE from '../vendor/babel.standalone.js?raw';
 import DESIGN_CANVAS_JSX from '../vendor/design-canvas.jsx?raw';
@@ -530,8 +530,8 @@ const PREVIEW_VIEWPORT_MARKER = '<!-- OPEN-CODESIGN-PREVIEW-VIEWPORT -->';
 function previewViewportSupportTags(): string {
   return `${PREVIEW_VIEWPORT_MARKER}
 ${PREVIEW_VIEWPORT_META}
-<style data-open-codesign="preview-viewport">:root{--codesign-preview-width:100vw;--codesign-preview-height:100vh;}*,*::before,*::after{box-sizing:border-box;}html,body{max-width:100%;}</style>
-<script data-open-codesign="preview-viewport">
+<style data-dsr-codesign="preview-viewport">:root{--codesign-preview-width:100vw;--codesign-preview-height:100vh;}*,*::before,*::after{box-sizing:border-box;}html,body{max-width:100%;}</style>
+<script data-dsr-codesign="preview-viewport">
 (() => {
   const sync = () => {
     document.documentElement.style.setProperty('--codesign-preview-width', \`\${window.innerWidth}px\`);
@@ -544,7 +544,7 @@ ${PREVIEW_VIEWPORT_META}
 }
 
 const PREVIEW_VIEWPORT_META =
-  '<meta name="viewport" content="width=device-width, initial-scale=1.0" data-open-codesign="viewport" />';
+  '<meta name="viewport" content="width=device-width, initial-scale=1.0" data-dsr-codesign="viewport" />';
 
 function injectPreviewViewportSupportIntoHtmlDocument(html: string): string {
   if (html.includes(PREVIEW_VIEWPORT_MARKER)) return html;

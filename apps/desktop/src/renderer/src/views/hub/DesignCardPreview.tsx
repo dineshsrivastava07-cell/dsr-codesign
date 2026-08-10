@@ -1,6 +1,6 @@
-import { buildPreviewDocument, requiresPreviewScripts } from '@open-codesign/runtime';
-import type { Design } from '@open-codesign/shared';
-import { DEFAULT_SOURCE_ENTRY } from '@open-codesign/shared';
+import { buildPreviewDocument, requiresPreviewScripts } from '@dsr-codesign/runtime';
+import type { Design } from '@dsr-codesign/shared';
+import { DEFAULT_SOURCE_ENTRY } from '@dsr-codesign/shared';
 import { Plus } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { inferPreviewSourcePath, resolveDesignPreviewSource } from '../../preview/workspace-source';

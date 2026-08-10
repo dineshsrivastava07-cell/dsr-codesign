@@ -42,4 +42,4 @@ Disallow: /
 User-agent: Google-Extended
 Disallow: /
 
-Sitemap: https://opencoworkai.github.io/open-codesign/sitemap.xml
+Sitemap: https://dsrailab.github.io/dsr-codesign/sitemap.xml

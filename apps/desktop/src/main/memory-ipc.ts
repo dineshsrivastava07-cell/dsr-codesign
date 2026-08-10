@@ -23,7 +23,7 @@ import {
   type UpdateWorkspaceMemoryInput,
   updateUserMemory,
   updateWorkspaceMemory,
-} from '@open-codesign/core';
+} from '@dsr-codesign/core';
 import { getCodexTokenStore } from './codex-oauth-ipc';
 import { app, ipcMain, shell } from './electron-runtime';
 import { getLogger } from './logger';

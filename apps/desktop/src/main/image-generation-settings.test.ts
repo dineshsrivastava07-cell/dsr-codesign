@@ -5,7 +5,7 @@ import {
   hydrateConfig,
   IMAGE_GENERATION_SCHEMA_VERSION,
   type ProviderEntry,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   imageGenerationKeyAvailable,

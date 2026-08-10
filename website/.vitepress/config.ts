@@ -2,11 +2,11 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vitepress';
 import rootPkg from '../../package.json' with { type: 'json' };
 
-const SITE_ORIGIN = 'https://opencoworkai.github.io';
-const SITE_BASE = '/open-codesign/';
+const SITE_ORIGIN = 'https://dsrailab.github.io';
+const SITE_BASE = '/dsr-codesign/';
 const SITE_URL = `${SITE_ORIGIN}${SITE_BASE}`;
-const REPOSITORY_URL = 'https://github.com/OpenCoworkAI/open-codesign';
-const ORGANIZATION_URL = 'https://github.com/OpenCoworkAI';
+const REPOSITORY_URL = 'https://github.com/DSR-AI-Lab/dsr-codesign';
+const ORGANIZATION_URL = 'https://github.com/DSR-AI-Lab';
 const RELEASES_URL = `${REPOSITORY_URL}/releases`;
 const OG_IMAGE = `${SITE_URL}og.svg`;
 const PROJECT_FACTS_URL = `${SITE_URL}project.json`;
@@ -23,101 +23,101 @@ type PageMeta = {
 
 const PAGE_METADATA: Record<string, PageMeta> = {
   '': {
-    name: 'Open CoDesign',
+    name: 'DSR CoDesign',
     description:
-      'Open CoDesign is an open-source desktop AI design tool with BYOK model support, local-first storage, and MIT licensing.',
+      'DSR CoDesign is an open-source desktop AI design tool with BYOK model support, local-first storage, and MIT licensing.',
     schemaType: 'AboutPage',
   },
   quickstart: {
-    name: 'Open CoDesign Quickstart',
-    description: 'Install Open CoDesign and render a first AI-generated prototype.',
+    name: 'DSR CoDesign Quickstart',
+    description: 'Install DSR CoDesign and render a first AI-generated prototype.',
     schemaType: 'TechArticle',
   },
   architecture: {
-    name: 'Open CoDesign Architecture',
-    description: 'Package boundaries and technical architecture for the Open CoDesign monorepo.',
+    name: 'DSR CoDesign Architecture',
+    description: 'Package boundaries and technical architecture for the DSR CoDesign monorepo.',
     schemaType: 'TechArticle',
   },
   roadmap: {
-    name: 'Open CoDesign Roadmap',
-    description: 'Planned Open CoDesign releases from v0.1 through v1.0.',
+    name: 'DSR CoDesign Roadmap',
+    description: 'Planned DSR CoDesign releases from v0.1 through v1.0.',
     schemaType: 'TechArticle',
   },
   faq: {
-    name: 'Open CoDesign FAQ',
-    description: 'Frequently asked questions about Open CoDesign.',
+    name: 'DSR CoDesign FAQ',
+    description: 'Frequently asked questions about DSR CoDesign.',
     schemaType: 'FAQPage',
   },
   'claude-design-alternative': {
-    name: 'Open CoDesign vs Claude Design',
-    description: 'Comparison of Open CoDesign and Anthropic Claude Design.',
+    name: 'DSR CoDesign vs Claude Design',
+    description: 'Comparison of DSR CoDesign and Anthropic Claude Design.',
   },
   'v0-alternative': {
-    name: 'Open CoDesign vs v0 by Vercel',
-    description: 'Comparison of Open CoDesign and v0 by Vercel.',
+    name: 'DSR CoDesign vs v0 by Vercel',
+    description: 'Comparison of DSR CoDesign and v0 by Vercel.',
   },
   'lovable-alternative': {
-    name: 'Open CoDesign vs Lovable',
-    description: 'Comparison of Open CoDesign and Lovable.',
+    name: 'DSR CoDesign vs Lovable',
+    description: 'Comparison of DSR CoDesign and Lovable.',
   },
   'bolt-alternative': {
-    name: 'Open CoDesign vs Bolt.new',
-    description: 'Comparison of Open CoDesign and Bolt.new.',
+    name: 'DSR CoDesign vs Bolt.new',
+    description: 'Comparison of DSR CoDesign and Bolt.new.',
   },
   'figma-ai-alternative': {
-    name: 'Open CoDesign vs Figma AI',
-    description: 'Comparison of Open CoDesign and Figma AI.',
+    name: 'DSR CoDesign vs Figma AI',
+    description: 'Comparison of DSR CoDesign and Figma AI.',
   },
   'zh/': {
-    name: 'Open CoDesign',
+    name: 'DSR CoDesign',
     description:
-      'Open CoDesign 是一款开源桌面 AI 设计工具，支持自带模型密钥、本地优先存储和 MIT 协议。',
+      'DSR CoDesign 是一款开源桌面 AI 设计工具，支持自带模型密钥、本地优先存储和 MIT 协议。',
     schemaType: 'AboutPage',
   },
   'zh/quickstart': {
-    name: 'Open CoDesign 快速开始',
-    description: '安装 Open CoDesign 并生成第一个 AI 设计原型。',
+    name: 'DSR CoDesign 快速开始',
+    description: '安装 DSR CoDesign 并生成第一个 AI 设计原型。',
     schemaType: 'TechArticle',
   },
   'zh/faq': {
-    name: 'Open CoDesign 常见问题',
-    description: 'Open CoDesign 的常见问题。',
+    name: 'DSR CoDesign 常见问题',
+    description: 'DSR CoDesign 的常见问题。',
     schemaType: 'FAQPage',
   },
   'zh/claude-design-alternative': {
-    name: 'Open CoDesign vs Claude Design',
-    description: 'Open CoDesign 与 Anthropic Claude Design 的功能和取舍对比。',
+    name: 'DSR CoDesign vs Claude Design',
+    description: 'DSR CoDesign 与 Anthropic Claude Design 的功能和取舍对比。',
   },
 };
 
 const FAQ_MAIN_ENTITY = [
   {
     '@type': 'Question',
-    name: 'What is Open CoDesign?',
+    name: 'What is DSR CoDesign?',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: 'Open CoDesign is an open-source desktop AI design tool that turns natural-language prompts into HTML prototypes, JSX/React components, slide decks, PDFs, and marketing assets. It is an open-source alternative to Claude Design, v0, Bolt.new, Lovable, and Figma AI.',
+      text: 'DSR CoDesign is an open-source desktop AI design tool that turns natural-language prompts into HTML prototypes, JSX/React components, slide decks, PDFs, and marketing assets. It is an open-source alternative to Claude Design, v0, Bolt.new, Lovable, and Figma AI.',
     },
   },
   {
     '@type': 'Question',
-    name: 'Is Open CoDesign free?',
+    name: 'Is DSR CoDesign free?',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: 'Yes. Open CoDesign is MIT licensed and free to download, use, modify, and redistribute. Users bring their own model provider key or subscription and pay the provider directly.',
+      text: 'Yes. DSR CoDesign is MIT licensed and free to download, use, modify, and redistribute. Users bring their own model provider key or subscription and pay the provider directly.',
     },
   },
   {
     '@type': 'Question',
-    name: 'Which AI models can I use with Open CoDesign?',
+    name: 'Which AI models can I use with DSR CoDesign?',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: 'Open CoDesign supports Anthropic Claude, OpenAI GPT, Google Gemini, DeepSeek, OpenRouter, SiliconFlow, local Ollama, and OpenAI-compatible endpoints. It also supports keyless IP-allowlisted proxies and ChatGPT Plus / Codex subscription login.',
+      text: 'DSR CoDesign supports Anthropic Claude, OpenAI GPT, Google Gemini, DeepSeek, OpenRouter, SiliconFlow, local Ollama, and OpenAI-compatible endpoints. It also supports keyless IP-allowlisted proxies and ChatGPT Plus / Codex subscription login.',
     },
   },
   {
     '@type': 'Question',
-    name: 'Does Open CoDesign send my data to the cloud?',
+    name: 'Does DSR CoDesign send my data to the cloud?',
     acceptedAnswer: {
       '@type': 'Answer',
       text: 'No. Designs, prompts, settings, and generated files stay on the user machine. The only outbound network traffic is to the model provider the user configures.',
@@ -128,7 +128,7 @@ const FAQ_MAIN_ENTITY = [
     name: 'Which platforms are supported?',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: 'Open CoDesign supports macOS on Apple Silicon and Intel, Windows on x64 and arm64, and Linux via AppImage, deb, and rpm packages.',
+      text: 'DSR CoDesign supports macOS on Apple Silicon and Intel, Windows on x64 and arm64, and Linux via AppImage, deb, and rpm packages.',
     },
   },
 ];
@@ -136,31 +136,31 @@ const FAQ_MAIN_ENTITY = [
 const ZH_FAQ_MAIN_ENTITY = [
   {
     '@type': 'Question',
-    name: 'Open CoDesign 是什么？',
+    name: 'DSR CoDesign 是什么？',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: 'Open CoDesign 是一款开源桌面 AI 设计工具，可以把自然语言提示词转换成 HTML 原型、React 组件、幻灯片、PDF 和营销素材。',
+      text: 'DSR CoDesign 是一款开源桌面 AI 设计工具，可以把自然语言提示词转换成 HTML 原型、React 组件、幻灯片、PDF 和营销素材。',
     },
   },
   {
     '@type': 'Question',
-    name: 'Open CoDesign 免费吗？',
+    name: 'DSR CoDesign 免费吗？',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: '免费。Open CoDesign 使用 MIT 协议，用户只需要为自己选择的模型提供商付费。',
+      text: '免费。DSR CoDesign 使用 MIT 协议，用户只需要为自己选择的模型提供商付费。',
     },
   },
   {
     '@type': 'Question',
-    name: 'Open CoDesign 支持哪些模型？',
+    name: 'DSR CoDesign 支持哪些模型？',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: 'Open CoDesign 支持 Anthropic Claude、OpenAI GPT、Google Gemini、DeepSeek、OpenRouter、SiliconFlow、本地 Ollama、OpenAI 兼容端点、keyless 代理，以及 ChatGPT Plus / Codex 订阅登录。',
+      text: 'DSR CoDesign 支持 Anthropic Claude、OpenAI GPT、Google Gemini、DeepSeek、OpenRouter、SiliconFlow、本地 Ollama、OpenAI 兼容端点、keyless 代理，以及 ChatGPT Plus / Codex 订阅登录。',
     },
   },
   {
     '@type': 'Question',
-    name: 'Open CoDesign 会把数据发到云端吗？',
+    name: 'DSR CoDesign 会把数据发到云端吗？',
     acceptedAnswer: {
       '@type': 'Answer',
       text: '不会。设计、提示词、设置和生成文件默认保存在本机。唯一对外网络流量是用户自己配置的模型提供商请求。',
@@ -168,17 +168,17 @@ const ZH_FAQ_MAIN_ENTITY = [
   },
   {
     '@type': 'Question',
-    name: 'Open CoDesign 支持哪些平台？',
+    name: 'DSR CoDesign 支持哪些平台？',
     acceptedAnswer: {
       '@type': 'Answer',
-      text: 'Open CoDesign 支持 macOS Apple Silicon、macOS Intel、Windows x64、Windows ARM64，以及 Linux AppImage、deb、rpm 安装包。',
+      text: 'DSR CoDesign 支持 macOS Apple Silicon、macOS Intel、Windows x64、Windows ARM64，以及 Linux AppImage、deb、rpm 安装包。',
     },
   },
 ];
 
 export default defineConfig({
-  title: 'Open CoDesign',
-  titleTemplate: ':title — Open CoDesign',
+  title: 'DSR CoDesign',
+  titleTemplate: ':title — DSR CoDesign',
   description:
     'Open-source desktop AI design tool — the self-hosted alternative to Claude Design. Multi-model BYOK (Anthropic, OpenAI, Gemini, DeepSeek, Ollama), local-first, MIT.',
   lang: 'en-US',
@@ -209,8 +209,8 @@ export default defineConfig({
     ['meta', { name: 'google-site-verification', content: 'c3cbbeaec5437546' }],
     // Open Graph
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:site_name', content: 'Open CoDesign' }],
-    ['meta', { property: 'og:title', content: 'Open CoDesign — Open-Source AI Design Tool' }],
+    ['meta', { property: 'og:site_name', content: 'DSR CoDesign' }],
+    ['meta', { property: 'og:title', content: 'DSR CoDesign — Open-Source AI Design Tool' }],
     [
       'meta',
       {
@@ -225,8 +225,8 @@ export default defineConfig({
     ['meta', { property: 'og:url', content: SITE_URL }],
     // Twitter / X
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:site', content: '@OpenCoworkAI' }],
-    ['meta', { name: 'twitter:title', content: 'Open CoDesign — Open-Source AI Design Tool' }],
+    ['meta', { name: 'twitter:site', content: '@DSR-AI-Lab' }],
+    ['meta', { name: 'twitter:title', content: 'DSR CoDesign — Open-Source AI Design Tool' }],
     [
       'meta',
       {
@@ -241,11 +241,11 @@ export default defineConfig({
       {
         name: 'keywords',
         content:
-          'open source AI design tool, Claude Design alternative, BYOK design app, local-first design generator, AI prototype generator, prompt to HTML, prompt to React component, open-codesign, multi-model design, Electron design app',
+          'open source AI design tool, Claude Design alternative, BYOK design app, local-first design generator, AI prototype generator, prompt to HTML, prompt to React component, dsr-codesign, multi-model design, Electron design app',
       },
     ],
     ['meta', { name: 'robots', content: 'index,follow,max-image-preview:large' }],
-    ['meta', { name: 'author', content: 'OpenCoworkAI' }],
+    ['meta', { name: 'author', content: 'DSR-AI-Lab' }],
     ['link', { rel: 'license', href: `${REPOSITORY_URL}/blob/main/LICENSE` }],
     ['link', { rel: 'sitemap', type: 'application/xml', href: `${SITE_URL}sitemap.xml` }],
     [
@@ -266,7 +266,7 @@ export default defineConfig({
       {
         rel: 'alternate',
         type: 'application/json',
-        title: 'Open CoDesign project facts',
+        title: 'DSR CoDesign project facts',
         href: PROJECT_FACTS_URL,
       },
     ],
@@ -275,7 +275,7 @@ export default defineConfig({
       {
         rel: 'alternate',
         type: 'application/json',
-        title: 'Open CoDesign site index',
+        title: 'DSR CoDesign site index',
         href: SITE_INDEX_URL,
       },
     ],
@@ -284,7 +284,7 @@ export default defineConfig({
       {
         rel: 'alternate',
         type: 'application/json',
-        title: 'Open CoDesign FAQ data',
+        title: 'DSR CoDesign FAQ data',
         href: FAQ_DATA_URL,
       },
     ],
@@ -299,14 +299,14 @@ export default defineConfig({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         '@id': `${SITE_URL}#website`,
-        name: 'Open CoDesign',
+        name: 'DSR CoDesign',
         url: SITE_URL,
         description:
           'Open-source desktop AI design tool with BYOK model support, local-first storage, and MIT licensing.',
         inLanguage: ['en-US', 'zh-CN'],
         publisher: { '@id': `${SITE_URL}#organization` },
         about: { '@id': `${SITE_URL}#software` },
-        sameAs: [REPOSITORY_URL, ORGANIZATION_URL, 'https://twitter.com/OpenCoworkAI'],
+        sameAs: [REPOSITORY_URL, ORGANIZATION_URL, 'https://twitter.com/DSR-AI-Lab'],
         hasPart: [
           `${SITE_URL}quickstart`,
           `${SITE_URL}architecture`,
@@ -329,8 +329,8 @@ export default defineConfig({
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
         '@id': `${SITE_URL}#software`,
-        name: 'Open CoDesign',
-        alternateName: 'open-codesign',
+        name: 'DSR CoDesign',
+        alternateName: 'dsr-codesign',
         description:
           'Open-source desktop AI design tool. The open-source alternative to Anthropic Claude Design. Prompt to interactive prototype, slide deck, and marketing assets. Multi-model BYOK, local-first.',
         url: SITE_URL,
@@ -341,8 +341,8 @@ export default defineConfig({
         releaseNotes: LATEST_RELEASE_URL,
         downloadUrl: RELEASES_URL,
         screenshot: [
-          `${SITE_ORIGIN}/open-codesign/screenshots/product-hero.png`,
-          `${SITE_ORIGIN}/open-codesign/screenshots/comment-mode.png`,
+          `${SITE_ORIGIN}/dsr-codesign/screenshots/product-hero.png`,
+          `${SITE_ORIGIN}/dsr-codesign/screenshots/comment-mode.png`,
         ],
         applicationSubCategory: 'AI Design Tool',
         isAccessibleForFree: true,
@@ -367,37 +367,37 @@ export default defineConfig({
         author: {
           '@type': 'Organization',
           '@id': `${SITE_URL}#organization`,
-          name: 'OpenCoworkAI',
+          name: 'DSR-AI-Lab',
           url: ORGANIZATION_URL,
         },
         subjectOf: [
           {
             '@type': 'CreativeWork',
-            name: 'Open CoDesign llms.txt',
+            name: 'DSR CoDesign llms.txt',
             url: `${SITE_URL}llms.txt`,
             encodingFormat: 'text/markdown',
           },
           {
             '@type': 'CreativeWork',
-            name: 'Open CoDesign full AI-readable context',
+            name: 'DSR CoDesign full AI-readable context',
             url: `${SITE_URL}llms-full.txt`,
             encodingFormat: 'text/markdown',
           },
           {
             '@type': 'Dataset',
-            name: 'Open CoDesign project facts',
+            name: 'DSR CoDesign project facts',
             url: PROJECT_FACTS_URL,
             encodingFormat: 'application/json',
           },
           {
             '@type': 'Dataset',
-            name: 'Open CoDesign site index',
+            name: 'DSR CoDesign site index',
             url: SITE_INDEX_URL,
             encodingFormat: 'application/json',
           },
           {
             '@type': 'Dataset',
-            name: 'Open CoDesign FAQ data',
+            name: 'DSR CoDesign FAQ data',
             url: FAQ_DATA_URL,
             encodingFormat: 'application/json',
           },
@@ -414,10 +414,10 @@ export default defineConfig({
         '@context': 'https://schema.org',
         '@type': 'Organization',
         '@id': `${SITE_URL}#organization`,
-        name: 'OpenCoworkAI',
+        name: 'DSR-AI-Lab',
         url: ORGANIZATION_URL,
         logo: `${SITE_URL}logo.png`,
-        sameAs: [ORGANIZATION_URL, 'https://twitter.com/OpenCoworkAI'],
+        sameAs: [ORGANIZATION_URL, 'https://twitter.com/DSR-AI-Lab'],
       }),
     ],
   ],
@@ -428,8 +428,8 @@ export default defineConfig({
     const path = pageData.relativePath.replace(/index\.md$/, '').replace(/\.md$/, '');
     const canonical = `${SITE_URL}${path}`;
     const pageMeta = PAGE_METADATA[path] ?? {
-      name: pageData.title ? `${pageData.title} - Open CoDesign` : 'Open CoDesign',
-      description: pageData.description ?? 'Open CoDesign project page.',
+      name: pageData.title ? `${pageData.title} - DSR CoDesign` : 'DSR CoDesign',
+      description: pageData.description ?? 'DSR CoDesign project page.',
       schemaType: 'WebPage',
     };
     const inLanguage = path.startsWith('zh/') ? 'zh-CN' : 'en-US';
@@ -475,7 +475,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: { src: '/logo.png', alt: 'open-codesign' },
+    logo: { src: '/logo.png', alt: 'dsr-codesign' },
 
     nav: [
       { text: 'Home', link: '/' },
@@ -496,7 +496,7 @@ export default defineConfig({
       { text: 'FAQ', link: '/faq' },
       {
         text: 'Changelog',
-        link: 'https://github.com/OpenCoworkAI/open-codesign/blob/main/CHANGELOG.md',
+        link: 'https://github.com/DSR-AI-Lab/dsr-codesign/blob/main/CHANGELOG.md',
       },
     ],
 
@@ -525,18 +525,18 @@ export default defineConfig({
           { text: 'Roadmap', link: '/roadmap' },
           {
             text: 'Changelog',
-            link: 'https://github.com/OpenCoworkAI/open-codesign/blob/main/CHANGELOG.md',
+            link: 'https://github.com/DSR-AI-Lab/dsr-codesign/blob/main/CHANGELOG.md',
           },
         ],
       },
     ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/OpenCoworkAI/open-codesign' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/DSR-AI-Lab/dsr-codesign' }],
 
     footer: {
       message:
-        'Released under the <a href="https://opensource.org/licenses/MIT">MIT License</a>. · <a href="https://github.com/OpenCoworkAI/open-codesign/blob/main/CONTRIBUTING.md">Contribute</a> · <a href="https://github.com/OpenCoworkAI/open-codesign/issues">Issues</a>',
-      copyright: '© 2026-present OpenCoworkAI',
+        'Released under the <a href="https://opensource.org/licenses/MIT">MIT License</a>. · <a href="https://github.com/DSR-AI-Lab/dsr-codesign/blob/main/CONTRIBUTING.md">Contribute</a> · <a href="https://github.com/DSR-AI-Lab/dsr-codesign/issues">Issues</a>',
+      copyright: '© 2026-present DSR-AI-Lab',
     },
   },
 
@@ -548,7 +548,7 @@ export default defineConfig({
     zh: {
       label: '中文',
       lang: 'zh-CN',
-      title: 'Open CoDesign',
+      title: 'DSR CoDesign',
       description:
         '开源桌面 AI 设计工具——Claude Design 的自托管替代方案。自带 API Key（Anthropic、OpenAI、Gemini、DeepSeek、Ollama），100% 本地运行，MIT。',
       themeConfig: {
@@ -557,7 +557,7 @@ export default defineConfig({
           { text: '快速开始', link: '/zh/quickstart' },
           { text: '对比 Claude Design', link: '/zh/claude-design-alternative' },
           { text: '常见问题', link: '/zh/faq' },
-          { text: 'GitHub', link: 'https://github.com/OpenCoworkAI/open-codesign' },
+          { text: 'GitHub', link: 'https://github.com/DSR-AI-Lab/dsr-codesign' },
         ],
         sidebar: [
           {
@@ -572,7 +572,7 @@ export default defineConfig({
         ],
         footer: {
           message: '基于 MIT 协议开源。',
-          copyright: '© 2026-present OpenCoworkAI',
+          copyright: '© 2026-present DSR-AI-Lab',
         },
       },
     },

@@ -1,15 +1,15 @@
 # Changelog
 
-All notable changes to Open CoDesign are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+All notable changes to DSR CoDesign are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.2.0] — 2026-05-09
 
-Agentic Design release. This release turns Open CoDesign from a one-shot generator into a local design agent with workspace-backed sessions, permissioned tool use, and durable design-system files.
+Agentic Design release. This release turns DSR CoDesign from a one-shot generator into a local design agent with workspace-backed sessions, permissioned tool use, and durable design-system files.
 
 ### Highlights
 
 - **Workspace-backed design sessions** — every design owns a real workspace folder, with generated sources, assets, exports, `AGENTS.md`, and `DESIGN.md` stored as files instead of sealed app state.
-- **Agent loop and tool harness** — the runtime now routes generation through pi primitives and Open CoDesign design tools including `ask`, `scaffold`, `skill`, `preview`, `gen_image`, `tweaks`, `todos`, and `done`.
+- **Agent loop and tool harness** — the runtime now routes generation through pi primitives and DSR CoDesign design tools including `ask`, `scaffold`, `skill`, `preview`, `gen_image`, `tweaks`, `todos`, and `done`.
 - **Session and migration work** — v0.1 data gains migration coverage toward JSONL-backed sessions and workspace files, with clearer conflict and missing-workspace states.
 - **ChatGPT / Codex subscription path** — ChatGPT Plus / Codex OAuth moves onto pi-ai's `openai-codex-responses` wire with broader model hints and better auth handling.
 - **Provider reliability** — DeepInfra, DeepSeek, Kimi, MiniMax, OpenRouter, relay gateways, reasoning fallbacks, timeout diagnostics, and reportable provider errors all received compatibility hardening.
@@ -20,12 +20,12 @@ Agentic Design release. This release turns Open CoDesign from a one-shot generat
 ### Install
 
 ```bash
-brew install --cask opencoworkai/tap/open-codesign # macOS
-scoop bucket add opencoworkai https://github.com/OpenCoworkAI/scoop-bucket
-scoop install opencoworkai/open-codesign           # Windows
+brew install --cask dsrailab/tap/dsr-codesign # macOS
+scoop bucket add dsrailab https://github.com/DSR-AI-Lab/scoop-bucket
+scoop install dsrailab/dsr-codesign           # Windows
 ```
 
-Or direct download from [GitHub Releases](https://github.com/OpenCoworkAI/open-codesign/releases/tag/v0.2.0).
+Or direct download from [GitHub Releases](https://github.com/DSR-AI-Lab/dsr-codesign/releases/tag/v0.2.0).
 
 Homebrew Cask and Scoop are live for v0.2.0. The winget manifest has been submitted in microsoft/winget-pkgs#372310 and is waiting for Microsoft review.
 
@@ -97,11 +97,11 @@ Release pipeline:
 ### Install
 
 ```bash
-winget install OpenCoworkAI.OpenCoDesign           # Windows
-brew install --cask opencoworkai/tap/open-codesign # macOS
+winget install DSR-AI-Lab.DSRCoDesign           # Windows
+brew install --cask dsrailab/tap/dsr-codesign # macOS
 ```
 
-Or direct download from [GitHub Releases](https://github.com/OpenCoworkAI/open-codesign/releases/tag/v0.1.4).
+Or direct download from [GitHub Releases](https://github.com/DSR-AI-Lab/dsr-codesign/releases/tag/v0.1.4).
 
 ---
 
@@ -193,5 +193,5 @@ First public release. Electron desktop app, GitHub releases for macOS (DMG), Win
 - Vitest for unit tests (~700 tests across 11 packages), Playwright for E2E
 - Sandboxed iframe renderer using esbuild-wasm + import maps
 
-[0.1.1]: https://github.com/OpenCoworkAI/open-codesign/compare/v0.1.0...v0.1.1
-[0.1.0]: https://github.com/OpenCoworkAI/open-codesign/releases/tag/v0.1.0
+[0.1.1]: https://github.com/DSR-AI-Lab/dsr-codesign/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/DSR-AI-Lab/dsr-codesign/releases/tag/v0.1.0

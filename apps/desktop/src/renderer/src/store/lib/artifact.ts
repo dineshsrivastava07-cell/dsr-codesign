@@ -1,4 +1,4 @@
-import { findArtifactSourceReference } from '@open-codesign/runtime';
+import { findArtifactSourceReference } from '@dsr-codesign/runtime';
 
 function delimiterDeltaOutsideStrings(src: string, open: string, close: string): number {
   let delta = 0;

@@ -1,16 +1,16 @@
 {
-  "name": "open-codesign",
+  "name": "dsr-codesign",
   "version": "0.2.0",
   "private": true,
   "description": "Open-source AI design tool — prompt to interactive prototype, slide deck, and marketing assets. Multi-model, BYOK or ChatGPT login, runs on your laptop.",
   "license": "MIT",
-  "homepage": "https://github.com/OpenCoworkAI/open-codesign",
+  "homepage": "https://github.com/DSR-AI-Lab/dsr-codesign",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OpenCoworkAI/open-codesign.git"
+    "url": "git+https://github.com/DSR-AI-Lab/dsr-codesign.git"
   },
   "bugs": {
-    "url": "https://github.com/OpenCoworkAI/open-codesign/issues"
+    "url": "https://github.com/DSR-AI-Lab/dsr-codesign/issues"
   },
   "engines": {
     "node": ">=22"
@@ -25,9 +25,9 @@
     "lint:fix": "biome check --write .",
     "typecheck": "turbo run typecheck",
     "format": "biome format --write .",
-    "docs:dev": "pnpm --filter open-codesign-website dev",
-    "docs:build": "pnpm --filter open-codesign-website build",
-    "docs:preview": "pnpm --filter open-codesign-website preview",
+    "docs:dev": "pnpm --filter dsr-codesign-website dev",
+    "docs:build": "pnpm --filter dsr-codesign-website build",
+    "docs:preview": "pnpm --filter dsr-codesign-website preview",
     "smoke": "tsx scripts/smoke-models.ts",
     "changeset": "changeset",
     "version-packages": "changeset version",
@@ -45,8 +45,8 @@
     "@biomejs/biome": "^2.4.15",
     "@changesets/cli": "^2.27.11",
     "@iarna/toml": "^2.2.5",
-    "@open-codesign/core": "workspace:*",
-    "@open-codesign/shared": "workspace:*",
+    "@dsr-codesign/core": "workspace:*",
+    "@dsr-codesign/shared": "workspace:*",
     "@types/node": "^22.19.19",
     "acorn": "^8.14.0",
     "husky": "^9.1.7",

@@ -1,4 +1,4 @@
-import type { OnboardingState } from '@open-codesign/shared';
+import type { OnboardingState } from '@dsr-codesign/shared';
 
 interface ReadyConfig extends OnboardingState {
   hasKey: true;

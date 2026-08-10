@@ -1,6 +1,6 @@
 import { mkdir, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { Design } from '@open-codesign/shared';
+import type { Design } from '@dsr-codesign/shared';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createDesign, getDesign, initInMemoryDb, updateDesignWorkspace } from './snapshots-db';
 import {
@@ -23,7 +23,7 @@ const testRoots = vi.hoisted(() => {
     process.env['TMP'] ??
     (process.platform === 'win32' ? 'C:/Temp' : '/tmp')
   ).replaceAll('\\', '/');
-  return { documentsRoot: `${base}/open-codesign-rename-tests` };
+  return { documentsRoot: `${base}/dsr-codesign-rename-tests` };
 });
 const renameControl = vi.hoisted(() => {
   let markStarted: (() => void) | null = null;

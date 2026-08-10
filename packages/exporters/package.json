@@ -1,5 +1,5 @@
 {
-  "name": "@open-codesign/exporters",
+  "name": "@dsr-codesign/exporters",
   "version": "0.1.6",
   "private": true,
   "type": "module",
@@ -18,8 +18,8 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@open-codesign/runtime": "workspace:*",
-    "@open-codesign/shared": "workspace:*",
+    "@dsr-codesign/runtime": "workspace:*",
+    "@dsr-codesign/shared": "workspace:*",
     "pptxgenjs": "^4.0.1",
     "puppeteer-core": "^24.42.0",
     "zip-lib": "^1.0.4"

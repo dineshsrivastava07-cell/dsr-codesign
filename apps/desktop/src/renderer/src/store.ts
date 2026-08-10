@@ -14,7 +14,7 @@ import type {
   ReportEventInput,
   ReportEventResult,
   SelectedElement,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { create } from 'zustand';
 import type {
   CodesignApi,

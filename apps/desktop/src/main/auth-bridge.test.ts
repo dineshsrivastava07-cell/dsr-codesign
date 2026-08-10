@@ -1,5 +1,5 @@
-import { AuthStorage, ModelRegistry } from '@open-codesign/core';
-import type { Config, ProviderEntry, SecretRef } from '@open-codesign/shared';
+import { AuthStorage, ModelRegistry } from '@dsr-codesign/core';
+import type { Config, ProviderEntry, SecretRef } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import { populateAuthStorage, registerCustomProviders } from './auth-bridge';
 

@@ -6,15 +6,15 @@ import pkg from './package.json' with { type: 'json' };
 
 const APP_VERSION = JSON.stringify(pkg.version);
 const WORKSPACE_PACKAGES = [
-  '@open-codesign/artifacts',
-  '@open-codesign/core',
-  '@open-codesign/exporters',
-  '@open-codesign/i18n',
-  '@open-codesign/providers',
-  '@open-codesign/runtime',
-  '@open-codesign/shared',
-  '@open-codesign/templates',
-  '@open-codesign/ui',
+  '@dsr-codesign/artifacts',
+  '@dsr-codesign/core',
+  '@dsr-codesign/exporters',
+  '@dsr-codesign/i18n',
+  '@dsr-codesign/providers',
+  '@dsr-codesign/runtime',
+  '@dsr-codesign/shared',
+  '@dsr-codesign/templates',
+  '@dsr-codesign/ui',
 ];
 const BUNDLED_RUNTIME_PACKAGES = [
   '@mariozechner/pi-agent-core',

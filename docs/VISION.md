@@ -1,4 +1,4 @@
-# Vision — Open CoDesign
+# Vision — DSR CoDesign
 
 Locked product decisions. Update via PR, not in passing.
 
@@ -8,7 +8,7 @@ Open-source desktop design agent. It turns prompts, local files, skills, and bra
 
 ## What we are building
 
-Open CoDesign is a local-first Electron app for creating design artifacts with an agent that can see and edit a workspace. Each design is a long-running session backed by JSONL history and real files on disk.
+DSR CoDesign is a local-first Electron app for creating design artifacts with an agent that can see and edit a workspace. Each design is a long-running session backed by JSONL history and real files on disk.
 
 The app serves founders, PMs, marketers, designers, and design engineers who want to make:
 
@@ -74,7 +74,7 @@ Skills and scaffolds are indexed in the prompt and loaded on demand. The base pr
 
 ### 5. Brand Systems as Artifacts
 
-`DESIGN.md` is both input and output. Users can bring one from another tool, edit it by hand, or ask Open CoDesign to create one. Brand values are extracted from authoritative files or URLs, not invented from model memory.
+`DESIGN.md` is both input and output. Users can bring one from another tool, edit it by hand, or ask DSR CoDesign to create one. Brand values are extracted from authoritative files or URLs, not invented from model memory.
 
 ### 6. Local Control
 
@@ -108,7 +108,7 @@ The v1.0 bar remains demo-driven, but the demos should run through the agentic w
 
 ## Differentiation vs Claude Design
 
-| Axis | Claude Design | open-codesign |
+| Axis | Claude Design | dsr-codesign |
 |---|---|---|
 | Model | Opus 4.7 only | Multi-provider via pi-ai and compatible gateways |
 | Form | Web SaaS | Local desktop |

@@ -1,6 +1,6 @@
-import { useT } from '@open-codesign/i18n';
-import { buildPreviewDocument } from '@open-codesign/runtime';
-import type { CommentRow } from '@open-codesign/shared';
+import { useT } from '@dsr-codesign/i18n';
+import { buildPreviewDocument } from '@dsr-codesign/runtime';
+import type { CommentRow } from '@dsr-codesign/shared';
 import {
   type CSSProperties,
   type DragEvent,

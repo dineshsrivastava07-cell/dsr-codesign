@@ -8,7 +8,7 @@ import {
   type SupportedOnboardingProvider,
   type WireApi,
   WireApiSchema,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 
 export interface SaveKeyInput {
   provider: string;

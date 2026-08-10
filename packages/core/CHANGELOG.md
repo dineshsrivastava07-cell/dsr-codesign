@@ -1,4 +1,4 @@
-# @open-codesign/core
+# @dsr-codesign/core
 
 ## 0.2.1
 
@@ -7,8 +7,8 @@
 - Updated dependencies [7a1977d]
 - Updated dependencies [6cbb639]
 - Updated dependencies [7a1977d]
-  - @open-codesign/providers@0.2.1
-  - @open-codesign/shared@0.3.0
+  - @dsr-codesign/providers@0.2.1
+  - @dsr-codesign/shared@0.3.0
 
 ## 0.2.0
 
@@ -175,7 +175,7 @@ publish` without ever escalating to the user.
 
 ### Patch Changes
 
-- 63fa316: Fix: retry first-turn agent generation on transient provider errors (5xx, 429, network). The agent runtime now wraps `agent.prompt()` + `waitForIdle()` in a backoff loop for the first turn only — multi-turn requests still fail fast to avoid corrupting mid-session tool state. Extracted a generic `withBackoff` helper in `@open-codesign/providers` that shares the existing classify/jitter/Retry-After/abort logic with `completeWithRetry`. (#125)
+- 63fa316: Fix: retry first-turn agent generation on transient provider errors (5xx, 429, network). The agent runtime now wraps `agent.prompt()` + `waitForIdle()` in a backoff loop for the first turn only — multi-turn requests still fail fast to avoid corrupting mid-session tool state. Extracted a generic `withBackoff` helper in `@dsr-codesign/providers` that shares the existing classify/jitter/Retry-After/abort logic with `completeWithRetry`. (#125)
 - 0d4c5cf: Clean aborted transport retry history before replaying an agent turn, and keep HTML/ZIP exports offline by default by making Tailwind CDN injection opt-in for saved HTML bundles.
 - 4c66392: Harden HTML, URL, marker, stack-frame, and retry parsing paths flagged by CodeQL during the v0.2 mainline promotion.
 - a965e58: fix: send attached screenshots to ChatGPT Codex as image inputs
@@ -206,7 +206,7 @@ publish` without ever escalating to the user.
 - 4c66392: fix: align build, tool prompts, and model switcher token output
 
   - Keep root and desktop builds on the fast Vite compilation path, with installer packaging available through explicit package/release scripts.
-  - Bundle local `@open-codesign/*` workspace packages into the desktop main bundle so electron-builder only packages true runtime externals.
+  - Bundle local `@dsr-codesign/*` workspace packages into the desktop main bundle so electron-builder only packages true runtime externals.
   - Prune packaged dependency noise such as source maps, declaration files, tests, examples, unused Electron languages, and non-target native binaries from the desktop app bundle.
   - Fail packaging when the target better-sqlite3 Electron native binary is missing, instead of shipping an app that crashes on database open.
   - Merge newly bundled template files into existing user template folders without overwriting user edits, so manifest-first skills are available after upgrades.
@@ -269,5 +269,5 @@ publish` without ever escalating to the user.
 - Updated dependencies [09f976a]
 - Updated dependencies [013fd34]
 - Updated dependencies [d3a62fe]
-  - @open-codesign/providers@0.2.0
-  - @open-codesign/shared@0.2.0
+  - @dsr-codesign/providers@0.2.0
+  - @dsr-codesign/shared@0.2.0

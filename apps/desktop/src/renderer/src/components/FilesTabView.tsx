@@ -1,11 +1,11 @@
-import { useT } from '@open-codesign/i18n';
-import { buildPreviewDocument, isRenderablePath } from '@open-codesign/runtime';
+import { useT } from '@dsr-codesign/i18n';
+import { buildPreviewDocument, isRenderablePath } from '@dsr-codesign/runtime';
 import {
   type CommentRow,
   DEFAULT_SOURCE_ENTRY,
   LEGACY_SOURCE_ENTRY,
   type PreviewMode,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   ChevronRight,
   ExternalLink,
@@ -64,7 +64,7 @@ export { resolveReferencedWorkspacePreviewPath } from '../preview/workspace-sour
 
 const TweakPanel = lazy(() => import('./TweakPanel').then((m) => ({ default: m.TweakPanel })));
 
-const FILE_BROWSER_WIDTH_STORAGE_KEY = 'open-codesign:file-browser-width';
+const FILE_BROWSER_WIDTH_STORAGE_KEY = 'dsr-codesign:file-browser-width';
 const FILE_BROWSER_DEFAULT_WIDTH = 360;
 const FILE_BROWSER_MIN_WIDTH = 260;
 const FILE_BROWSER_MAX_WIDTH = 720;

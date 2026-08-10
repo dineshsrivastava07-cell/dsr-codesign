@@ -2,8 +2,8 @@ import {
   classifyRenderableSource,
   findArtifactSourceReference,
   resolveArtifactSourceReferencePath,
-} from '@open-codesign/runtime';
-import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@open-codesign/shared';
+} from '@dsr-codesign/runtime';
+import { DEFAULT_SOURCE_ENTRY, LEGACY_SOURCE_ENTRY } from '@dsr-codesign/shared';
 
 export interface WorkspacePreviewReadResult {
   content: string;

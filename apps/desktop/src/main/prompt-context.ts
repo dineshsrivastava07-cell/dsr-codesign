@@ -4,7 +4,7 @@ import http from 'node:http';
 import https from 'node:https';
 import net from 'node:net';
 import { extname, isAbsolute } from 'node:path';
-import type { AttachmentContext, ProjectContext, ReferenceUrlContext } from '@open-codesign/core';
+import type { AttachmentContext, ProjectContext, ReferenceUrlContext } from '@dsr-codesign/core';
 import {
   CodesignError,
   ERROR_CODES,
@@ -12,14 +12,14 @@ import {
   type LocalInputFile,
   type StoredDesignSystem,
   validateDesignMd,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   collapseWhitespace,
   extractHtmlElementInner,
   getHtmlAttribute,
   removeHtmlElementBlocks,
   stripHtmlTags,
-} from '@open-codesign/shared/html-utils';
+} from '@dsr-codesign/shared/html-utils';
 import { resolveSafeWorkspaceChildPath } from './workspace-reader';
 
 const TEXT_EXTS = new Set([
@@ -707,7 +707,7 @@ async function defaultFetchReference(
       parsedUrl,
       {
         method: 'GET',
-        headers: { 'user-agent': 'open-codesign/0.0.0 (+local desktop app)' },
+        headers: { 'user-agent': 'dsr-codesign/0.0.0 (+local desktop app)' },
         lookup,
         signal,
       },

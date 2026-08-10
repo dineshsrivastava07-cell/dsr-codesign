@@ -80,12 +80,12 @@ function loadReleaseContext(files) {
     '.github/workflows/packaging-smoke.yml',
     'packaging/update-shas.sh',
     'packaging/README.md',
-    'packaging/homebrew/Casks/open-codesign.rb',
-    'packaging/scoop/bucket/open-codesign.json',
-    'packaging/winget/manifests/o/OpenCoworkAI/OpenCoDesign/0.2.0/OpenCoworkAI.OpenCoDesign.yaml',
-    'packaging/winget/manifests/o/OpenCoworkAI/OpenCoDesign/0.2.0/OpenCoworkAI.OpenCoDesign.installer.yaml',
-    'packaging/winget/manifests/o/OpenCoworkAI/OpenCoDesign/0.2.0/OpenCoworkAI.OpenCoDesign.locale.en-US.yaml',
-    'packaging/flatpak/ai.opencowork.codesign.yaml',
+    'packaging/homebrew/Casks/dsr-codesign.rb',
+    'packaging/scoop/bucket/dsr-codesign.json',
+    'packaging/winget/manifests/o/DSR-AI-Lab/DSRCoDesign/0.2.0/DSR-AI-Lab.DSRCoDesign.yaml',
+    'packaging/winget/manifests/o/DSR-AI-Lab/DSRCoDesign/0.2.0/DSR-AI-Lab.DSRCoDesign.installer.yaml',
+    'packaging/winget/manifests/o/DSR-AI-Lab/DSRCoDesign/0.2.0/DSR-AI-Lab.DSRCoDesign.locale.en-US.yaml',
+    'packaging/flatpak/ai.dsrailab.codesign.yaml',
   ];
 
   const localContext = loadRepoDocs(paths, 9000);
@@ -96,7 +96,7 @@ function loadReleaseContext(files) {
       'download',
       'v0.2.0',
       '-R',
-      'OpenCoworkAI/open-codesign',
+      'DSR-AI-Lab/dsr-codesign',
       '--pattern',
       'SHA256SUMS.txt',
       '--output',
@@ -110,7 +110,7 @@ function loadReleaseContext(files) {
   try {
     homebrew = runGh([
       'api',
-      'repos/OpenCoworkAI/homebrew-tap/contents/Casks/open-codesign.rb',
+      'repos/DSR-AI-Lab/homebrew-tap/contents/Casks/dsr-codesign.rb',
       '--jq',
       '.content',
     ]);
@@ -123,7 +123,7 @@ function loadReleaseContext(files) {
   try {
     scoop = runGh([
       'api',
-      'repos/OpenCoworkAI/scoop-bucket/contents/bucket/open-codesign.json',
+      'repos/DSR-AI-Lab/scoop-bucket/contents/bucket/dsr-codesign.json',
       '--jq',
       '.content',
     ]);
@@ -137,9 +137,9 @@ function loadReleaseContext(files) {
     serializeDocs(localContext),
     '## GitHub Release v0.2.0 SHA256SUMS.txt',
     releaseChecksums,
-    '## Live OpenCoworkAI/homebrew-tap Cask',
+    '## Live DSR-AI-Lab/homebrew-tap Cask',
     homebrew,
-    '## Live OpenCoworkAI/scoop-bucket manifest',
+    '## Live DSR-AI-Lab/scoop-bucket manifest',
     scoop,
   ].join('\n\n');
 }

@@ -3,7 +3,7 @@ import {
   type EditmodeTokens,
   LEGACY_SOURCE_ENTRY,
   replaceEditmodeBlock,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import {
   resolveWorkspacePreviewSource,
   type WorkspacePreviewRead,

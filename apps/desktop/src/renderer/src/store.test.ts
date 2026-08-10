@@ -1,4 +1,4 @@
-import { initI18n } from '@open-codesign/i18n';
+import { initI18n } from '@dsr-codesign/i18n';
 import type {
   ChatAppendInput,
   CommentCreateInput,
@@ -7,7 +7,7 @@ import type {
   LocalInputFile,
   OnboardingState,
   SelectedElement,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   coerceUsageSnapshot,
@@ -33,7 +33,7 @@ const DEFAULT_DESIGN = {
   updatedAt: '2024-01-01T00:00:00.000Z',
   thumbnailText: null,
   deletedAt: null,
-  workspacePath: '/tmp/open-codesign-test-workspace',
+  workspacePath: '/tmp/dsr-codesign-test-workspace',
 };
 
 function deferred<T>() {
@@ -698,7 +698,7 @@ describe('useCodesignStore generation cancellation', () => {
       ...DEFAULT_DESIGN,
       id: designId,
       name: 'Untitled design 1',
-      workspacePath: '/tmp/open-codesign-auto-title',
+      workspacePath: '/tmp/dsr-codesign-auto-title',
     };
     const generateTask = deferred<{ artifacts: Array<{ content: string }>; message: string }>();
     const titleTask = deferred<string>();

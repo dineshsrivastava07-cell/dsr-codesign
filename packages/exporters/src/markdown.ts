@@ -5,7 +5,7 @@ import {
   removeHtmlComments,
   removeHtmlElementBlocks,
   stripHtmlTags,
-} from '@open-codesign/shared/html-utils';
+} from '@dsr-codesign/shared/html-utils';
 import type { ExportResult } from './index';
 import {
   type BrowserRenderOptions,
@@ -89,7 +89,7 @@ function deriveTitle(html: string): string {
   if (title) return decodeEntities(stripTags(title)).trim();
   const h1 = extractHtmlElementInner(html ?? '', 'h1');
   if (h1) return decodeEntities(stripTags(h1)).trim();
-  return 'open-codesign export';
+  return 'dsr-codesign export';
 }
 
 function convertBody(html: string): string {

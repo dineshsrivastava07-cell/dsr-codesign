@@ -1,7 +1,7 @@
 import { mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { BRAND } from '@open-codesign/shared';
+import { BRAND } from '@dsr-codesign/shared';
 import type { BrowserWindow as ElectronBrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import { registerAppMenu } from './app-menu';
@@ -344,7 +344,7 @@ if (!IS_VITEST) {
       // best-effort sync log and show a native three-button dialog.
       handleBootFailure(
         err,
-        'Open CoDesign failed to start',
+        'DSR CoDesign failed to start',
         'A startup error prevented the app from loading.',
       );
       app.quit();

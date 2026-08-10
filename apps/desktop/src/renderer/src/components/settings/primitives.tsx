@@ -1,5 +1,5 @@
-import { getCurrentLocale, useT } from '@open-codesign/i18n';
-import type { OnboardingState, ReasoningLevel } from '@open-codesign/shared';
+import { useT } from '@dsr-codesign/i18n';
+import type { OnboardingState, ReasoningLevel } from '@dsr-codesign/shared';
 import {
   AlertTriangle,
   CheckCircle,
@@ -30,7 +30,7 @@ export function cleanIpcError(err: unknown): string {
   const stripped = raw.replace(/^Error invoking remote method '[^']*':\s*[A-Za-z]*Error:\s*/, '');
   const parts = stripped.split(' / ');
   if (parts.length >= 2) {
-    return getCurrentLocale() === 'zh-CN' ? (parts[1] ?? stripped) : (parts[0] ?? stripped);
+    return parts[0] ?? stripped;
   }
   return stripped;
 }

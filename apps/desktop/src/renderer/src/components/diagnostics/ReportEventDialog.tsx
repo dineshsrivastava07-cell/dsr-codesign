@@ -1,5 +1,5 @@
-import { getCurrentLocale, useT } from '@open-codesign/i18n';
-import type { ReportableError, ReportEventInput } from '@open-codesign/shared';
+import { getCurrentLocale, useT } from '@dsr-codesign/i18n';
+import type { ReportableError, ReportEventInput } from '@dsr-codesign/shared';
 import { useEffect, useRef, useState } from 'react';
 import { applyRedaction, type RedactOpts } from '../../lib/redact';
 import { useCodesignStore } from '../../store';

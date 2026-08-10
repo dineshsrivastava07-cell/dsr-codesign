@@ -15,7 +15,7 @@
  * confirm the screenshot lands in iter-0/rendered.png-equivalent shape.
  */
 
-import type { RenderUiKitFn } from '@open-codesign/core';
+import type { RenderUiKitFn } from '@dsr-codesign/core';
 import { BrowserWindow } from './electron-runtime';
 
 const RENDER_VIEWPORT = { width: 1440, height: 900 } as const;

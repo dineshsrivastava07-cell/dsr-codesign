@@ -1,6 +1,6 @@
 import { mkdir } from 'node:fs/promises';
 import path_module from 'node:path';
-import { CodesignError } from '@open-codesign/shared';
+import { CodesignError } from '@dsr-codesign/shared';
 import { app, ipcMain, shell } from '../electron-runtime';
 import { getLogPath } from '../logger';
 import { isAllowedExternalUrl } from '../open-external';

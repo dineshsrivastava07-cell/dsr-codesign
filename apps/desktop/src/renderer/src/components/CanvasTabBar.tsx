@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { Eye, FolderOpen, X } from 'lucide-react';
 import { Fragment, type ReactNode } from 'react';
 import { useCodesignStore } from '../store';

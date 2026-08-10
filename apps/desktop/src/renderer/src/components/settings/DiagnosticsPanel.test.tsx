@@ -128,13 +128,10 @@ describe('formatting helpers', () => {
     expect(formatRelativeTime(now - 2 * 86_400_000, now, 'en')).toBe('2 days ago');
   });
 
-  it('localizes relative time into zh-CN', () => {
+  it('localizes relative time into pt-BR', () => {
     const now = 1_000_000_000_000;
-    const out = formatRelativeTime(now - 3 * 60_000, now, 'zh-CN');
-    // ICU may emit "3 分钟前" or "3分钟前" depending on CLDR version — both
-    // are valid localizations; just assert we're no longer in Latin shorthand.
+    const out = formatRelativeTime(now - 3 * 60_000, now, 'pt-BR');
     expect(out).toContain('3');
-    expect(out).toContain('分');
     expect(out).not.toBe('3m');
   });
 });

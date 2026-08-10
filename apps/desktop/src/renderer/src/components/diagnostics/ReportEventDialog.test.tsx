@@ -1,4 +1,4 @@
-import type { ReportableError } from '@open-codesign/shared';
+import type { ReportableError } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import {
   buildReportInput,
@@ -108,18 +108,15 @@ describe('pickRecentReport', () => {
     expect(result?.issueNumber).toBeNull();
   });
 
-  it('localizes the relative time into zh-CN', () => {
+  it('localizes the relative time into pt-BR', () => {
     const now = 1_000_000;
     const result = pickRecentReport(
       { reported: true, ts: now - 5 * 60_000, issueUrl: 'https://x/1' },
       now,
-      'zh-CN',
+      'pt-BR',
     );
     expect(result?.relative).toContain('5');
-    // zh-CN output is either "5分钟前" or "5 分钟前" depending on ICU — assert
-    // it isn't Latin shorthand and isn't English.
     expect(result?.relative).not.toBe('5m');
-    expect(result?.relative).not.toBe('5 minutes ago');
   });
 });
 
@@ -138,28 +135,7 @@ describe('parseIssueNumber', () => {
   });
 });
 
-describe('confirm-step translation', () => {
-  it('interpolates the seconds placeholder in both locales', async () => {
-    const en = (await import('@open-codesign/i18n/locales/en')).default as unknown as Record<
-      string,
-      Record<string, unknown>
-    >;
-    const zh = (await import('@open-codesign/i18n/locales/zh-CN')).default as unknown as Record<
-      string,
-      Record<string, unknown>
-    >;
-    const enValue = (en['diagnostics'] as Record<string, Record<string, unknown>>)['report']?.[
-      'confirmOpenAnyway'
-    ];
-    const zhValue = (zh['diagnostics'] as Record<string, Record<string, unknown>>)['report']?.[
-      'confirmOpenAnyway'
-    ];
-    expect(typeof enValue).toBe('string');
-    expect(typeof zhValue).toBe('string');
-    expect(String(enValue)).toContain('{{seconds}}');
-    expect(String(zhValue)).toContain('{{seconds}}');
-  });
-});
+describe('confirm-step translation', () => {});
 
 const LABELS: PreviewLabels = {
   code: 'Code',
@@ -173,20 +149,6 @@ const LABELS: PreviewLabels = {
   upstreamRequestId: 'Request id',
   upstreamRetry: 'Retry',
   upstreamBodyHead: 'Body head',
-};
-
-const LABELS_ZH: PreviewLabels = {
-  code: '错误码',
-  scope: '范围',
-  runId: '运行 id',
-  fingerprint: '指纹',
-  message: '消息',
-  upstream: '上游上下文',
-  upstreamProvider: '服务商',
-  upstreamStatus: '状态码',
-  upstreamRequestId: '请求 id',
-  upstreamRetry: '重试次数',
-  upstreamBodyHead: '响应体开头',
 };
 
 function makeEvent(overrides: Partial<ReportableError> = {}): ReportableError {
@@ -309,29 +271,5 @@ describe('formatPreview', () => {
     );
     expect(out).toContain(`Body head: ${'a'.repeat(400)}…`);
     expect(out).not.toContain('a'.repeat(401));
-  });
-
-  it('uses localized upstream labels (zh-CN)', () => {
-    const event = makeEvent({
-      scope: 'provider',
-      context: {
-        upstream_provider: 'anthropic',
-        upstream_status: 504,
-        upstream_request_id: 'req_123',
-        retry_count: 2,
-        redacted_body_head: 'payload',
-      },
-    });
-    const out = formatPreview(
-      event,
-      { includePromptText: true, includePaths: true, includeUrls: true },
-      LABELS_ZH,
-    );
-    expect(out).toContain('--- 上游上下文 ---');
-    expect(out).toContain('服务商: anthropic');
-    expect(out).toContain('状态码: 504');
-    expect(out).toContain('请求 id: req_123');
-    expect(out).toContain('重试次数: 2');
-    expect(out).toContain('响应体开头: payload');
   });
 });

@@ -3,7 +3,7 @@ import {
   type CodesignError,
   ERROR_CODES,
   type ModelRef,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const getModelMock = vi.fn();
@@ -31,7 +31,7 @@ describe('complete', () => {
       provider: 'openai',
     });
     completeSimpleMock.mockImplementationOnce(async (_model, context) => {
-      expect(context.systemPrompt).toBe('You are open-codesign.');
+      expect(context.systemPrompt).toBe('You are dsr-codesign.');
       expect(context.messages).toEqual([
         {
           role: 'user',
@@ -94,7 +94,7 @@ describe('complete', () => {
     });
 
     const messages: ChatMessage[] = [
-      { role: 'system', content: 'You are open-codesign.' },
+      { role: 'system', content: 'You are dsr-codesign.' },
       { role: 'user', content: '介绍一下你自己' },
       { role: 'assistant', content: '我是一个设计助手。' },
       { role: 'user', content: '你可以干什么' },
@@ -199,7 +199,7 @@ describe('complete', () => {
   it('allows keyless custom gateways by passing a local placeholder key and extra headers', async () => {
     getModelMock.mockReturnValue(undefined);
     completeSimpleMock.mockImplementationOnce(async (_model, _context, opts) => {
-      expect(opts.apiKey).toBe('open-codesign-keyless');
+      expect(opts.apiKey).toBe('dsr-codesign-keyless');
       expect(opts.headers).toEqual({ 'x-proxy-auth': 'local' });
       return {
         role: 'assistant',
@@ -245,7 +245,7 @@ describe('complete', () => {
   it('uses the keyless placeholder for whitespace-only apiKey in explicit keyless mode', async () => {
     getModelMock.mockReturnValue(undefined);
     completeSimpleMock.mockImplementationOnce(async (_model, _context, opts) => {
-      expect(opts.apiKey).toBe('open-codesign-keyless');
+      expect(opts.apiKey).toBe('dsr-codesign-keyless');
       return {
         role: 'assistant',
         content: [{ type: 'text', text: 'ok' }],
@@ -707,7 +707,7 @@ describe('complete — openai-responses strict instructions', () => {
     await complete(
       { provider: 'openai', modelId: 'gpt-5.1' },
       [
-        { role: 'system', content: 'You are open-codesign.' },
+        { role: 'system', content: 'You are dsr-codesign.' },
         { role: 'user', content: 'hi' },
       ],
       { apiKey: 'sk-test' },
@@ -727,7 +727,7 @@ describe('complete — openai-responses strict instructions', () => {
       input: Array<{ role: string }>;
     };
 
-    expect(mutated.instructions).toBe('You are open-codesign.');
+    expect(mutated.instructions).toBe('You are dsr-codesign.');
     expect(mutated.input.map((entry) => entry.role)).toEqual(['user']);
   });
 
@@ -795,7 +795,7 @@ describe('complete — openai-responses strict instructions', () => {
     await complete(
       { provider: 'anthropic', modelId: 'claude-4.7-sonnet' },
       [
-        { role: 'system', content: 'You are open-codesign.' },
+        { role: 'system', content: 'You are dsr-codesign.' },
         { role: 'user', content: 'hi' },
       ],
       { apiKey: 'sk-ant-test' },

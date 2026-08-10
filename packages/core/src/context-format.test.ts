@@ -1,5 +1,5 @@
-import type { StoredDesignSystem } from '@open-codesign/shared';
-import { STORED_DESIGN_SYSTEM_SCHEMA_VERSION } from '@open-codesign/shared';
+import type { StoredDesignSystem } from '@dsr-codesign/shared';
+import { STORED_DESIGN_SYSTEM_SCHEMA_VERSION } from '@dsr-codesign/shared';
 import { describe, expect, it } from 'vitest';
 import {
   formatAttachments,

@@ -1,4 +1,4 @@
-# @open-codesign/templates
+# @dsr-codesign/templates
 
 ## 0.1.6
 
@@ -9,8 +9,8 @@
 - Updated dependencies [6cbb639]
 - Updated dependencies [bf86fea]
 - Updated dependencies [7a1977d]
-  - @open-codesign/shared@0.3.0
-  - @open-codesign/i18n@0.2.1
+  - @dsr-codesign/shared@0.3.0
+  - @dsr-codesign/i18n@0.2.1
 
 ## 0.1.5
 
@@ -60,5 +60,5 @@
 - Updated dependencies [013fd34]
 - Updated dependencies [5d22e60]
 - Updated dependencies [d3a62fe]
-  - @open-codesign/i18n@0.2.0
-  - @open-codesign/shared@0.2.0
+  - @dsr-codesign/i18n@0.2.0
+  - @dsr-codesign/shared@0.2.0

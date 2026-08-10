@@ -1,4 +1,4 @@
-import { type Artifact, DEFAULT_SOURCE_ENTRY } from '@open-codesign/shared';
+import { type Artifact, DEFAULT_SOURCE_ENTRY } from '@dsr-codesign/shared';
 
 export interface Collected {
   text: string;

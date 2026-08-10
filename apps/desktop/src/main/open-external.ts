@@ -14,8 +14,8 @@
  * attacker-controlled URL via `shell.openExternal`.
  */
 
-const GITHUB_OWNER = 'OpenCoworkAI';
-const GITHUB_REPO = 'open-codesign';
+const GITHUB_OWNER = 'DSR-AI-Lab';
+const GITHUB_REPO = 'dsr-codesign';
 const ALLOWED_HOST = 'github.com';
 const ALLOWED_PATHS = [
   `/${GITHUB_OWNER}/${GITHUB_REPO}/releases`,

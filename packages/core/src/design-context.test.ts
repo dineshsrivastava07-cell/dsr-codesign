@@ -1,18 +1,17 @@
-import type { AgentMessage } from '@mariozechner/pi-agent-core';
 import type {
   ChatMessageRow,
   ChatToolCallPayload,
   ModelRef,
   ResourceStateV1,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
+import type { AgentMessage } from '@mariozechner/pi-agent-core';
 import { describe, expect, it, vi } from 'vitest';
 
 const completeWithRetryMock = vi.fn();
 
-vi.mock('@open-codesign/providers', async () => {
-  const actual = await vi.importActual<typeof import('@open-codesign/providers')>(
-    '@open-codesign/providers',
-  );
+vi.mock('@dsr-codesign/providers', async () => {
+  const actual =
+    await vi.importActual<typeof import('@dsr-codesign/providers')>('@dsr-codesign/providers');
   return {
     ...actual,
     completeWithRetry: (...args: unknown[]) => completeWithRetryMock(...args),

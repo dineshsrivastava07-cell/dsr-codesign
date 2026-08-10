@@ -19,7 +19,7 @@ import {
   ERROR_CODES,
   type ModelRef,
   type WireApi,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { normalizeProviderError } from './errors';
 import { looksLikeGatewayMissingMessagesApi } from './gateway-compat';
 import { complete, type GenerateOptions, type GenerateResult } from './index';

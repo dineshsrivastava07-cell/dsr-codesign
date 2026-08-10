@@ -31,7 +31,7 @@ jobs:
   gate:
     name: Gate (lint · typecheck · test)
     runs-on: ubuntu-latest
-    if: github.repository == 'OpenCoworkAI/open-codesign'
+    if: github.repository == 'DSR-AI-Lab/dsr-codesign'
     env:
       RELEASE_REF: ${{ github.event_name == 'push' && github.ref || format('refs/tags/{0}', inputs.tag) }}
     steps:
@@ -86,7 +86,7 @@ jobs:
   changelog:
     name: Build changelog
     runs-on: ubuntu-latest
-    if: github.repository == 'OpenCoworkAI/open-codesign'
+    if: github.repository == 'DSR-AI-Lab/dsr-codesign'
     permissions:
       contents: read
       pull-requests: read
@@ -213,7 +213,7 @@ jobs:
 
       # Build all workspace packages (turborepo respects dep graph)
       - name: Build workspace
-        run: pnpm --filter '!@open-codesign/desktop' -r build
+        run: pnpm --filter '!@dsr-codesign/desktop' -r build
 
       # Package the Electron app.
       # CSC_IDENTITY_AUTO_DISCOVERY=false: skip ad-hoc Mac signing prompt.
@@ -226,7 +226,7 @@ jobs:
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm --filter @open-codesign/desktop release
+        run: pnpm --filter @dsr-codesign/desktop release
 
       - name: Package desktop (mac, per-arch)
         if: runner.os == 'macOS'
@@ -234,9 +234,9 @@ jobs:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pnpm --filter @open-codesign/desktop exec electron-vite build
-          pnpm --filter @open-codesign/desktop exec bash scripts/package-macos-dmg.sh --mac dmg:arm64 --publish never
-          pnpm --filter @open-codesign/desktop exec bash scripts/package-macos-dmg.sh --mac dmg:x64 --publish never
+          pnpm --filter @dsr-codesign/desktop exec electron-vite build
+          pnpm --filter @dsr-codesign/desktop exec bash scripts/package-macos-dmg.sh --mac dmg:arm64 --publish never
+          pnpm --filter @dsr-codesign/desktop exec bash scripts/package-macos-dmg.sh --mac dmg:x64 --publish never
 
       - name: Verify macOS app architectures
         if: runner.os == 'macOS'
@@ -337,7 +337,7 @@ jobs:
           sudo lxd init --auto
 
       - name: Build workspace
-        run: pnpm --filter '!@open-codesign/desktop' -r build
+        run: pnpm --filter '!@dsr-codesign/desktop' -r build
 
       - name: Package snap
         working-directory: apps/desktop
@@ -398,7 +398,7 @@ jobs:
         with:
           path: .
           format: cyclonedx-json
-          output-file: dist/open-codesign-${{ github.event_name == 'push' && github.ref_name || inputs.tag }}-sbom.cdx.json
+          output-file: dist/dsr-codesign-${{ github.event_name == 'push' && github.ref_name || inputs.tag }}-sbom.cdx.json
           upload-artifact: false
           upload-release-assets: false
 
@@ -419,7 +419,7 @@ jobs:
           name: provenance
           path: |
             dist/SHA256SUMS.txt
-            dist/open-codesign-*-sbom.cdx.json
+            dist/dsr-codesign-*-sbom.cdx.json
           if-no-files-found: error
           retention-days: 7
 
@@ -559,7 +559,7 @@ jobs:
 
   # ------------------------------------------------------------------
   # Scoop bucket bump — publishes the generated manifest to the actual
-  # OpenCoworkAI/scoop-bucket repo users install from. Scoop consumes the
+  # DSR-AI-Lab/scoop-bucket repo users install from. Scoop consumes the
   # Windows zip artifacts for new releases, with a legacy NSIS fallback for
   # releases published before the zip target existed.
   # ------------------------------------------------------------------
@@ -603,7 +603,7 @@ jobs:
         if: steps.guard.outputs.skip == 'false'
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
-          repository: OpenCoworkAI/scoop-bucket
+          repository: DSR-AI-Lab/scoop-bucket
           path: scoop-bucket
           token: ${{ secrets.SCOOP_BUCKET_TOKEN }}
 
@@ -611,20 +611,20 @@ jobs:
         if: steps.guard.outputs.skip == 'false'
         run: |
           mkdir -p scoop-bucket/bucket
-          cp packaging/scoop/bucket/open-codesign.json scoop-bucket/bucket/open-codesign.json
+          cp packaging/scoop/bucket/dsr-codesign.json scoop-bucket/bucket/dsr-codesign.json
           cd scoop-bucket
-          if git diff --quiet bucket/open-codesign.json; then
+          if git diff --quiet bucket/dsr-codesign.json; then
             echo "::notice::Scoop bucket already up to date — no commit"
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bucket/open-codesign.json
-          git commit -m "chore: bump open-codesign to ${{ steps.ver.outputs.release_ref }}"
+          git add bucket/dsr-codesign.json
+          git commit -m "chore: bump dsr-codesign to ${{ steps.ver.outputs.release_ref }}"
           git push
 
   # ------------------------------------------------------------------
-  # Homebrew Cask bump — opens a PR against OpenCoworkAI/homebrew-tap
+  # Homebrew Cask bump — opens a PR against DSR-AI-Lab/homebrew-tap
   # with the new version + sha256 of the mac DMGs.
   # Skipped until HOMEBREW_TAP_TOKEN is set (see packaging/homebrew/README.md).
   # ------------------------------------------------------------------
@@ -662,7 +662,7 @@ jobs:
         if: steps.guard.outputs.skip == 'false'
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
-          repository: OpenCoworkAI/homebrew-tap
+          repository: DSR-AI-Lab/homebrew-tap
           path: homebrew-tap
           token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
 
@@ -670,16 +670,16 @@ jobs:
         if: steps.guard.outputs.skip == 'false'
         run: |
           mkdir -p homebrew-tap/Casks
-          cp source/packaging/homebrew/Casks/open-codesign.rb homebrew-tap/Casks/open-codesign.rb
+          cp source/packaging/homebrew/Casks/dsr-codesign.rb homebrew-tap/Casks/dsr-codesign.rb
           cd homebrew-tap
-          if git diff --quiet Casks/open-codesign.rb; then
+          if git diff --quiet Casks/dsr-codesign.rb; then
             echo "::notice::Homebrew tap already up to date — no commit"
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Casks/open-codesign.rb
-          git commit -m "open-codesign ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}"
+          git add Casks/dsr-codesign.rb
+          git commit -m "dsr-codesign ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}"
           git push
 
   # ------------------------------------------------------------------
@@ -688,7 +688,7 @@ jobs:
   # Requires initial manual submission of the manifest first.
   #
   # This uses a copyleft GitHub Action only as workflow tooling; it is not
-  # bundled, vendored, linked, or distributed with Open CoDesign.
+  # bundled, vendored, linked, or distributed with DSR CoDesign.
   # ------------------------------------------------------------------
   winget:
     name: Submit winget manifest
@@ -713,12 +713,12 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = 'SilentlyContinue'
-          Invoke-RestMethod -Uri 'https://api.github.com/repos/microsoft/winget-pkgs/contents/manifests/o/OpenCoworkAI/OpenCoDesign' -Method Get | Out-Null
+          Invoke-RestMethod -Uri 'https://api.github.com/repos/microsoft/winget-pkgs/contents/manifests/o/DSR-AI-Lab/DSRCoDesign' -Method Get | Out-Null
           if ($?) {
             "exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           } else {
             "exists=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-            Write-Output "::notice::OpenCoworkAI.OpenCoDesign is not in microsoft/winget-pkgs yet; skipping automated winget update until the initial manifest is accepted."
+            Write-Output "::notice::DSR-AI-Lab.DSRCoDesign is not in microsoft/winget-pkgs yet; skipping automated winget update until the initial manifest is accepted."
           }
 
       - name: Derive winget version
@@ -737,9 +737,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.WINGET_PAT }}
         run: |
-          if gh api "repos/microsoft/winget-pkgs/contents/manifests/o/OpenCoworkAI/OpenCoDesign/${{ steps.winget-version.outputs.version }}" >/dev/null 2>&1; then
+          if gh api "repos/microsoft/winget-pkgs/contents/manifests/o/DSR-AI-Lab/DSRCoDesign/${{ steps.winget-version.outputs.version }}" >/dev/null 2>&1; then
             echo "submit=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::OpenCoworkAI.OpenCoDesign ${{ steps.winget-version.outputs.version }} already exists in microsoft/winget-pkgs. Same-version repacks need a manual manifest update PR, so automated winget submission is skipped."
+            echo "::notice::DSR-AI-Lab.DSRCoDesign ${{ steps.winget-version.outputs.version }} already exists in microsoft/winget-pkgs. Same-version repacks need a manual manifest update PR, so automated winget submission is skipped."
           else
             echo "submit=true" >> "$GITHUB_OUTPUT"
           fi
@@ -750,8 +750,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.WINGET_PAT }}
         run: |
-          gh api repos/OpenCoworkAI/winget-pkgs >/dev/null
-          gh api repos/OpenCoworkAI/winget-pkgs/contents/manifests/o/OpenCoworkAI/OpenCoDesign >/dev/null
+          gh api repos/DSR-AI-Lab/winget-pkgs >/dev/null
+          gh api repos/DSR-AI-Lab/winget-pkgs/contents/manifests/o/DSR-AI-Lab/DSRCoDesign >/dev/null
 
       - name: Check winget token upstream access
         if: steps.guard.outputs.skip == 'false' && steps.winget-package.outputs.exists == 'true' && steps.winget-existing-version.outputs.submit == 'true'
@@ -767,13 +767,13 @@ jobs:
             exit 0
           fi
           echo "submit=false" >> "$GITHUB_OUTPUT"
-          echo "::warning::WINGET_PAT cannot query microsoft/winget-pkgs through GraphQL. Komac requires a classic GitHub PAT with public_repo scope that can read microsoft/winget-pkgs and push to OpenCoworkAI/winget-pkgs. Skipping winget submission so the release is not marked failed."
+          echo "::warning::WINGET_PAT cannot query microsoft/winget-pkgs through GraphQL. Komac requires a classic GitHub PAT with public_repo scope that can read microsoft/winget-pkgs and push to DSR-AI-Lab/winget-pkgs. Skipping winget submission so the release is not marked failed."
 
       - name: Release winget package
         if: steps.guard.outputs.skip == 'false' && steps.winget-package.outputs.exists == 'true' && steps.winget-existing-version.outputs.submit == 'true' && steps.winget-token.outputs.submit == 'true'
         uses: vedantmgoyal9/winget-releaser@4ffc7888bffd451b357355dc214d43bb9f23917e # v2
         with:
-          identifier: OpenCoworkAI.OpenCoDesign
+          identifier: DSR-AI-Lab.DSRCoDesign
           installers-regex: '-x64-setup\.exe$|-arm64-setup\.exe$'
           token: ${{ secrets.WINGET_PAT }}
-          fork-user: OpenCoworkAI
+          fork-user: DSR-AI-Lab

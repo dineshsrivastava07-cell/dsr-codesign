@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { CoreLogger } from '@open-codesign/core';
+import type { CoreLogger } from '@dsr-codesign/core';
 import { protocol } from './electron-runtime';
 import { type Database, getDesign } from './snapshots-db';
 import { normalizeWorkspacePath } from './workspace-path';

@@ -8,15 +8,15 @@ import {
   ERROR_CODES,
   parseConfigFlexible,
   toPersistedV3,
-} from '@open-codesign/shared';
+} from '@dsr-codesign/shared';
 import { parse as parseToml, stringify as stringifyToml } from 'smol-toml';
 import { getActiveStorageLocations } from './storage-settings';
 
-const XDG_DEFAULT = join(homedir(), '.config', 'open-codesign');
+const XDG_DEFAULT = join(homedir(), '.config', 'dsr-codesign');
 
 export function defaultConfigDir(): string {
   const xdg = process.env['XDG_CONFIG_HOME'];
-  if (xdg && xdg.length > 0) return join(xdg, 'open-codesign');
+  if (xdg && xdg.length > 0) return join(xdg, 'dsr-codesign');
   return XDG_DEFAULT;
 }
 

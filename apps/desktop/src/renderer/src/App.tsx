@@ -1,4 +1,4 @@
-import { useT } from '@open-codesign/i18n';
+import { useT } from '@dsr-codesign/i18n';
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { CommentsPanel } from './components/comment/CommentsPanel';
 import { DeleteDesignDialog } from './components/DeleteDesignDialog';

@@ -16,7 +16,7 @@ import {
 // discovery so CI runs stay green without Chrome installed.
 async function canRunChrome(): Promise<boolean> {
   try {
-    const { findSystemChrome } = await import('@open-codesign/exporters');
+    const { findSystemChrome } = await import('@dsr-codesign/exporters');
     await findSystemChrome();
     return true;
   } catch {
