@@ -103,7 +103,6 @@ export async function runAddProvider(raw: unknown): Promise<ProviderRow[]> {
   await runSetProviderAndModels({
     ...input,
     setAsActive: defaults.activeProvider === input.provider,
-    modelPrimary: defaults.modelPrimary,
   });
   return toProviderRows(getCachedConfig(), decryptSecret);
 }
