@@ -198,7 +198,7 @@ describe('codex-oauth:v1:login', () => {
     expect(writeConfigMock).toHaveBeenCalledTimes(2);
     expect(fakeCachedConfig?.providers['chatgpt-codex']).toMatchObject({
       id: 'chatgpt-codex',
-      name: 'ChatGPT 订阅',
+      name: 'ChatGPT Subscription',
       wire: 'openai-codex-responses',
       baseUrl: 'https://chatgpt.com/backend-api',
       defaultModel: 'gpt-5.5',
@@ -316,7 +316,7 @@ describe('codex-oauth:v1:login', () => {
 
     await register();
     await expect(handlers.get('codex-oauth:v1:login')?.()).rejects.toThrow(
-      'Codex 登录成功但无法读取 ChatGPT 账户 ID，请重试登录。',
+      'Codex login succeeded but could not read ChatGPT account ID — please try signing in again.',
     );
     expect(closeMock).toHaveBeenCalledTimes(1);
     expect(writeConfigMock).not.toHaveBeenCalled();
@@ -372,7 +372,7 @@ describe('codex-oauth:v1:logout', () => {
       providers: {
         'chatgpt-codex': {
           id: 'chatgpt-codex',
-          name: 'ChatGPT 订阅',
+          name: 'ChatGPT Subscription',
           builtin: false,
           wire: 'openai-responses',
           baseUrl: 'https://chatgpt.com/backend-api/codex',
@@ -412,7 +412,7 @@ describe('migrateStaleCodexEntryIfNeeded', () => {
       providers: {
         'chatgpt-codex': {
           id: 'chatgpt-codex',
-          name: 'ChatGPT 订阅',
+          name: 'ChatGPT Subscription',
           builtin: false,
           // Older stale shape from before the ChatGPT Codex wire moved.
           wire: 'openai-responses',
@@ -444,7 +444,7 @@ describe('migrateStaleCodexEntryIfNeeded', () => {
       providers: {
         'chatgpt-codex': {
           id: 'chatgpt-codex',
-          name: 'ChatGPT 订阅',
+          name: 'ChatGPT Subscription',
           builtin: false,
           wire: 'openai-codex-responses',
           baseUrl: 'https://chatgpt.com/backend-api',

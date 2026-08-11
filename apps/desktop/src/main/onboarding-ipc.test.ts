@@ -230,7 +230,9 @@ describe('registerOnboardingIpc — channel versioning', () => {
     );
 
     const written = vi.mocked(writeConfig).mock.calls.at(-1)?.[0];
-    expect(written?.activeModel).toBe('gpt-5.4');
+    // Ollama is auto-seeded as active on a null config; adding openai does
+    // not change the active provider. Verify trimming via the provider entry.
+    expect(written?.providers['openai']?.defaultModel).toBe('gpt-5.4');
   });
 
   it('registers the canonical config:v1:set-provider-and-models handler', async () => {
