@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_TIMEOUT_SEC="${CODESIGN_DMG_BUILD_TIMEOUT_SEC:-900}"
 BUILD_RETRIES="${CODESIGN_DMG_BUILD_RETRIES:-2}"
 
-cleanup_open_codesign_volumes() {
+cleanup_dsr_codesign_volumes() {
   while IFS= read -r device; do
     [ -n "$device" ] || continue
     hdiutil detach -force "$device" >/dev/null 2>&1 || true
@@ -35,7 +35,7 @@ run_once() {
       echo "::warning::macOS DMG build timed out after ${BUILD_TIMEOUT_SEC}s; cleaning up mounted images"
       kill_tree "$pid"
       sleep 2
-      cleanup_open_codesign_volumes
+      cleanup_dsr_codesign_volumes
       wait "$pid" 2>/dev/null || true
       return 124
     fi
@@ -47,12 +47,12 @@ run_once() {
 
 attempt=1
 while [ "$attempt" -le "$BUILD_RETRIES" ]; do
-  cleanup_open_codesign_volumes
+  cleanup_dsr_codesign_volumes
   if run_once "$@"; then
     exit 0
   fi
   status="$?"
-  cleanup_open_codesign_volumes
+  cleanup_dsr_codesign_volumes
   if [ "$attempt" -ge "$BUILD_RETRIES" ]; then
     exit "$status"
   fi

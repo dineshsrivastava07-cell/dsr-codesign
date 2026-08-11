@@ -18,6 +18,7 @@
       "!**/packaging",
       "!**/.github/scripts",
       "!apps/desktop/resources/templates",
+      "!launcher",
       "!**/*.vue"
     ]
   },

@@ -34,6 +34,7 @@ import type {
   ModelsListResponse,
   TestEndpointResponse,
 } from '../main/connection-ipc';
+import type { GoogleOAuthStatus } from '../main/google-oauth-ipc';
 import type { ImageGenerationSettingsView } from '../main/image-generation-settings';
 
 export type {
@@ -42,6 +43,7 @@ export type {
   ConnectionTestError,
   ConnectionTestResult,
   ExternalConfigsDetection,
+  GoogleOAuthStatus,
   ImageGenerationSettingsView,
   ModelsListResponse,
   PreviewMode,
@@ -604,6 +606,12 @@ const api = {
     login: () => ipcRenderer.invoke('codex-oauth:v1:login') as Promise<CodexOAuthStatus>,
     cancelLogin: () => ipcRenderer.invoke('codex-oauth:v1:cancel-login') as Promise<boolean>,
     logout: () => ipcRenderer.invoke('codex-oauth:v1:logout') as Promise<CodexOAuthStatus>,
+  },
+  googleOAuth: {
+    status: () => ipcRenderer.invoke('google-oauth:v1:status') as Promise<GoogleOAuthStatus>,
+    login: () => ipcRenderer.invoke('google-oauth:v1:login') as Promise<GoogleOAuthStatus>,
+    cancelLogin: () => ipcRenderer.invoke('google-oauth:v1:cancel-login') as Promise<boolean>,
+    logout: () => ipcRenderer.invoke('google-oauth:v1:logout') as Promise<GoogleOAuthStatus>,
   },
   connection: {
     test: (input: { provider: SupportedOnboardingProvider; apiKey: string; baseUrl: string }) =>

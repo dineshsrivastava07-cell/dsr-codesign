@@ -1,6 +1,6 @@
 # DSR CoDesign — Architecture
 
-> Local-first AI design tool. Prompts in → polished artifacts out. Powered by Ollama + Gemma 4 running on your hardware.
+> Local-first AI design tool by DSR AI Lab. Prompts in → polished artifacts out. Powered by Ollama + Gemma 4 running on your hardware by default.
 
 ---
 
@@ -14,15 +14,15 @@ dsr-codesign/
 │       └── src/renderer/      # React 19 UI — views, store, components
 ├── packages/
 │   ├── core/                  # Generation orchestration (prompt → artifact pipeline)
-│   ├── providers/             # LLM provider adapters (Ollama, OpenAI-compat, Codex OAuth)
+│   ├── providers/             # LLM provider adapters (Ollama, OpenAI-compat, Google OAuth)
 │   ├── runtime/               # Sandboxed iframe renderer (esbuild-wasm + import maps)
 │   ├── ui/                    # Shared design system (Radix UI + Tailwind v4 tokens)
 │   ├── artifacts/             # Artifact schema (HTML / React / SVG / PPTX)
 │   ├── exporters/             # PDF / PPTX / ZIP exporters (lazy-loaded)
 │   ├── templates/             # Built-in demo prompts and example gallery
 │   ├── shared/                # Zod schemas, types, config constants
-│   └── i18n/                  # Localization (en, es, pt-BR)
-└── docs/                      # Vision, roadmap, RFCs (internal, gitignored)
+│   └── i18n/                  # Localization (en)
+└── website/                   # VitePress docs site (dsrailab.github.io/dsr-codesign)
 ```
 
 ---
@@ -56,7 +56,7 @@ dsr-codesign/
 │                              │  │  Providers Package  │  │  │
 │                              │  │  · Ollama adapter  │  │  │
 │                              │  │  · OpenAI-compat   │  │  │
-│                              │  │  · Codex OAuth     │  │  │
+│                              │  │  · Google OAuth    │  │  │
 │                              │  └────────┬───────────┘  │  │
 │                              │           │               │  │
 │                              │  ┌────────▼───────────┐  │  │
@@ -70,12 +70,12 @@ dsr-codesign/
                     ┌───────────────────┼───────────────────┐
                     ▼                   ▼                   ▼
           ┌──────────────┐   ┌──────────────────┐  ┌──────────────┐
-          │ Ollama Local │   │ OpenAI-compatible│  │  Codex API   │
-          │ localhost:   │   │ relay / cloud    │  │  (ChatGPT    │
-          │ 11434/v1     │   │ (Anthropic,      │  │  subscription│
-          │              │   │  Gemini, etc.)   │  │  OAuth)      │
+          │ Ollama Local │   │ OpenAI-compatible│  │ Google Gemini│
+          │ localhost:   │   │ relay / cloud    │  │ OAuth 2.0    │
+          │ 11434/v1     │   │ (OpenAI, Anthropic│ │ (no key      │
+          │              │   │  DeepSeek, etc.) │  │  required)   │
           │ gemma4:26b   │   └──────────────────┘  └──────────────┘
-          │ gemma4:e4b   │
+          │ (default)    │
           └──────────────┘
 ```
 
@@ -156,23 +156,22 @@ User types prompt
 ```
 Settings → Provider selection
                 │
-    ┌───────────┼───────────────┐
-    ▼           ▼               ▼
- Ollama      API Key         ChatGPT
- (local)    (cloud)         (OAuth)
-    │           │               │
-    │    ┌──────┴──────┐        │
-    │    │ Anthropic   │        │
-    │    │ OpenAI      │        │
-    │    │ Gemini      │        │
-    │    │ DeepSeek    │   Codex OAuth PKCE flow
-    │    │ OpenRouter  │   localhost callback server
-    │    │ SiliconFlow │   (auto port-fallback if
-    │    │ Custom relay│    1455 is busy)
-    │    └──────┬──────┘        │
-    │           │               │
-    └─────┬─────┘               │
-          │◄────────────────────┘
+    ┌───────────┼───────────────────┐
+    ▼           ▼                   ▼
+ Ollama    Google Gemini         API Key
+ (local,    (OAuth 2.0           (cloud)
+ default)    PKCE flow)             │
+    │           │               ┌───┴──────────┐
+    │           │               │ OpenAI       │
+    │           │               │ Anthropic    │
+    │           │               │ DeepSeek     │
+    │           │               │ OpenRouter   │
+    │           │               │ SiliconFlow  │
+    │           │               │ Custom relay │
+    │           │               └───┬──────────┘
+    │           │                   │
+    └─────┬─────┘                   │
+          │◄────────────────────────┘
           ▼
   @mariozechner/pi-ai
   OpenAI-compatible wire
@@ -182,24 +181,31 @@ Settings → Provider selection
    Core Orchestrator
 ```
 
+### Fresh-install default
+
+On first launch with no existing config, `loadConfigOnBoot` auto-seeds **Ollama** (`gemma4:26b` at `http://localhost:11434/v1`) as the active provider. No sign-in or API key required. The user can switch to any provider in Settings → Models at any time.
+
 ---
 
 ## Data Storage
 
 ```
 ~/.config/dsr-codesign/
-├── config.toml          # Provider keys, model selection (mode 0600)
-├── preferences.json     # UI preferences (theme, locale)
-└── locale.json          # Last-used locale
+├── config.toml              # Provider keys, model selection (mode 0600)
+├── google-auth.json         # Google OAuth tokens (Gemini sign-in)
+├── preferences.json         # UI preferences (theme, locale)
+└── locale.json              # Last-used locale
 
 ~/Library/Application Support/@dsr-codesign/desktop/
-└── design-store.json    # All designs + snapshots + diagnostic events
-                         # Schema-versioned JSON (no SQLite)
+├── design-store.json        # All designs + snapshots + diagnostic events
+│                            # Schema-versioned JSON (no SQLite)
+└── memory/
+    └── user.md              # Long-term user memory (auto-updated by agent)
 
 ~/Documents/CoDesign/<design-name>/   # Default workspace root
-├── DESIGN.md            # Brand tokens + design-system decisions
-├── index.html           # Generated artifact(s)
-└── ui_kits/             # Decompose-to-UI-Kit output
+├── DESIGN.md                # Brand tokens + design-system decisions
+├── index.html               # Generated artifact(s)
+└── ui_kits/                 # Decompose-to-UI-Kit output
     └── <slug>/
         ├── index.html
         ├── components/
@@ -240,10 +246,11 @@ package build; only changed packages rebuild on `pnpm build`.
 | Desktop runtime | Electron | Full Node.js API access for file I/O, OAuth callbacks, local model comms |
 | LLM wire | OpenAI `/v1/chat/completions` | Works with Ollama, Anthropic relay, OpenAI, Gemini, all in one interface |
 | Default model | `gemma4:26b` via Ollama | Local-first, no API key required, runs on Apple Silicon |
+| Default provider seed | Auto-write `config.toml` on first boot | Eliminates onboarding friction — Ollama works immediately |
+| Google auth | OAuth 2.0 PKCE + localhost callback | No API key to paste; follows gh CLI / Codex pattern |
 | State format | JSON file (`design-store.json`) | Human-readable, no SQLite dependency, schema-versioned |
 | Sandbox | Electron iframe `srcdoc` | Process isolation without extra Node process; esbuild-wasm transforms JSX locally |
-| Auth | OAuth 2.0 PKCE + localhost callback | Follows Codex/gh CLI pattern; port auto-fallback handles Docker conflicts |
-| i18n | i18next | EN / ES / PT-BR; zh-CN removed in DSR fork |
+| i18n | i18next | English-only UI (EN) |
 | Packaging | electron-builder | DMG, NSIS, AppImage, deb, rpm from single config |
 
 ---
@@ -258,7 +265,8 @@ package build; only changed packages rebuild on `pnpm build`.
 | State | Zustand |
 | Components | Radix UI primitives |
 | LLM abstraction | `@mariozechner/pi-ai` |
-| Local inference | Ollama (`gemma4:26b`, `gemma4:e4b`) |
+| Local inference | Ollama (`gemma4:26b` default, any pulled model supported) |
+| Cloud inference | Google Gemini (OAuth), OpenAI, Anthropic, OpenRouter, and more |
 | Monorepo | pnpm workspaces + Turborepo |
 | Lint / format | Biome |
 | Tests | Vitest (unit) + Playwright (E2E) |

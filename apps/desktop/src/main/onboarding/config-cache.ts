@@ -1,4 +1,5 @@
 import {
+  BUILTIN_PROVIDERS,
   CodesignError,
   type Config,
   ERROR_CODES,
@@ -21,7 +22,24 @@ export async function loadConfigOnBoot(): Promise<void> {
   const parsed = await readConfig();
   configLoaded = true;
   if (parsed === null) {
-    cachedConfig = null;
+    // Fresh install — seed Ollama (keyless, local) as the default provider
+    // so the user can start immediately without manual onboarding.
+    const defaultConfig: Config = hydrateConfig({
+      version: 3,
+      activeProvider: 'ollama',
+      activeModel: BUILTIN_PROVIDERS.ollama.defaultModel,
+      secrets: {},
+      providers: { ollama: { ...BUILTIN_PROVIDERS.ollama } },
+    });
+    try {
+      await writeConfig(defaultConfig);
+      cachedConfig = defaultConfig;
+    } catch (err) {
+      logger.warn('boot.seed_default_provider.write_failed', {
+        err: err instanceof Error ? err.message : String(err),
+      });
+      cachedConfig = null;
+    }
     return;
   }
   // Boot-time migration: rewrite any legacy safeStorage-encrypted secrets

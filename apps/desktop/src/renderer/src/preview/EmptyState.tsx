@@ -1,6 +1,6 @@
 import { useT } from '@dsr-codesign/i18n';
 import { ArrowUpRight } from 'lucide-react';
-import logoWithText from '../assets/logo-with-text.png';
+import logoWithText from '../assets/logo-with-text.svg';
 
 export interface EmptyStateProps {
   onPickStarter: (prompt: string) => void;

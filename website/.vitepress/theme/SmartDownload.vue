@@ -130,38 +130,38 @@ const secondaryAssets = () => {
   <div class="smart-download">
     <div v-if="primary" class="primary-row">
       <a :href="primary.url" class="primary-button" :download="primary.file">
-        <span class="primary-label">下载 · {{ primary.label }}</span>
+        <span class="primary-label">Download · {{ primary.label }}</span>
         <span class="primary-meta">{{ primary.file }} · {{ primary.size }}</span>
       </a>
       <p class="detected-note">{{ detectedLabel }} · v{{ latestVersion }}</p>
 
-      <div v-if="isMac" class="macos-gatekeeper" role="note" aria-label="macOS 安装步骤">
+      <div v-if="isMac" class="macos-gatekeeper" role="note" aria-label="macOS installation steps">
         <div class="macos-gatekeeper-header">
           <span class="macos-gatekeeper-icon" aria-hidden="true">⚠️</span>
-          <strong>打不开 / "damaged, move to Trash"?</strong>
+          <strong>Can't open / "damaged, move to Trash"?</strong>
         </div>
         <ol class="macos-gatekeeper-steps">
-          <li>把 <b>DSR CoDesign</b> 拖到 <b>/Applications</b></li>
-          <li>Sequoia 15+ 会拦下首次启动。终端跑一次下面这行，然后双击就能开：</li>
+          <li>Drag <b>DSR CoDesign</b> to <b>/Applications</b></li>
+          <li>Sequoia 15+ blocks the first launch. Run this once in Terminal, then double-click:</li>
         </ol>
         <button
           type="button"
           class="macos-gatekeeper-cmd"
           @click="copyXattr"
-          :aria-label="copied ? 'Copied' : '点击复制命令'"
+          :aria-label="copied ? 'Copied' : 'Click to copy command'"
         >
           <code>{{ xattrCmd }}</code>
-          <span class="macos-gatekeeper-copy">{{ copied ? '✓ 已复制' : '复制 / Copy' }}</span>
+          <span class="macos-gatekeeper-copy">{{ copied ? '✓ Copied' : 'Copy' }}</span>
         </button>
         <p class="macos-gatekeeper-foot">
-          当前安装包还未签名 / notarized，代码签名在 Stage 2 路线图中。<br/>
-          0.1.2 及更早 build 路径是 <code>/Applications/dsr-codesign.app</code>。
+          The installer is not yet notarized — code signing is on the Stage 2 roadmap.<br/>
+          Builds 0.1.2 and earlier use path <code>/Applications/dsr-codesign.app</code>.
         </p>
       </div>
     </div>
 
     <details class="other-platforms">
-      <summary>其他平台 / Other platforms</summary>
+      <summary>Other platforms</summary>
       <ul>
         <li v-for="asset in secondaryAssets()" :key="asset.file">
           <a :href="asset.url" :download="asset.file">
@@ -171,16 +171,16 @@ const secondaryAssets = () => {
         </li>
         <li class="releases-link">
           <a href="https://github.com/DSR-AI-Lab/dsr-codesign/releases">
-            所有版本 / All releases on GitHub →
+            All releases on GitHub →
           </a>
         </li>
       </ul>
     </details>
 
     <div v-if="!isMac" class="other-install-hint">
-      <strong>macOS 用户</strong>：下载 <code>.dmg</code> 后，Sequoia 15+ 装完需要跑一次
-      <code>xattr -cr "/Applications/DSR CoDesign.app"</code> 才能双击打开。<br/>
-      <strong>Windows</strong>：SmartScreen → 更多信息 → 仍要运行。
+      <strong>macOS users</strong>: After installing from <code>.dmg</code>, Sequoia 15+ blocks the first launch — run
+      <code>xattr -cr "/Applications/DSR CoDesign.app"</code> once in Terminal, then double-click.<br/>
+      <strong>Windows</strong>: SmartScreen → More info → Run anyway.
     </div>
   </div>
 </template>

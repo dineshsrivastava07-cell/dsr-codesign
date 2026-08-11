@@ -50,6 +50,12 @@ export type WireApi = z.infer<typeof WireApiSchema>;
  */
 export const CHATGPT_CODEX_PROVIDER_ID = 'chatgpt-codex';
 
+/**
+ * Well-known provider id for the Google OAuth (Sign in with Google) path.
+ * Mirrors CHATGPT_CODEX_PROVIDER_ID so the same pattern works for Gemini.
+ */
+export const GOOGLE_GEMINI_PROVIDER_ID = 'google-gemini-oauth';
+
 // ── Secrets & StoredDesignSystem ─────────────────────────────────────────────
 
 export const SecretRef = z

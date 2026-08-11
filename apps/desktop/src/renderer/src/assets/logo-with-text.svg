@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" role="img" aria-label="DSR AI Lab">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="24" x2="472" y2="488" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D5BF0"/><stop offset="0.52" stop-color="#4F63E8"/><stop offset="1" stop-color="#1FC7E6"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="256" y1="280" x2="256" y2="366" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8CF3FF" stop-opacity="0.30"/><stop offset="1" stop-color="#8CF3FF" stop-opacity="0.10"/>
+    </linearGradient>
+  </defs>
+  <!-- icon 168px -->
+  <g transform="translate(16 16) scale(0.328)">
+    <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+    <path d="M234,214 L188,330 Q184,342 196,342 L316,342 Q328,342 324,330 L278,214 Z" fill="url(#liquid)"/>
+    <g fill="none" stroke="#fff" stroke-width="19" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M226,150 L286,150"/>
+      <path d="M234,152 L234,214 L176,352 Q170,362 182,362 L330,362 Q342,362 336,352 L278,214 L278,152"/>
+    </g>
+    <g stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-opacity="0.9">
+      <path d="M214,300 L300,300"/><path d="M256,258 L214,300"/><path d="M256,258 L300,300"/>
+      <path d="M214,300 L236,336"/><path d="M300,300 L280,336"/><path d="M236,336 L280,336"/>
+    </g>
+    <circle cx="256" cy="256" r="15" fill="#fff"/>
+    <circle cx="214" cy="300" r="17" fill="#8CF3FF"/><circle cx="300" cy="300" r="17" fill="#8CF3FF"/>
+    <circle cx="236" cy="336" r="8.5" fill="#fff"/><circle cx="280" cy="336" r="8.5" fill="#fff"/>
+  </g>
+  <!-- wordmark -->
+  <text x="210" y="118" font-family="'Inter','SF Pro Display','Segoe UI',system-ui,-apple-system,sans-serif" font-size="76" font-weight="800" letter-spacing="-1.5" fill="#0F172A">DSR<tspan fill="#5B4FE9"> AI</tspan><tspan font-weight="600" letter-spacing="3" fill="#64748B"> LAB</tspan></text>
+  <text x="212" y="156" font-family="'Inter','SF Pro Display','Segoe UI',system-ui,-apple-system,sans-serif" font-size="20.5" font-weight="600" letter-spacing="5.5" fill="#94A3B8">LOCAL-FIRST AI RESEARCH</text>
+</svg>

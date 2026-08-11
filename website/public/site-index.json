@@ -3,7 +3,7 @@
     "name": "DSR CoDesign",
     "url": "https://dsrailab.github.io/dsr-codesign/",
     "language_default": "en-US",
-    "languages": ["en-US", "zh-CN"],
+    "languages": ["en-US"],
     "sitemap": "https://dsrailab.github.io/dsr-codesign/sitemap.xml",
     "llms": "https://dsrailab.github.io/dsr-codesign/llms.txt",
     "llms_full": "https://dsrailab.github.io/dsr-codesign/llms-full.txt",
@@ -92,38 +92,6 @@
       "type": "comparison",
       "title": "DSR CoDesign vs Figma AI",
       "description": "Comparison of DSR CoDesign and Figma AI."
-    },
-    {
-      "url": "https://dsrailab.github.io/dsr-codesign/zh/",
-      "source_path": "website/zh/index.md",
-      "language": "zh-CN",
-      "type": "home",
-      "title": "DSR CoDesign",
-      "description": "开源桌面 AI 设计工具，支持自带模型密钥、本地优先存储和 MIT 协议。"
-    },
-    {
-      "url": "https://dsrailab.github.io/dsr-codesign/zh/quickstart",
-      "source_path": "website/zh/quickstart.md",
-      "language": "zh-CN",
-      "type": "documentation",
-      "title": "快速开始",
-      "description": "安装 DSR CoDesign 并生成第一个 AI 设计原型。"
-    },
-    {
-      "url": "https://dsrailab.github.io/dsr-codesign/zh/faq",
-      "source_path": "website/zh/faq.md",
-      "language": "zh-CN",
-      "type": "faq",
-      "title": "常见问题",
-      "description": "DSR CoDesign 常见问题。"
-    },
-    {
-      "url": "https://dsrailab.github.io/dsr-codesign/zh/claude-design-alternative",
-      "source_path": "website/zh/claude-design-alternative.md",
-      "language": "zh-CN",
-      "type": "comparison",
-      "title": "DSR CoDesign vs Claude Design",
-      "description": "DSR CoDesign 与 Anthropic Claude Design 的对比。"
     }
   ]
 }

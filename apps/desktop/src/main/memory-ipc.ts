@@ -26,6 +26,7 @@ import {
 } from '@dsr-codesign/core';
 import { getCodexTokenStore } from './codex-oauth-ipc';
 import { app, ipcMain, shell } from './electron-runtime';
+import { getGoogleTokenStore } from './google-oauth-ipc';
 import { getLogger } from './logger';
 import { getApiKeyForProvider, getCachedConfig, hasApiKeyForProvider } from './onboarding-ipc';
 import { resolveActiveModel } from './provider-settings';
@@ -394,6 +395,7 @@ async function resolveUserMemoryConsolidationOptions(
   });
   const apiKey = await resolveCredentialForProvider(active.model.provider, active.allowKeyless, {
     getCodexAccessToken: () => getCodexTokenStore().getValidAccessToken(),
+    getGoogleAccessToken: () => getGoogleTokenStore().getValidAccessToken(),
     getApiKeyForProvider,
     hasApiKeyForProvider,
   });

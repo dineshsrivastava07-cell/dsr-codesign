@@ -60,10 +60,6 @@ Pick **DSR CoDesign** if you want BYOK cost control, any model beyond Claude, on
 
 Both are reasonable answers. Use what fits.
 
-## Is DSR CoDesign a fork of Claude Design?
-
-No. DSR CoDesign is an independent, clean-room open-source project built by DSR-AI-Lab. It shares no code with Anthropic's Claude Design. The name "Claude Design" belongs to Anthropic; DSR CoDesign is an independent alternative, not affiliated with Anthropic.
-
 ## Install DSR CoDesign
 
 - [Pre-built installer](https://github.com/DSR-AI-Lab/dsr-codesign/releases) — macOS DMG, Windows EXE, Linux AppImage

@@ -382,10 +382,10 @@ export function ensureBotSignature(body) {
   if (!trimmed) {
     throw new Error('Model returned an empty body.');
   }
-  if (trimmed.includes('*Open-CoDesign Bot*')) {
+  if (trimmed.includes('*DSR-CoDesign Bot*')) {
     return trimmed;
   }
-  return `${trimmed}\n\n*Open-CoDesign Bot*`;
+  return `${trimmed}\n\n*DSR-CoDesign Bot*`;
 }
 
 export function writeTempJson(prefix, value) {

@@ -244,7 +244,7 @@ export type IframeErrorEvent = z.infer<typeof IframeErrorEvent>;
 
 export const BRAND = {
   appName: 'DSR CoDesign',
-  backgroundColor: '#faf8f3',
+  backgroundColor: '#ffffff',
 } as const;
 
 export const PROJECT_SCHEMA_VERSION = 1 as const;
@@ -310,6 +310,7 @@ export {
   ConfigV3Schema,
   defaultProviderCapabilities,
   detectWireFromBaseUrl,
+  GOOGLE_GEMINI_PROVIDER_ID,
   hydrateConfig,
   IMAGE_GENERATION_SCHEMA_VERSION,
   ImageGenerationCredentialModeSchema,

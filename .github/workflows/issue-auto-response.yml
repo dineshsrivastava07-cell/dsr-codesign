@@ -33,7 +33,7 @@ jobs:
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
-            const marker = "*Open-CoDesign Bot*";
+            const marker = "*DSR-CoDesign Bot*";
             const allowedLogins = (process.env.BOT_LOGINS || "github-actions[bot]")
               .split(",").map((v) => v.trim()).filter(Boolean);
             const comments = await github.paginate(

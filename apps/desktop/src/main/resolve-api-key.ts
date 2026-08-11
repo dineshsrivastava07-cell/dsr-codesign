@@ -1,4 +1,9 @@
-import { CHATGPT_CODEX_PROVIDER_ID, CodesignError, ERROR_CODES } from '@dsr-codesign/shared';
+import {
+  CHATGPT_CODEX_PROVIDER_ID,
+  CodesignError,
+  ERROR_CODES,
+  GOOGLE_GEMINI_PROVIDER_ID,
+} from '@dsr-codesign/shared';
 
 /**
  * Abstract dependencies of `resolveActiveApiKey` so unit tests can stub the
@@ -8,6 +13,8 @@ import { CHATGPT_CODEX_PROVIDER_ID, CodesignError, ERROR_CODES } from '@dsr-code
 export interface ResolveActiveApiKeyDeps {
   /** Returns a fresh ChatGPT OAuth bearer token. Throws when not signed in. */
   getCodexAccessToken: () => Promise<string>;
+  /** Returns a fresh Google OAuth bearer token. Throws when not signed in. */
+  getGoogleAccessToken: () => Promise<string>;
   /** Returns the stored API key for the given provider. Throws when missing. */
   getApiKeyForProvider: (providerId: string) => string;
 }
@@ -45,6 +52,17 @@ export async function resolveActiveApiKey(
       );
     }
   }
+  if (providerId === GOOGLE_GEMINI_PROVIDER_ID) {
+    try {
+      return await deps.getGoogleAccessToken();
+    } catch (err) {
+      throw new CodesignError(
+        err instanceof Error ? err.message : 'Google account not signed in',
+        ERROR_CODES.PROVIDER_AUTH_MISSING,
+        { cause: err },
+      );
+    }
+  }
   try {
     return deps.getApiKeyForProvider(providerId);
   } catch (err) {
@@ -73,6 +91,7 @@ export async function resolveCredentialForProvider(
   if (
     allowKeyless &&
     providerId !== CHATGPT_CODEX_PROVIDER_ID &&
+    providerId !== GOOGLE_GEMINI_PROVIDER_ID &&
     !deps.hasApiKeyForProvider(providerId)
   ) {
     return '';

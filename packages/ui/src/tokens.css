@@ -1,43 +1,43 @@
 /**
  * Design tokens for dsr-codesign.
- * Anthropic Claude Design aesthetic: warm cream surfaces, serif display type,
- * terracotta accent, editorial warmth meets technical precision.
+ * DSR AI Lab brand: clean white surfaces, sans-serif type,
+ * DSR blue accent, professional clarity meets AI precision.
  * All values are CSS custom properties — never hardcode.
  */
 
 :root {
-  /* Surface — warm cream (Anthropic signature) */
-  --color-background: oklch(0.98 0.012 80); /* #FAF7F3 cream */
-  --color-background-secondary: oklch(0.96 0.015 75);
-  --color-surface: oklch(0.99 0.008 80);
-  --color-surface-hover: oklch(0.96 0.015 75);
-  --color-surface-active: oklch(0.94 0.018 72);
-  --color-surface-muted: oklch(0.96 0.015 75);
+  /* Surface — crisp white (DSR AI Lab brand) */
+  --color-background: #ffffff; /* pure white */
+  --color-background-secondary: oklch(0.97 0.008 240); /* #F4F7FF soft blue-white */
+  --color-surface: #ffffff;
+  --color-surface-hover: oklch(0.96 0.008 240);
+  --color-surface-active: oklch(0.93 0.012 240);
+  --color-surface-muted: oklch(0.96 0.008 240);
   /* alias used by some components */
-  --color-surface-elevated: oklch(0.99 0.008 80);
+  --color-surface-elevated: #ffffff;
   /* Artifact iframe background — user-generated content defaults to white in
      both themes; artifacts ship their own styles and should not inherit app theme. */
   --color-artifact-bg: #ffffff;
 
   /* Border */
-  --color-border: oklch(0.88 0.012 70);
-  --color-border-muted: oklch(0.91 0.01 72);
-  --color-border-subtle: oklch(0.94 0.008 74);
-  --color-border-strong: oklch(0.78 0.015 65);
+  --color-border: oklch(0.88 0.008 240); /* cool blue-grey */
+  --color-border-muted: oklch(0.91 0.006 240);
+  --color-border-subtle: oklch(0.94 0.004 240);
+  --color-border-strong: oklch(0.8 0.012 240);
 
-  /* Accent — warm Anthropic terracotta */
-  --color-accent: oklch(0.62 0.16 35); /* ~ #C76D54 */
-  --color-accent-hover: oklch(0.56 0.18 35);
-  --color-accent-muted: oklch(0.91 0.04 40);
-  --color-accent-soft: oklch(0.95 0.02 40 / 0.5);
-  --color-accent-tint: color-mix(in srgb, var(--color-accent) 4%, var(--color-surface));
-  --color-focus-ring: oklch(0.62 0.16 35 / 0.3);
-  --color-on-accent: oklch(0.99 0 0);
+  /* Accent — DSR blue #1E6FFF */
+  --color-accent: oklch(0.54 0.21 255); /* #1E6FFF */
+  --color-accent-hover: oklch(0.48 0.23 255); /* #155CCE */
+  --color-accent-muted: oklch(0.93 0.04 240);
+  --color-accent-soft: oklch(0.54 0.21 255 / 0.1);
+  --color-accent-tint: color-mix(in srgb, var(--color-accent) 5%, var(--color-surface));
+  --color-focus-ring: oklch(0.54 0.21 255 / 0.3);
+  --color-on-accent: #ffffff;
 
   /* Text */
-  --color-text-primary: oklch(0.22 0.025 50); /* warm dark brown */
-  --color-text-secondary: oklch(0.5 0.02 55);
-  --color-text-muted: oklch(0.65 0.015 58);
+  --color-text-primary: oklch(0.15 0.015 240); /* deep navy */
+  --color-text-secondary: oklch(0.45 0.015 240); /* slate */
+  --color-text-muted: oklch(0.6 0.012 240); /* light slate */
 
   /* Semantic */
   --color-success: #4f7a52;
@@ -217,32 +217,32 @@ pre,
 }
 
 .dark {
-  /* Warm dark — not blue-black */
-  --color-background: oklch(0.18 0.015 50);
-  --color-background-secondary: oklch(0.22 0.015 50);
-  --color-surface: oklch(0.22 0.015 50);
-  --color-surface-hover: oklch(0.26 0.018 50);
-  --color-surface-active: oklch(0.29 0.018 50);
-  --color-surface-muted: oklch(0.22 0.015 50);
-  --color-surface-elevated: oklch(0.26 0.018 50);
+  /* Deep blue-navy dark mode */
+  --color-background: oklch(0.14 0.02 255);
+  --color-background-secondary: oklch(0.18 0.02 255);
+  --color-surface: oklch(0.18 0.02 255);
+  --color-surface-hover: oklch(0.22 0.022 255);
+  --color-surface-active: oklch(0.25 0.022 255);
+  --color-surface-muted: oklch(0.18 0.02 255);
+  --color-surface-elevated: oklch(0.22 0.022 255);
   --color-artifact-bg: #ffffff;
 
-  --color-border: oklch(0.3 0.012 50);
-  --color-border-muted: oklch(0.27 0.01 50);
-  --color-border-subtle: oklch(0.24 0.01 50);
-  --color-border-strong: oklch(0.4 0.015 55);
+  --color-border: oklch(0.28 0.016 255);
+  --color-border-muted: oklch(0.24 0.014 255);
+  --color-border-subtle: oklch(0.21 0.012 255);
+  --color-border-strong: oklch(0.36 0.02 255);
 
-  --color-accent: oklch(0.68 0.16 35);
-  --color-accent-hover: oklch(0.74 0.16 35);
-  --color-accent-muted: oklch(0.28 0.06 35);
-  --color-accent-soft: oklch(0.68 0.16 35 / 0.12);
-  --color-accent-tint: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
-  --color-focus-ring: oklch(0.68 0.16 35 / 0.35);
-  --color-on-accent: oklch(0.18 0.015 50);
+  --color-accent: oklch(0.65 0.2 255); /* lighter DSR blue for dark */
+  --color-accent-hover: oklch(0.72 0.2 255);
+  --color-accent-muted: oklch(0.24 0.07 255);
+  --color-accent-soft: oklch(0.65 0.2 255 / 0.15);
+  --color-accent-tint: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
+  --color-focus-ring: oklch(0.65 0.2 255 / 0.4);
+  --color-on-accent: #ffffff;
 
-  --color-text-primary: oklch(0.95 0.01 70); /* warm off-white */
-  --color-text-secondary: oklch(0.7 0.015 60);
-  --color-text-muted: oklch(0.55 0.012 58);
+  --color-text-primary: oklch(0.95 0.008 240); /* blue-white */
+  --color-text-secondary: oklch(0.7 0.012 240);
+  --color-text-muted: oklch(0.55 0.01 240);
 
   --color-success: #6b9c6e;
   --color-warning: #d4a04a;

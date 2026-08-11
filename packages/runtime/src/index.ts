@@ -525,7 +525,7 @@ function injectOverlayIntoHtmlDocument(html: string): string {
   return `${html}${script}`;
 }
 
-const PREVIEW_VIEWPORT_MARKER = '<!-- OPEN-CODESIGN-PREVIEW-VIEWPORT -->';
+const PREVIEW_VIEWPORT_MARKER = '<!-- DSR-CODESIGN-PREVIEW-VIEWPORT -->';
 
 function previewViewportSupportTags(): string {
   return `${PREVIEW_VIEWPORT_MARKER}

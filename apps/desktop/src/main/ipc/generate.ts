@@ -45,6 +45,7 @@ import {
   withInFlightGenerationForDesign,
 } from '../generation-ipc';
 import { resolveGenerationWorkspaceRoot } from '../generation-workspace';
+import { getGoogleTokenStore } from '../google-oauth-ipc';
 import { resolveImageGenerationConfig, toGenerateImageOptions } from '../image-generation-settings';
 import { makeJudgeVisualParity } from '../judge-visual-parity';
 import { getLogger } from '../logger';
@@ -287,6 +288,7 @@ function normalizeGenerationFailure(opts: {
 function resolveActiveApiKeyFromState(providerId: string): Promise<string> {
   return resolveActiveApiKey(providerId, {
     getCodexAccessToken: () => getCodexTokenStore().getValidAccessToken(),
+    getGoogleAccessToken: () => getGoogleTokenStore().getValidAccessToken(),
     getApiKeyForProvider,
   });
 }
@@ -294,6 +296,7 @@ function resolveActiveApiKeyFromState(providerId: string): Promise<string> {
 function resolveApiKeyForActive(providerId: string, allowKeyless: boolean): Promise<string> {
   return resolveCredentialForProvider(providerId, allowKeyless, {
     getCodexAccessToken: () => getCodexTokenStore().getValidAccessToken(),
+    getGoogleAccessToken: () => getGoogleTokenStore().getValidAccessToken(),
     getApiKeyForProvider,
     hasApiKeyForProvider,
   });

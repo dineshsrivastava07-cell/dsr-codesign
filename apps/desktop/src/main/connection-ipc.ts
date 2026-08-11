@@ -309,15 +309,15 @@ export function classifyHttpError(status: number): {
   hint: string;
 } {
   if (status === 401 || status === 403) {
-    return { code: '401', hint: 'API key 错误或权限不足' };
+    return { code: '401', hint: 'Invalid API key or insufficient permissions' };
   }
   if (status === 404) {
     return {
       code: '404',
-      hint: 'baseUrl 路径错误。OpenAI 兼容代理通常需要 /v1 后缀（试试 https://your-host/v1）',
+      hint: 'Incorrect baseUrl path. OpenAI-compatible proxies usually need a /v1 suffix (try https://your-host/v1)',
     };
   }
-  return { code: 'NETWORK', hint: `服务器返回 HTTP ${status}` };
+  return { code: 'NETWORK', hint: `Server returned HTTP ${status}` };
 }
 
 function connectionCategoryForStatus(status: number, baseUrl: string): DiagnosticCategory {
@@ -335,24 +335,24 @@ function classifyNetworkError(err: unknown): { code: ConnectionTestError['code']
   if (err instanceof Error && err.name === 'AbortError') {
     return {
       code: 'NETWORK',
-      hint: `请求超时（>${CONNECTION_FETCH_TIMEOUT_MS / 1000}s），检查 baseUrl 与网络可达性`,
+      hint: `Request timed out (>${CONNECTION_FETCH_TIMEOUT_MS / 1000}s) — check baseUrl and network reachability`,
     };
   }
   if (message.includes('ECONNREFUSED') || message.includes('ENOTFOUND')) {
     return {
       code: 'ECONNREFUSED',
-      hint: '无法连接到 baseUrl，检查域名 / 端口 / 网络',
+      hint: 'Cannot connect to baseUrl — check hostname, port, and network',
     };
   }
   if (message.includes('CORS') || message.includes('cross-origin')) {
     return {
       code: 'NETWORK',
-      hint: '跨域错误（理论上 main 端 fetch 不该有，看日志）',
+      hint: 'Cross-origin error (unexpected in main process — check logs)',
     };
   }
   return {
     code: 'NETWORK',
-    hint: `网络错误：${message}。查看日志：~/Library/Logs/dsr-codesign/main.log`,
+    hint: `Network error: ${message}. Check logs at ~/Library/Logs/dsr-codesign/main.log`,
   };
 }
 
@@ -568,7 +568,7 @@ async function testChatGPTCodexOAuth(): Promise<ConnectionTestResponse> {
       ok: false,
       code: '401',
       message: err instanceof Error ? err.message : String(err),
-      hint: 'ChatGPT 订阅凭证读取失败，请到 Settings 重新登录',
+      hint: 'Failed to read ChatGPT subscription credentials — please sign in again in Settings',
     };
   }
   if (stored === null) {
@@ -576,7 +576,7 @@ async function testChatGPTCodexOAuth(): Promise<ConnectionTestResponse> {
       ok: false,
       code: '401',
       message: 'No ChatGPT OAuth token stored',
-      hint: 'ChatGPT 订阅未登录，请到 Settings 登录',
+      hint: 'Not signed in to ChatGPT subscription — please sign in via Settings',
       compatibility: 'incompatible',
       reasonCategory: 'auth',
     };
@@ -586,7 +586,7 @@ async function testChatGPTCodexOAuth(): Promise<ConnectionTestResponse> {
       ok: false,
       code: '401',
       message: 'ChatGPT OAuth token expired',
-      hint: 'ChatGPT 订阅登录已过期，请重新登录',
+      hint: 'ChatGPT subscription login has expired — please sign in again',
       compatibility: 'incompatible',
       reasonCategory: 'auth',
     };

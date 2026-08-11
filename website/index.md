@@ -9,7 +9,7 @@ hero:
   text: Design with intent.
   tagline: An open-source desktop AI design tool. v0.2.0 brings Agentic Design with workspace-backed sessions, permissioned local tools, lazy skills, and DESIGN.md design systems.
   image:
-    src: /logo-hero.png
+    src: /logo.svg
     alt: DSR CoDesign — open-source AI design tool
   actions:
     - theme: brand
@@ -174,9 +174,9 @@ import { withBase } from 'vitepress'
     <p class="community-cta"><a href="https://github.com/DSR-AI-Lab/dsr-codesign/issues" class="community-button">Open Issues →</a></p>
   </div>
   <div class="community-card">
-    <h3>WeChat (中文社群)</h3>
-    <p class="community-hint">Chinese-speaking users chat in our WeChat group — the QR lives in the <a href="/dsr-codesign/zh/#社群">Chinese landing page</a>. Codes rotate every 7 days; we refresh in-repo.</p>
-    <p class="community-cta"><a href="/dsr-codesign/zh/#社群" class="community-button">View QR →</a></p>
+    <h3>Discord</h3>
+    <p class="community-hint">Join the DSR AI Lab community on Discord for real-time chat, feature discussions, and support.</p>
+    <p class="community-cta"><a href="https://github.com/DSR-AI-Lab/dsr-codesign/discussions" class="community-button">Join Discussions →</a></p>
   </div>
 </div>
 

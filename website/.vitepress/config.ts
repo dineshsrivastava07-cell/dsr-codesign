@@ -71,22 +71,23 @@ const PAGE_METADATA: Record<string, PageMeta> = {
   'zh/': {
     name: 'DSR CoDesign',
     description:
-      'DSR CoDesign 是一款开源桌面 AI 设计工具，支持自带模型密钥、本地优先存储和 MIT 协议。',
+      'DSR CoDesign is an open-source desktop AI design tool with BYOK, local-first storage, and MIT license.',
     schemaType: 'AboutPage',
   },
   'zh/quickstart': {
-    name: 'DSR CoDesign 快速开始',
-    description: '安装 DSR CoDesign 并生成第一个 AI 设计原型。',
+    name: 'DSR CoDesign — Quick Start',
+    description: 'Install DSR CoDesign and generate your first AI design prototype.',
     schemaType: 'TechArticle',
   },
   'zh/faq': {
-    name: 'DSR CoDesign 常见问题',
-    description: 'DSR CoDesign 的常见问题。',
+    name: 'DSR CoDesign — FAQ',
+    description: 'Frequently asked questions about DSR CoDesign.',
     schemaType: 'FAQPage',
   },
   'zh/claude-design-alternative': {
     name: 'DSR CoDesign vs Claude Design',
-    description: 'DSR CoDesign 与 Anthropic Claude Design 的功能和取舍对比。',
+    description:
+      'Feature and trade-off comparison between DSR CoDesign and Anthropic Claude Design.',
   },
 };
 
@@ -133,48 +134,7 @@ const FAQ_MAIN_ENTITY = [
   },
 ];
 
-const ZH_FAQ_MAIN_ENTITY = [
-  {
-    '@type': 'Question',
-    name: 'DSR CoDesign 是什么？',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'DSR CoDesign 是一款开源桌面 AI 设计工具，可以把自然语言提示词转换成 HTML 原型、React 组件、幻灯片、PDF 和营销素材。',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'DSR CoDesign 免费吗？',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: '免费。DSR CoDesign 使用 MIT 协议，用户只需要为自己选择的模型提供商付费。',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'DSR CoDesign 支持哪些模型？',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'DSR CoDesign 支持 Anthropic Claude、OpenAI GPT、Google Gemini、DeepSeek、OpenRouter、SiliconFlow、本地 Ollama、OpenAI 兼容端点、keyless 代理，以及 ChatGPT Plus / Codex 订阅登录。',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'DSR CoDesign 会把数据发到云端吗？',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: '不会。设计、提示词、设置和生成文件默认保存在本机。唯一对外网络流量是用户自己配置的模型提供商请求。',
-    },
-  },
-  {
-    '@type': 'Question',
-    name: 'DSR CoDesign 支持哪些平台？',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: 'DSR CoDesign 支持 macOS Apple Silicon、macOS Intel、Windows x64、Windows ARM64，以及 Linux AppImage、deb、rpm 安装包。',
-    },
-  },
-];
+const ZH_FAQ_MAIN_ENTITY = FAQ_MAIN_ENTITY;
 
 export default defineConfig({
   title: 'DSR CoDesign',
@@ -205,7 +165,7 @@ export default defineConfig({
       'link',
       { rel: 'apple-touch-icon', sizes: '180x180', href: `${SITE_BASE}apple-touch-icon.png` },
     ],
-    ['meta', { name: 'theme-color', content: '#c96442' }],
+    ['meta', { name: 'theme-color', content: '#1E6FFF' }],
     ['meta', { name: 'google-site-verification', content: 'c3cbbeaec5437546' }],
     // Open Graph
     ['meta', { property: 'og:type', content: 'website' }],
@@ -289,7 +249,6 @@ export default defineConfig({
       },
     ],
     ['link', { rel: 'alternate', hreflang: 'en', href: SITE_URL }],
-    ['link', { rel: 'alternate', hreflang: 'zh-CN', href: `${SITE_URL}zh/` }],
     ['link', { rel: 'alternate', hreflang: 'x-default', href: SITE_URL }],
     // JSON-LD — WebSite
     [
@@ -303,7 +262,7 @@ export default defineConfig({
         url: SITE_URL,
         description:
           'Open-source desktop AI design tool with BYOK model support, local-first storage, and MIT licensing.',
-        inLanguage: ['en-US', 'zh-CN'],
+        inLanguage: 'en-US',
         publisher: { '@id': `${SITE_URL}#organization` },
         about: { '@id': `${SITE_URL}#software` },
         sameAs: [REPOSITORY_URL, ORGANIZATION_URL, 'https://twitter.com/DSR-AI-Lab'],
@@ -416,7 +375,7 @@ export default defineConfig({
         '@id': `${SITE_URL}#organization`,
         name: 'DSR-AI-Lab',
         url: ORGANIZATION_URL,
-        logo: `${SITE_URL}logo.png`,
+        logo: `${SITE_URL}logo.svg`,
         sameAs: [ORGANIZATION_URL, 'https://twitter.com/DSR-AI-Lab'],
       }),
     ],
@@ -475,7 +434,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: { src: '/logo.png', alt: 'dsr-codesign' },
+    logo: { src: '/logo.svg', alt: 'DSR AI Lab' },
 
     nav: [
       { text: 'Home', link: '/' },
@@ -544,37 +503,6 @@ export default defineConfig({
     root: {
       label: 'English',
       lang: 'en',
-    },
-    zh: {
-      label: '中文',
-      lang: 'zh-CN',
-      title: 'DSR CoDesign',
-      description:
-        '开源桌面 AI 设计工具——Claude Design 的自托管替代方案。自带 API Key（Anthropic、OpenAI、Gemini、DeepSeek、Ollama），100% 本地运行，MIT。',
-      themeConfig: {
-        nav: [
-          { text: '首页', link: '/zh/' },
-          { text: '快速开始', link: '/zh/quickstart' },
-          { text: '对比 Claude Design', link: '/zh/claude-design-alternative' },
-          { text: '常见问题', link: '/zh/faq' },
-          { text: 'GitHub', link: 'https://github.com/DSR-AI-Lab/dsr-codesign' },
-        ],
-        sidebar: [
-          {
-            text: '入门',
-            items: [
-              { text: '简介', link: '/zh/' },
-              { text: '快速开始', link: '/zh/quickstart' },
-              { text: '对比 Claude Design', link: '/zh/claude-design-alternative' },
-              { text: '常见问题', link: '/zh/faq' },
-            ],
-          },
-        ],
-        footer: {
-          message: '基于 MIT 协议开源。',
-          copyright: '© 2026-present DSR-AI-Lab',
-        },
-      },
     },
   },
 });

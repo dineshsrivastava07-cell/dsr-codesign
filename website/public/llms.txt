@@ -60,7 +60,7 @@ Human-readable citation:
 BibTeX:
 
 ```bibtex
-@misc{open_codesign_github,
+@misc{dsr_codesign_github,
   author       = {DSR-AI-Lab Contributors},
   title        = {DSR CoDesign: An Open-Source Desktop AI Design Tool},
   year         = {2026},

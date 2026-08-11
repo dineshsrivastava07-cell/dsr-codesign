@@ -19,7 +19,7 @@ First public release, installers for macOS (DMG), Windows (EXE), and Linux (AppI
 - AI-generated sliders and inline comment mode (pin + AI region-rewrite)
 - Instant design switching via preview pool
 - Five export formats — HTML, PDF, PPTX, ZIP, Markdown
-- Bilingual UI (English + 简体中文)
+- English UI with multi-locale routing
 - Built-in anti-AI-slop design Skill
 
 ## v0.1.4 — Shipped (April 2026)

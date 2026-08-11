@@ -11,12 +11,13 @@ function humanizeError(raw: string, t: (k: string, d?: Record<string, unknown>) 
   if (/Inline Babel script/i.test(raw) || /Unexpected token/.test(raw)) {
     return t('preview.error.brokenJsx', {
       defaultValue:
-        '此设计的代码有语法错误，可能是早期版本保存的不完整内容。重新生成或编辑修复即可。',
+        'This design has a syntax error, likely an incomplete early save. Regenerate or edit to fix.',
     });
   }
   if (/ReferenceError/.test(raw) && /is not defined/.test(raw)) {
     return t('preview.error.undefinedRef', {
-      defaultValue: '设计引用了未定义的变量或组件。可能是生成中途中断——尝试重新生成。',
+      defaultValue:
+        'The design references an undefined variable or component. Likely a mid-run abort — try regenerating.',
     });
   }
   return raw;

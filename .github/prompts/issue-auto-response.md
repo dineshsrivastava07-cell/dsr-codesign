@@ -23,9 +23,9 @@ fi
 Exit immediately if any:
 - For an opened issue event, the issue body is empty/whitespace only
 - Has label: `duplicate`, `spam`, or `bot-skip`
-- For an opened issue or ordinary labeled issue event, the issue already has a comment containing `*Open-CoDesign Bot*`
+- For an opened issue or ordinary labeled issue event, the issue already has a comment containing `*DSR-CoDesign Bot*`
 - Exception: a `bot-rerun` label may intentionally force a fresh response
-- For an issue comment event, the new comment is from a bot, empty/whitespace only, or not newer than the latest `*Open-CoDesign Bot*` comment
+- For an issue comment event, the new comment is from a bot, empty/whitespace only, or not newer than the latest `*DSR-CoDesign Bot*` comment
 
 ## Project Context
 
@@ -82,7 +82,7 @@ Public context: `README.md`, `CLAUDE.md`, `AGENTS.md` if present, package manife
 
 ---
 
-*Open-CoDesign Bot*
+*DSR-CoDesign Bot*
 ```
 
 ## Post to GitHub (MANDATORY)

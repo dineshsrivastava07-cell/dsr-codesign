@@ -6,6 +6,7 @@ import { resolveActiveApiKey, resolveCredentialForProvider } from './resolve-api
 function makeDeps(overrides: Partial<ResolveActiveApiKeyDeps> = {}): ResolveActiveApiKeyDeps {
   return {
     getCodexAccessToken: vi.fn().mockResolvedValue('oauth-token'),
+    getGoogleAccessToken: vi.fn().mockResolvedValue('google-oauth-token'),
     getApiKeyForProvider: vi.fn().mockReturnValue('stored-key'),
     ...overrides,
   };
@@ -121,6 +122,7 @@ describe('resolveCredentialForProvider', () => {
   ): ResolveCredentialForProviderDeps {
     return {
       getCodexAccessToken: vi.fn().mockResolvedValue('oauth-token'),
+      getGoogleAccessToken: vi.fn().mockResolvedValue('google-oauth-token'),
       getApiKeyForProvider: vi.fn().mockReturnValue('stored-key'),
       hasApiKeyForProvider: vi.fn().mockReturnValue(true),
       ...overrides,

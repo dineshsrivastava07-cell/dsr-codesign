@@ -819,16 +819,16 @@ describe('config:v1:import-codex-config empty env handling', () => {
           wire: 'openai-chat',
           baseUrl: 'https://api.example.com/v1',
           defaultModel: 'gpt-test',
-          envKey: 'OPEN_CODESIGN_EMPTY_ENV_FOR_TEST',
+          envKey: 'DSR_CODESIGN_EMPTY_ENV_FOR_TEST',
         },
       ],
       activeProvider: 'codex-empty-env',
       activeModel: 'gpt-test',
-      envKeyMap: { 'codex-empty-env': 'OPEN_CODESIGN_EMPTY_ENV_FOR_TEST' },
+      envKeyMap: { 'codex-empty-env': 'DSR_CODESIGN_EMPTY_ENV_FOR_TEST' },
       apiKeyMap: {},
       warnings: [],
     });
-    process.env['OPEN_CODESIGN_EMPTY_ENV_FOR_TEST'] = '   ';
+    process.env['DSR_CODESIGN_EMPTY_ENV_FOR_TEST'] = '   ';
 
     const handler = handlers.get('config:v1:import-codex-config');
     expect(handler).toBeDefined();
@@ -836,7 +836,7 @@ describe('config:v1:import-codex-config empty env handling', () => {
 
     expect(encryptSecret).not.toHaveBeenCalled();
     expect(writeConfig).not.toHaveBeenCalled();
-    process.env['OPEN_CODESIGN_EMPTY_ENV_FOR_TEST'] = undefined;
+    process.env['DSR_CODESIGN_EMPTY_ENV_FOR_TEST'] = undefined;
   });
 
   it('encrypts Codex auth.json API keys for providers requiring OpenAI auth', async () => {

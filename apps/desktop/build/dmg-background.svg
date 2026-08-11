@@ -16,9 +16,9 @@
 
   <!-- Top headline -->
   <text x="320" y="64" text-anchor="middle"
-        font-family="'PingFang SC','Helvetica Neue',system-ui,sans-serif"
+        font-family="'SF Pro Display','Helvetica Neue',system-ui,sans-serif"
         font-size="22" font-weight="600" fill="#1a1a1a">
-    把 DSR CoDesign 拖到「应用程序」
+    DSR CoDesign — by DSR AI Lab
   </text>
   <text x="320" y="94" text-anchor="middle"
         font-family="'SF Pro Text','Helvetica Neue',system-ui,sans-serif"
@@ -36,7 +36,7 @@
   <text x="320" y="310" text-anchor="middle"
         font-family="'SF Pro Text',system-ui,sans-serif"
         font-size="12" fill="#9a9a9a" letter-spacing="0.4">
-    拖到这里 · drop here
+    drop here
   </text>
 
   <!-- Icon slot labels (the actual icons get positioned by electron-builder over this bg) -->
@@ -54,13 +54,13 @@
   <!-- Warning footer -->
   <rect x="0" y="432" width="640" height="48" fill="#1a1a1a" opacity="0.04"/>
   <text x="320" y="454" text-anchor="middle"
-        font-family="'PingFang SC','SF Pro Text',system-ui,sans-serif"
+        font-family="'SF Pro Text',system-ui,sans-serif"
         font-size="11" fill="#6b6b6b">
-    直接从 DMG 双击运行会导致钥匙串不可用 · Double-clicking from the DMG leaves the keychain broken
+    Double-clicking from the DMG leaves the keychain broken — drag to Applications first
   </text>
   <text x="320" y="470" text-anchor="middle"
         font-family="'SF Pro Text',monospace"
         font-size="9" fill="#b0b0b0" letter-spacing="0.3">
-    OPEN-CODESIGN · OPEN-SOURCE AI DESIGN TOOL
+    DSR-CODESIGN · DEVELOPED BY DSR AI LAB
   </text>
 </svg>

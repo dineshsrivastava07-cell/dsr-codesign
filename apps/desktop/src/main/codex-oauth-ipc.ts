@@ -50,7 +50,7 @@ const CHATGPT_CODEX_MODELS = [
 
 const CHATGPT_CODEX_PROVIDER: ProviderEntry = {
   id: CHATGPT_CODEX_PROVIDER_ID,
-  name: 'ChatGPT 订阅',
+  name: 'ChatGPT Subscription',
   builtin: false,
   wire: 'openai-codex-responses',
   // pi-ai's openai-codex-responses wire appends `/codex/responses` itself, so
@@ -179,7 +179,7 @@ async function runLoginFlow(abortController: AbortController): Promise<CodexOAut
     const tokenSet: TokenSet = await exchangeCode(code, pkce.verifier, server.redirectUri);
     if (tokenSet.accountId === null) {
       throw new CodesignError(
-        'Codex 登录成功但无法读取 ChatGPT 账户 ID，请重试登录。',
+        'Codex login succeeded but could not read ChatGPT account ID — please try signing in again.',
         ERROR_CODES.PROVIDER_ERROR,
         { cause: null },
       );

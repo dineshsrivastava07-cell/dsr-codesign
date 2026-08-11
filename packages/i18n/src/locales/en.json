@@ -394,6 +394,20 @@
     },
     "providers": {
       "sectionTitle": "API Providers",
+      "geminiLogin": {
+        "title": "Sign in with Google",
+        "description": "Use your Google account to access Gemini models (gemini-2.5-pro, flash, and more) — no API key needed.",
+        "signIn": "Sign in with Google",
+        "inProgress": "Browser opened. Complete Google sign-in and we'll return automatically…",
+        "loggedInBadge": "Signed in with Google",
+        "logout": "Sign out",
+        "confirmLogout": "Sign out of Google / Gemini?",
+        "loginFailedTitle": "Google sign-in failed",
+        "logoutFailedTitle": "Google sign-out failed",
+        "statusFailedTitle": "Google status check failed",
+        "unknownError": "Unknown error",
+        "notConfigured": "Google OAuth is not configured yet. Set DSR_GOOGLE_OAUTH_CLIENT_ID or contact DSR AI Lab."
+      },
       "chatgptLogin": {
         "title": "Sign in with ChatGPT subscription",
         "description": "Use your ChatGPT Plus / Pro / Team plan quota to call Codex models (gpt-5.5 and friends) — no API key needed.",

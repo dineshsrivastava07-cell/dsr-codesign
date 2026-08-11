@@ -14,6 +14,7 @@ import { registerDiagnosticsIpc } from './diagnostics-ipc';
 import { app, BrowserWindow, clipboard, dialog, shell } from './electron-runtime';
 import { ensureUserTemplates, resolveBundledTemplatesDir } from './ensure-user-templates';
 import { registerExporterIpc } from './exporter-ipc';
+import { registerGoogleOAuthIpc } from './google-oauth-ipc';
 import { registerImageGenerationSettingsIpc } from './image-generation-settings';
 import { maybeAbortIfRunningFromDmg } from './install-check';
 import { registerIpcHandlers } from './ipc/register';
@@ -302,6 +303,7 @@ if (!IS_VITEST) {
       registerConnectionIpc();
       registerOnboardingIpc();
       registerCodexOAuthIpc();
+      registerGoogleOAuthIpc();
       registerPreferencesIpc();
       registerMemoryIpc();
       registerImageGenerationSettingsIpc();

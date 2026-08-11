@@ -46,7 +46,7 @@ describe('buildSrcdoc', () => {
     const out = buildSrcdoc(
       '<!doctype html><html><head><meta name="viewport" content="width=device-width"></head><body><p>x</p></body></html>',
     );
-    expect(out).toContain('OPEN-CODESIGN-PREVIEW-VIEWPORT');
+    expect(out).toContain('DSR-CODESIGN-PREVIEW-VIEWPORT');
     expect(out).toContain('--codesign-preview-width');
     expect(out.match(/name="viewport"/g)).toHaveLength(1);
   });
