@@ -39,7 +39,7 @@
     "@dsr-codesign/templates": "workspace:*",
     "@dsr-codesign/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.3.0",
-    "@types/node": "^22.19.19",
+    "@types/node": "^22.20.1",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^5.2.0",
